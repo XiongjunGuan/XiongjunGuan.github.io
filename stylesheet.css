@@ -212,3 +212,16 @@ span.highlight {
     scroll-snap-type: y proximity;
     /* 滚动锚点到最近的滚动位置 */
 }
+
+/* 滑动浏览 */
+.news-slider {
+    width: 100%;
+    max-height: 230px;
+    /* 设置最大高度 */
+    overflow-y: auto;
+    /* 启用垂直滚动 */
+    padding: 10px;
+    /* 内边距 */
+    box-sizing: border-box;
+    /* 包括内边距和边框在内的总宽度和高度 */
+}
