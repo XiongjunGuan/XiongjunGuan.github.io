@@ -1058,9 +1058,21 @@
 
         .visitor-map {
             margin: 18px auto 12px;
-            width: min(180px, 100%);
+            width: min(220px, 100%);
+            min-height: 220px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            background: #fff;
+            overflow: hidden;
+            padding: 8px;
+        }
+
+        #clustrmaps-widget {
+            width: 100%;
+            min-height: 200px;
         }
 
         @media (max-width: 980px) {
@@ -2136,6 +2148,14 @@
 
             <article class="section-card section-spacer" aria-label="More sections placeholder">...and possibly more.
             </article>
+            <div class="visitor-map">
+                <div id="clustrmaps-widget">
+                    <script type="text/javascript" id="clstr_globe"
+                        src="https://clustrmaps.com/globe.js?d=_WZ_T7Ew-6-UikOWP9Jm-WvkAbk4Bh3KAv0GrUefMAA">
+                        </script>
+                    <noscript>Visitor map is unavailable when JavaScript is disabled.</noscript>
+                </div>
+            </div>
         </section>
 
     </main>
@@ -2150,13 +2170,6 @@
     </div>
 
     <footer class="footer">
-        <div class="visitor-map">
-            <div id="clustrmaps-widget">
-                <script type="text/javascript" id="clstr_globe"
-                    src="https://clustrmaps.com/globe.js?d=_WZ_T7Ew-6-UikOWP9Jm-WvkAbk4Bh3KAv0GrUefMAA">
-                    </script>
-            </div>
-        </div>
         &copy; Xiongjun Guan | Last updated: Apr. 1, 2026
     </footer>
 
