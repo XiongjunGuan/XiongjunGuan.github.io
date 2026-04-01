@@ -323,6 +323,32 @@
             font-size: 0.94rem;
         }
 
+        .footer {
+            text-align: center;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+            padding: 28px 0 12px;
+        }
+
+        .visitor-map {
+            margin: 18px auto 12px;
+            width: min(220px, 100%);
+            min-height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+            overflow: hidden;
+            padding: 8px;
+        }
+
+        #clustrmaps-widget {
+            width: 100%;
+            min-height: 200px;
+        }
+
         .reading-list {
             margin: 14px 0 0;
             padding: 0;
@@ -524,7 +550,7 @@
                     </li>
                     <li>
                         <details class="reading-item">
-                            <summary><span class="book-title">《杀死一座城市：缙绅化、不平等和街区种的战斗》</span><span class="book-rating">★★☆☆☆</span></summary>
+                            <summary><span class="book-title">《杀死一座城市：缙绅化、不平等和街区中的战斗》</span><span class="book-rating">★★☆☆☆</span></summary>
                             <div class="book-note"> None </div>
                         </details>
                     </li>
@@ -550,6 +576,21 @@
             <section class="card section-spacer" aria-label="More sections placeholder">...and possibly more.</section>
         </section>
     </main>
+
+    <div class="visitor-map">
+        <div id="clustrmaps-widget">
+            <script type="text/javascript" id="clstr_globe"
+                src="https://clustrmaps.com/globe.js?d=_WZ_T7Ew-6-UikOWP9Jm-WvkAbk4Bh3KAv0GrUefMAA">
+                </script>
+            <noscript>Visitor map is unavailable when JavaScript is disabled.</noscript>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; Xiongjun Guan |
+        <a href="#clustrmaps-widget">Visit Map</a> |
+        Last updated: Apr. 1, 2026
+    </footer>
 
     <script>
         (function () {
