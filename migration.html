@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Xiongjun Guan's Migration</title>
+    <meta name="description" content="Xiongjun Guan's Migration: books and photos.">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --surface-muted: #f1f3f4;
+            --text: #202124;
+            --text-soft: #5f6368;
+            --line: #e0e3e7;
+            --blue: #1a73e8;
+            --red: #d93025;
+            --yellow: #f9ab00;
+            --green: #188038;
+            --shadow: 0 12px 36px rgba(60, 64, 67, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --max-width: 1160px;
+            --topbar-height: 64px;
+            --sidebar-top-offset: 88px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--topbar-height) + 24px);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Aptos", "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(26, 115, 232, 0.08), transparent 28%),
+                radial-gradient(circle at top right, rgba(249, 171, 0, 0.08), transparent 24%),
+                linear-gradient(180deg, #ffffff 0%, #f8f9fa 24%, #f3f6fc 100%);
+            line-height: 1.65;
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(18px);
+            background: rgba(248, 249, 250, 0.88);
+            border-bottom: 1px solid rgba(224, 227, 231, 0.9);
+        }
+
+        .topbar-inner {
+            width: min(calc(100% - 32px), var(--max-width));
+            min-height: var(--topbar-height);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .brand a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .brand a.brand-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand a.brand-switch::after {
+            content: "⇄";
+            padding: 1px 6px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface-muted);
+            color: var(--text-soft);
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+        }
+
+        .brand a:hover {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .brand a.brand-switch:hover::after {
+            border-color: rgba(26, 115, 232, 0.28);
+            color: var(--blue);
+            background: #e8f0fe;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav a {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: transparent;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav a.active {
+            background: #e8f0fe;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .nav a:hover {
+            text-decoration: none;
+            background: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .page {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 24px auto 64px;
+            display: grid;
+            grid-template-columns: 300px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: var(--sidebar-top-offset);
+        }
+
+        .sidebar-card,
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(224, 227, 231, 0.95);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-card {
+            padding: 28px 24px;
+        }
+
+        .sidebar-photo-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 210px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 26px;
+            margin: 0 auto;
+            border: 6px solid #fff;
+            box-shadow: 0 18px 34px rgba(60, 64, 67, 0.18);
+        }
+
+        .sidebar-name {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            text-align: center;
+        }
+
+        .sidebar-motto {
+            margin: 18px 0 0;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(24, 128, 56, 0.08));
+            color: var(--text);
+            font-size: 0.92rem;
+            font-weight: 600;
+            line-height: 1.55;
+            text-align: center;
+            text-wrap: balance;
+        }
+
+        .icon-links {
+            display: grid;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .icon-link {
+            width: 100%;
+            min-height: 48px;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--line);
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            color: var(--text-soft);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .icon-link:hover {
+            transform: translateY(-2px);
+            color: var(--blue);
+            border-color: rgba(26, 115, 232, 0.28);
+            box-shadow: 0 10px 22px rgba(26, 115, 232, 0.12);
+            text-decoration: none;
+        }
+
+        .icon-link svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex: 0 0 auto;
+        }
+
+        .icon-link span {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .main-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .card {
+            padding: 22px 28px 28px;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+            font-weight: 600;
+        }
+
+        .title {
+            margin: 6px 0 10px;
+            font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .lead {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.98rem;
+        }
+
+        .section-title {
+            margin: 0 0 8px;
+            font-size: 1.42rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.98rem;
+        }
+
+        .placeholder {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--line);
+            background: var(--surface-muted);
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        .section-spacer {
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px dashed rgba(224, 227, 231, 0.95);
+            box-shadow: none;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        .reading-list {
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .reading-item {
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid rgba(176, 96, 0, 0.18);
+            background:
+                linear-gradient(135deg, rgba(176, 96, 0, 0.06), rgba(249, 171, 0, 0.04)),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(95, 99, 104, 0.045) 0,
+                    rgba(95, 99, 104, 0.045) 1px,
+                    transparent 1px,
+                    transparent 24px
+                ),
+                #fffdf8;
+            color: #444746;
+            font-size: 0.94rem;
+            font-family: "Cascadia Mono", "Consolas", "Courier New", monospace;
+            line-height: 1.55;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .reading-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 10px 12px 10px 34px;
+            position: relative;
+        }
+
+        .reading-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .reading-item .book-title {
+            font-weight: 700;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .reading-item .book-rating {
+            margin-left: 8px;
+            color: #8a5a00;
+            font-size: 0.86rem;
+            font-weight: 700;
+            white-space: nowrap;
+            letter-spacing: 0.06em;
+        }
+
+        .reading-item .book-note {
+            padding: 0 12px 10px 34px;
+            color: #5f6368;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .reading-item summary::before {
+            content: "▸";
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            color: #8a5a00;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .reading-item[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .reading-item:hover {
+            transform: translateY(-1px);
+            border-color: rgba(176, 96, 0, 0.32);
+            box-shadow: 0 8px 18px rgba(176, 96, 0, 0.08);
+        }
+
+        @media (max-width: 980px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .topbar-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand"><a class="brand-switch" href="homepage.html">Xiongjun Guan's Weekend</a></div>
+            <nav class="nav">
+                <a href="homepage.html">Home</a>
+                <a href="#books">Thus They Spoke</a>
+                <a href="#photos">Thus I Saw</a>
+                <a href="#memes">Thus MeMes</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-photo-wrap">
+                    <img class="profile-photo" src="images/gxj.jpg" alt="Xiongjun Guan">
+                </div>
+                <h1 class="sidebar-name">Xiongjun Guan</h1>
+                <p class="sidebar-motto">
+                    Even bounded in a nutshell, I still count myself a king of infinite universe.
+                </p>
+
+                <div class="icon-links">
+                    <a class="icon-link" href="mailto:gxj21@mails.tsinghua.edu.cn" aria-label="Email" title="Email">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-8 5.34-8-5.34V6l8 5.33L20 6Z" />
+                        </svg>
+                        <span>Email</span>
+                    </a>
+                    <a class="icon-link" href="https://scholar.google.com/citations?user=O0E8IwYAAAAJ&hl=en" aria-label="Google Scholar" title="Google Scholar">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.4 9.18V16c0 2.52 3.12 4.57 6.4 4.57s6.4-2.05 6.4-4.57v-3.82L12 16l-6.4-3.82Z" />
+                        </svg>
+                        <span>Google Scholar</span>
+                    </a>
+                    <a class="icon-link" href="https://github.com/XiongjunGuan" aria-label="GitHub" title="GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.34-1.75-1.34-1.75-1.1-.74.09-.72.09-.72 1.21.09 1.85 1.24 1.85 1.24 1.08 1.85 2.82 1.32 3.5 1 .11-.78.42-1.32.76-1.62-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.46-2.36 1.23-3.2-.13-.3-.53-1.55.11-3.22 0 0 1-.32 3.3 1.22A11.36 11.36 0 0 1 12 6.32c1.02 0 2.05.14 3.01.41 2.3-1.54 3.29-1.22 3.29-1.22.65 1.67.25 2.92.12 3.22.77.84 1.22 1.9 1.22 3.2 0 4.58-2.8 5.58-5.48 5.88.43.37.82 1.11.82 2.25v3.25c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z" />
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <section class="main-column">
+            <section class="card" id="top">
+                <h1 class="title">Migration</h1>
+                <p class="lead">
+                    On this page, we present a native multimodal, large-scale embodied AI (currently carbon-based), which supports continually learning through integrated world and intent models, approaching general-purpose superintelligence.
+                </p>
+                <p class="lead">
+                    Representative details of the existing dataset are as follows.
+                </p>
+            </section>
+
+            <section class="card" id="books">
+                <h2 class="section-title">Thus They Spoke</h2>
+                <p class="section-desc">
+                    Multi-domain, high-quality data, curated for cold start and fine-tuning, enabling a complete cognitive architecture.
+                </p>
+                <ul class="reading-list">
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《浪潮之巅》</span><span class="book-rating">★★★★★</span></summary>
+                            <div class="book-note">"对于一个公司来讲，赶上一次浪潮不能保证它长盛不衰；但是，对于一个人来讲，一生赶上这样的一次浪潮就足够了。对于一个弄潮的年轻人来讲，最幸运的，莫过于赶上一波大潮。"</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《百年孤独》</span><span class="book-rating">★★★★★</span></summary>
+                            <div class="book-note">我们必须想象西西弗斯是幸福的。</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《局外人》</span><span class="book-rating">★★★☆☆</span></summary>
+                            <div class="book-note">冷漠的成年人，抑或没有被规训的孩童</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《后工作时代：平台资本主义的劳动力》</span><span class="book-rating">★☆☆☆☆</span></summary>
+                            <div class="book-note"> None </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《没有面目的人：新资本主义之下工作的个人后果》</span><span class="book-rating">★☆☆☆☆</span></summary>
+                            <div class="book-note"> None </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《下流社会: 一个新社会阶级的出现》</span><span class="book-rating">★☆☆☆☆</span></summary>
+                            <div class="book-note"> None </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《杀死一座城市：缙绅化、不平等和街区种的战斗》</span><span class="book-rating">★★☆☆☆</span></summary>
+                            <div class="book-note"> None </div>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="card" id="photos">
+                <h2 class="section-title">Thus I Saw</h2>
+                <p class="section-desc">
+                    High-value moments, drawn from an embodied agent's interactions within a dynamic sandbox of physical and social worlds.
+                </p>
+                <div class="placeholder">I have discovered many beautiful images of the world, but the storage is too limited to contain them.</div>
+            </section>
+
+            <section class="card" id="memes">
+                <h2 class="section-title">Thus MeMes</h2>
+                <p class="section-desc">
+                    An image is worth 16 × 16 words, or perhaps more philosophical reflections ?
+                </p>
+                <div class="placeholder">I am still immersed in cyber delusions, not yet out of it.</div>
+            </section>
+
+            <section class="card section-spacer" aria-label="More sections placeholder">...and possibly more.</section>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const navLinks = Array.from(document.querySelectorAll(".nav a"));
+            const sectionNavLinks = navLinks.filter((link) => {
+                const href = link.getAttribute("href") || "";
+                return href.startsWith("#");
+            });
+            const sections = sectionNavLinks
+                .map((link) => document.querySelector(link.getAttribute("href")))
+                .filter(Boolean);
+            const activationSlack = 8;
+
+            function getActiveAnchorLine() {
+                const scrollPaddingTop = window.getComputedStyle(document.documentElement).scrollPaddingTop;
+                const parsed = parseFloat(scrollPaddingTop);
+                if (!Number.isNaN(parsed) && parsed > 0) {
+                    return parsed;
+                }
+                return 88;
+            }
+
+            function setActiveNav(currentId) {
+                sectionNavLinks.forEach(function (link) {
+                    link.classList.toggle("active", link.getAttribute("href") === currentId);
+                });
+            }
+
+            function scrollToActiveAnchor(target) {
+                const activeAnchorLine = getActiveAnchorLine();
+                const targetTop = target.getBoundingClientRect().top + window.scrollY - activeAnchorLine + activationSlack;
+                window.scrollTo({
+                    top: Math.max(0, targetTop),
+                    behavior: "smooth"
+                });
+            }
+
+            function updateActiveNavByScroll() {
+                if (!sections.length) {
+                    return;
+                }
+                const activeAnchorLine = getActiveAnchorLine();
+                const anchorY = window.scrollY + activeAnchorLine + 1;
+                let currentSection = sections[0];
+
+                sections.forEach(function (section) {
+                    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+                    if (anchorY + activationSlack >= sectionTop) {
+                        currentSection = section;
+                    }
+                });
+
+                setActiveNav("#" + currentSection.id);
+            }
+
+            sectionNavLinks.forEach((link) => {
+                link.addEventListener("click", function (event) {
+                    const href = link.getAttribute("href") || "";
+                    const target = document.querySelector(href);
+                    if (!target) {
+                        return;
+                    }
+                    event.preventDefault();
+                    setActiveNav(href);
+                    scrollToActiveAnchor(target);
+                    history.replaceState(null, "", href);
+                    window.setTimeout(updateActiveNavByScroll, 220);
+                });
+            });
+
+            let isTicking = false;
+            window.addEventListener("scroll", function () {
+                if (isTicking) {
+                    return;
+                }
+                isTicking = true;
+                window.requestAnimationFrame(function () {
+                    updateActiveNavByScroll();
+                    isTicking = false;
+                });
+            }, { passive: true });
+
+            window.addEventListener("resize", updateActiveNavByScroll);
+            updateActiveNavByScroll();
+        }());
+    </script>
+</body>
+
+</html>
