@@ -307,6 +307,43 @@
             font-weight: 600;
         }
 
+        .tag-groups {
+            display: grid;
+            gap: 14px;
+        }
+
+        .tag-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .tag-group-title {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .tag-group.focus .tag {
+            background: #fff3dc;
+            border: 1px solid rgba(214, 144, 13, 0.28);
+            color: #5a3a00;
+        }
+
+        .tag-group.interesting .tag {
+            background: #e9f7ff;
+            border: 1px solid rgba(51, 140, 193, 0.24);
+            color: #0d4663;
+        }
+
+        .tag-group.experience .tag {
+            background: #eef7ef;
+            border: 1px solid rgba(88, 143, 95, 0.24);
+            color: #1f4a25;
+        }
+
         .section-title {
             margin: 0 0 14px;
             font-size: 1.6rem;
@@ -1184,16 +1221,34 @@
                         Tsinghua University.
                     </p>
                     <p>
-                        My current interests and experience lie in the following areas:
+                        My current focus, interests and experience are in the following areas:
                     </p>
-                    <div class="quick-tags">
-                        <span class="tag">AI Infra</span>
-                        <span class="tag">Smart Glasses</span>
-                        <span class="tag">MLLMs</span>
-                        <span class="tag">Post-training</span>
-                        <span class="tag">RL & Agent</span>
-                        <span class="tag">Image Retrieval</span>
-                        <span class="tag">HCI</span>
+                    <div class="tag-groups">
+                        <div class="tag-group focus">
+                            <p class="tag-group-title">Focus</p>
+                            <div class="quick-tags">
+                                <span class="tag">AI Infra</span>
+                                <span class="tag">RL & Agent</span>
+                            </div>
+                        </div>
+                        <div class="tag-group interesting">
+                            <p class="tag-group-title">Interests</p>
+                            <div class="quick-tags">
+                                <span class="tag">DaaS & SaaS</span>
+                                <span class="tag">Smart Glasses</span>
+                                <span class="tag">HCI</span>
+                            </div>
+                        </div>
+                        <div class="tag-group experience">
+                            <p class="tag-group-title">Experience</p>
+                            <div class="quick-tags">
+                                <span class="tag">MLLMs</span>
+                                <span class="tag">Post-training</span>
+                                <span class="tag">Image Retrieval</span>
+                                <span class="tag">Location & Registration</span>
+                                <span class="tag">Efficient Representation</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -1377,7 +1432,7 @@
                             <span class="item-meta">2023.06 - 2023.08</span>
                             <h3 class="item-title"><strong>Algorithm Research Department, GRG Intek, CRG
                                     Banking</strong></h3>
-                            <p class="item-org">Algorithm Intern</p>
+                            <p class="item-org">Algorithm Intern (University-Industry Collaboration)</p>
                             <p class="item-desc">
                                 Focusing on contactless palmprint recognition for large-scale populations, responsible
                                 for framework design, technical investigation, and early-stage engineering prototyping.
@@ -1415,16 +1470,17 @@
                         <div>
                             <span class="item-meta">2022.01 - 2023.06</span>
                             <h3 class="item-title"><strong>Hisign Technology</strong></h3>
-                            <p class="item-org">Algorithm Intern (University-Industry Collaboration)</p>
+                            <p class="item-org">Algorithm Intern (Lab-Industry Collaboration)</p>
                             <p class="item-desc">
                                 Focusing on image retrieval in edge computing scenarios (partial images / low quaity), improving
                                 storage and computational efficiency through image registration and mosaicking technologies.
                             </p>
                             <p class="item-desc">
-                                Resulting in 1  publication in international journal (first-author).
+                                Resulting in 2 publications in international journals (first-author).
                             </p>
                             <div class="item-links">
-                                <a href="#paper-phase-registration">Pub 1</a>
+                                <a href="#paper-distortion-rectification">Pub 1</a>
+                                <a href="#paper-phase-registration">Pub 2</a>
                             </div>
                             <div class="item-tags">
                                 <span class="item-tag">Image Retrieval</span>
@@ -1942,7 +1998,7 @@
                                     </div>
                                 </div>
 
-                                <div class="paper-item">
+                                <div class="paper-item" id="paper-joint-pose-verification">
                                     <button class="paper-thumb" type="button"
                                         data-lightbox-src="images/tifs2024_partial.png"
                                         data-lightbox-alt="Joint Identity Verification and Pose Alignment for Partial Fingerprints">
@@ -2037,7 +2093,7 @@
                                     </div>
                                 </div>
 
-                                <div class="paper-item">
+                                <div class="paper-item" id="paper-distortion-rectification">
                                     <button class="paper-thumb" type="button"
                                         data-lightbox-src="images/tifs2023_rectification.png"
                                         data-lightbox-alt="Regression of Dense Distortion Field from a Single Fingerprint Image">
