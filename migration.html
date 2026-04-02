@@ -10,6 +10,8 @@
     <title>Xiongjun Guan's Migration</title>
     <meta name="description" content="Xiongjun Guan's Migration: books and photos.">
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <style>
         :root {
             --bg: #f8f9fa;
@@ -323,6 +325,124 @@
             font-weight: 600;
         }
 
+        .photo-map-card {
+            margin-top: 18px;
+            padding: 20px;
+            border-radius: 22px;
+            border: 1px solid rgba(26, 115, 232, 0.12);
+            background:
+                radial-gradient(circle at 18% 18%, rgba(26, 115, 232, 0.14), transparent 28%),
+                radial-gradient(circle at 82% 12%, rgba(24, 128, 56, 0.12), transparent 24%),
+                linear-gradient(180deg, #fbfdff 0%, #f2f7ff 100%);
+        }
+
+        .photo-map-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .photo-map-title {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .photo-map-note {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .travel-map {
+            position: relative;
+            min-height: 460px;
+            border-radius: 18px;
+            border: 1px solid rgba(26, 115, 232, 0.1);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 248, 255, 0.96)),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(26, 115, 232, 0.05) 0,
+                    rgba(26, 115, 232, 0.05) 1px,
+                    transparent 1px,
+                    transparent 72px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(26, 115, 232, 0.05) 0,
+                    rgba(26, 115, 232, 0.05) 1px,
+                    transparent 1px,
+                    transparent 72px
+                );
+            overflow: hidden;
+        }
+
+        #travel-map-canvas {
+            width: 100%;
+            height: 460px;
+        }
+
+        .leaflet-container {
+            font: inherit;
+        }
+
+        .leaflet-control-attribution {
+            font-size: 0.72rem;
+        }
+
+        .city-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ea4335, #fbbc04);
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 5px rgba(217, 48, 37, 0.18);
+        }
+
+        .map-popup-title {
+            margin: 0 0 4px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .map-popup-note {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.84rem;
+        }
+
+        .city-chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .city-chip {
+            appearance: none;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.84);
+            border: 1px solid rgba(26, 115, 232, 0.12);
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+        }
+
+        .city-chip:hover {
+            color: var(--blue);
+            background: #fff;
+            border-color: rgba(26, 115, 232, 0.32);
+        }
+
         .footer {
             text-align: center;
             color: var(--text-soft);
@@ -444,6 +564,29 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
+
+            .travel-map {
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                padding: 20px 18px 24px;
+            }
+
+            .photo-map-card {
+                padding: 16px;
+            }
+
+            .travel-map {
+                min-height: 560px;
+            }
+
+            .map-pin-label {
+                font-size: 0.76rem;
+                padding: 4px 8px;
+            }
         }
     </style>
 </head>
@@ -532,6 +675,30 @@
                     </li>
                     <li>
                         <details class="reading-item">
+                            <summary><span class="book-title">《是，首相》 & 《是，大臣》</span><span class="book-rating">★★★★★</span></summary>
+                            <div class="book-note">半部英剧治天下。</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《人民的名义》 & 《人民的财产》</span><span class="book-rating">★★★★☆</span></summary>
+                            <div class="book-note">"中国的改革开放，可以说是浩浩荡荡，每个人都身处洪流之中。其间，有许多人凭借自身的努力，或者说是幸运，站在了潮头之上。这潮头之上是风光无限、诱惑无限，也风险无限，就看你如何把握了。看未来远不如看过去要来的清楚。激昂和困惑，交织在每个人的心头。"</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《纸牌屋》</span><span class="book-rating">★★★★☆</span></summary>
+                            <div class="book-note">"若不想权力的行宫落入他人之手，则永不可酣睡榻上安然入眠。"</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《孤独深处》</span><span class="book-rating">★★★☆☆</span></summary>
+                            <div class="book-note">"他看着生活里得到的东西，两张纸的学历，一个租的房子，拥挤的生活。去除所有这些外在，还剩下什么，什么也没有。就像是一颗洋葱，一层层脱落，里面越来越小，剥到最后空空如也。可能所有努力只为了裹上洋葱的外皮，不让别人看到空空如也。泯然众人矣。"</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
                             <summary><span class="book-title">《局外人》</span><span class="book-rating">★★★☆☆</span></summary>
                             <div class="book-note">冷漠的成年人，抑或没有被规训的孩童</div>
                         </details>
@@ -570,6 +737,46 @@
                     High-value moments, drawn from an embodied agent's interactions within a dynamic sandbox of physical and social worlds.
                 </p>
                 <div class="placeholder">I have discovered many beautiful images of the world, but the storage is too limited to contain them.</div>
+                <div class="photo-map-card">
+                    <div class="photo-map-head">
+                        <p class="photo-map-title">Travel Footprints</p>
+                    </div>
+                    <div class="travel-map" aria-label="Travel map of visited cities in China">
+                        <div id="travel-map-canvas" role="img" aria-label="Interactive map of visited cities in China"></div>
+                    </div>
+                    <div class="city-chip-list" aria-label="Visited city shortcuts">
+                        <button class="city-chip" type="button" data-city-focus="beijing">北京</button>
+                        <button class="city-chip" type="button" data-city-focus="tianjin">天津</button>
+                        <button class="city-chip" type="button" data-city-focus="langfang">廊坊</button>
+                        <button class="city-chip" type="button" data-city-focus="chengde">承德</button>
+                        <button class="city-chip" type="button" data-city-focus="qinhuangdao">秦皇岛</button>
+                        <button class="city-chip" type="button" data-city-focus="zhangjiakou">张家口</button>
+                        <button class="city-chip" type="button" data-city-focus="hengshui">衡水</button>
+                        <button class="city-chip" type="button" data-city-focus="datong">大同</button>
+                        <button class="city-chip" type="button" data-city-focus="shuozhou">朔州</button>
+                        <button class="city-chip" type="button" data-city-focus="xinzhou">忻州</button>
+                        <button class="city-chip" type="button" data-city-focus="harbin">哈尔滨</button>
+                        <button class="city-chip" type="button" data-city-focus="shenyang">沈阳</button>
+                        <button class="city-chip" type="button" data-city-focus="dalian">大连</button>
+                        <button class="city-chip" type="button" data-city-focus="kaifeng">开封</button>
+                        <button class="city-chip" type="button" data-city-focus="luoyang">洛阳</button>
+                        <button class="city-chip" type="button" data-city-focus="qingdao">青岛</button>
+                        <button class="city-chip" type="button" data-city-focus="xuzhou">徐州</button>
+                        <button class="city-chip" type="button" data-city-focus="nanjing">南京</button>
+                        <button class="city-chip" type="button" data-city-focus="suzhou">苏州</button>
+                        <button class="city-chip" type="button" data-city-focus="hangzhou">杭州</button>
+                        <button class="city-chip" type="button" data-city-focus="hefei">合肥</button>
+                        <button class="city-chip" type="button" data-city-focus="chongqing">重庆</button>
+                        <button class="city-chip" type="button" data-city-focus="chengdu">成都</button>
+                        <button class="city-chip" type="button" data-city-focus="ganzi">甘孜</button>
+                        <button class="city-chip" type="button" data-city-focus="changsha">长沙</button>
+                        <button class="city-chip" type="button" data-city-focus="guiyang">贵阳</button>
+                        <button class="city-chip" type="button" data-city-focus="guangzhou">广州</button>
+                        <button class="city-chip" type="button" data-city-focus="shenzhen">深圳</button>
+                        <button class="city-chip" type="button" data-city-focus="zhuhai">珠海</button>
+                        <button class="city-chip" type="button" data-city-focus="macau">澳门</button>
+                    </div>
+                </div>
             </section>
 
             <section class="card" id="memes">
@@ -681,6 +888,112 @@
 
             window.addEventListener("resize", updateActiveNavByScroll);
             updateActiveNavByScroll();
+        }());
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        (function () {
+            if (!window.L) {
+                return;
+            }
+
+            const cityData = [
+                { id: "beijing", name: "北京", lat: 39.9042, lng: 116.4074 },
+                { id: "tianjin", name: "天津", lat: 39.0842, lng: 117.2000 },
+                { id: "langfang", name: "廊坊", lat: 39.5378, lng: 116.6838 },
+                { id: "qinhuangdao", name: "秦皇岛", lat: 39.9354, lng: 119.5996 },
+                { id: "chengde", name: "承德", lat: 40.9515, lng: 117.9634 },
+                { id: "zhangjiakou", name: "张家口", lat: 40.8244, lng: 114.8875 },
+                { id: "shenyang", name: "沈阳", lat: 41.8057, lng: 123.4315 },
+                { id: "harbin", name: "哈尔滨", lat: 45.8038, lng: 126.5350 },
+                { id: "dalian", name: "大连", lat: 38.9140, lng: 121.6147 },
+                { id: "kaifeng", name: "开封", lat: 34.7973, lng: 114.3076 },
+                { id: "datong", name: "大同", lat: 40.0768, lng: 113.3001 },
+                { id: "xinzhou", name: "忻州", lat: 38.4167, lng: 112.7333 },
+                { id: "shuozhou", name: "朔州", lat: 39.3316, lng: 112.4334 },
+                { id: "hengshui", name: "衡水", lat: 37.7389, lng: 115.6702 },
+                { id: "chengdu", name: "成都", lat: 30.5728, lng: 104.0668 },
+                { id: "ganzi", name: "甘孜", lat: 30.0493, lng: 101.9625 },
+                { id: "hangzhou", name: "杭州", lat: 30.2741, lng: 120.1551 },
+                { id: "suzhou", name: "苏州", lat: 31.2989, lng: 120.5853 },
+                { id: "nanjing", name: "南京", lat: 32.0603, lng: 118.7969 },
+                { id: "shenzhen", name: "深圳", lat: 22.5431, lng: 114.0579 },
+                { id: "macau", name: "澳门", lat: 22.1987, lng: 113.5439 },
+                { id: "zhuhai", name: "珠海", lat: 22.2710, lng: 113.5767 },
+                { id: "guangzhou", name: "广州", lat: 23.1291, lng: 113.2644 },
+                { id: "changsha", name: "长沙", lat: 28.2282, lng: 112.9388 },
+                { id: "guiyang", name: "贵阳", lat: 26.6470, lng: 106.6302 },
+                { id: "chongqing", name: "重庆", lat: 29.4316, lng: 106.9123 },
+                { id: "xuzhou", name: "徐州", lat: 34.2044, lng: 117.2858 },
+                { id: "hefei", name: "合肥", lat: 31.8206, lng: 117.2272 },
+                { id: "qingdao", name: "青岛", lat: 36.0671, lng: 120.3826 },
+                { id: "luoyang", name: "洛阳", lat: 34.6197, lng: 112.4540 }
+            ];
+
+            const map = L.map("travel-map-canvas", {
+                zoomControl: true,
+                scrollWheelZoom: false
+            });
+
+            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            const markerIcon = L.divIcon({
+                className: "",
+                html: '<div class="city-marker" aria-hidden="true"></div>',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+                popupAnchor: [0, -10]
+            });
+
+            const markersById = {};
+            const bounds = [];
+
+            cityData.forEach(function (city) {
+                const marker = L.marker([city.lat, city.lng], {
+                    icon: markerIcon,
+                    title: city.name,
+                    alt: city.name
+                }).addTo(map);
+
+                marker.bindPopup(
+                    '<p class="map-popup-title">' + city.name + '</p>' +
+                    '<p class="map-popup-note">Visited footprint</p>'
+                );
+
+                markersById[city.id] = marker;
+                bounds.push([city.lat, city.lng]);
+            });
+
+            map.fitBounds(bounds, {
+                padding: [36, 36]
+            });
+
+            map.setMaxBounds([
+                [17.0, 73.0],
+                [54.5, 135.5]
+            ]);
+
+            document.querySelectorAll("[data-city-focus]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const targetId = button.getAttribute("data-city-focus");
+                    const marker = markersById[targetId];
+                    if (!marker) {
+                        return;
+                    }
+                    map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 6), {
+                        duration: 0.8
+                    });
+                    marker.openPopup();
+                });
+            });
+
+            window.addEventListener("resize", function () {
+                map.invalidateSize();
+            });
         }());
     </script>
 </body>
