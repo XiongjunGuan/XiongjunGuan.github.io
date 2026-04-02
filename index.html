@@ -132,13 +132,13 @@
         .nav {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 7px;
         }
 
         .nav a {
             color: var(--text-soft);
-            font-size: 0.95rem;
-            padding: 8px 14px;
+            font-size: 0.93rem;
+            padding: 7px 12px;
             border-radius: 999px;
             background: transparent;
             transition: background 0.2s ease, color 0.2s ease;
@@ -270,7 +270,7 @@
         }
 
         .section-spacer {
-            min-height: 200px;
+            min-height: 320px;
             background: rgba(255, 255, 255, 0.5);
             border: 1px dashed rgba(224, 227, 231, 0.95);
             box-shadow: none;
@@ -278,7 +278,49 @@
             place-items: center;
             text-align: center;
             color: var(--text-soft);
-            font-size: 0.94rem;
+            font-size: 1.04rem;
+            font-weight: 600;
+        }
+
+        .migration-entry {
+            padding: 22px 28px 28px;
+        }
+
+        .migration-entry-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .migration-entry-link:hover {
+            color: var(--blue);
+        }
+
+        .migration-entry-link .section-title {
+            margin: 0;
+        }
+
+        .migration-entry-meta {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+
+        .migration-entry-meta .arrow {
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .migration-entry-link:hover .migration-entry-meta .arrow {
+            transform: translateX(4px);
         }
 
         .about-summary {
@@ -1157,7 +1199,7 @@
                 <a href="#competitions">Competitions</a>
                 <a href="#publications">Publications</a>
                 <a href="#teaching">Teaching</a>
-                <a href="migration.html">Migration</a>
+                <a href="#migration-entry">Migration</a>
             </nav>
         </div>
     </header>
@@ -2202,6 +2244,12 @@
                 </div>
             </article>
 
+            <article class="section-card migration-entry" id="migration-entry">
+                <a class="migration-entry-link" href="migration.html" aria-label="Visit Anadromous Migration page">
+                    <h2 class="section-title">Anadromous Migration</h2>
+                    <p class="migration-entry-meta">Click to Enter <span class="arrow" aria-hidden="true">→</span></p>
+                </a>
+            </article>
             <article class="section-card section-spacer" aria-label="More sections placeholder">...and possibly more.
             </article>
             <div class="visitor-map">
