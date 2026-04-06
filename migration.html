@@ -593,6 +593,86 @@
             box-shadow: 0 8px 18px rgba(176, 96, 0, 0.08);
         }
 
+        .moments-list {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .moment-link {
+            display: block;
+            padding: 18px 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(26, 115, 232, 0.14);
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.06), rgba(24, 128, 56, 0.04)),
+                #fff;
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .moment-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(26, 115, 232, 0.28);
+            box-shadow: 0 12px 24px rgba(26, 115, 232, 0.1);
+            text-decoration: none;
+        }
+
+        .moment-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: var(--text-soft);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .moment-meta::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--green));
+            box-shadow: 0 0 0 5px rgba(26, 115, 232, 0.1);
+        }
+
+        .moment-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .moment-title {
+            margin: 0;
+            font-size: 1.08rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .moment-arrow {
+            color: var(--text-soft);
+            font-size: 1.1rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .moment-link:hover .moment-arrow {
+            transform: translateX(4px);
+            color: var(--blue);
+        }
+
+        .moment-desc {
+            margin: 10px 0 0;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
         @media (max-width: 980px) {
             .page {
                 grid-template-columns: 1fr;
@@ -642,6 +722,7 @@
                 <a href="#books">Thus They Spoke</a>
                 <a href="#photos">Thus I Saw</a>
                 <a href="#memes">Thus MeMes</a>
+                <a href="#moments">Thus Aha Moments</a>
             </nav>
         </div>
     </header>
@@ -722,6 +803,17 @@
                     </li>
                     <li>
                         <details class="reading-item">
+                            <summary><span class="book-title">《查拉图斯特拉如是说》</span><span class="book-rating">★★★★★</span>
+                            </summary>
+                            <div class="book-note">
+                                <p>多次翻阅。仍然似懂非懂，仍然受益匪浅。</p>
+                                <p>"确实，人是一条不洁的河。要能容纳不洁的河流而不致污浊，人必须是大海。"</p>
+                                <p>"我学会了走，然后让我奔跑。我学会了飞，然后我不想先让人推、才向前移动。现在我一身轻了，现在我腾飞，现在我看到我在我自己的支配之下，现在有一位神在我体内跳舞。"</p>
+                            </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
                             <summary><span class="book-title">《定性与半定量物理学》</span><span class="book-rating">★★★★★</span>
                             </summary>
                             <div class="book-note">关于对称性原理、量纲分析、数量级估计等思想。高屋建瓴的视野，举重若轻的方案。</div>
@@ -752,7 +844,7 @@
                                 </p>
                                 <p>大自然始终是最好的老师。过去，人类通过仿生学设计出许多精妙而高效的机械结构；而在未来，我们或许可以以自身为蓝本(参照生物结构改造硬件，参照认知发展路径优化算法)，从而开启智能的第六时代。这本质上是人类对自身的一次逆向工程(某种意义上，我们现在就是新时代 DNA 和 RNA？)，也许生物学家和工程师们会先哲学家们一步，回答“我们是谁、我们从哪里来、我们要到哪里去”。
                                 </p>
-                                <p>有人说过 "如果把宇宙千万亿年的历程压缩为1年，我们才刚刚到了第7分钟，甚至还没有迎接第一天的黎明"，那么我能否有幸在空虚混沌中，见证"创世纪"的光辉？
+                                <p>有人说 "如果把宇宙千万亿年的历程压缩为1年，我们才刚刚到了第7分钟，甚至还没有迎接第一天的黎明"，那么我能否有幸在空虚混沌中，见证"创世纪"的光辉？
                                 </p>
                             </div>
                         </details>
@@ -796,6 +888,22 @@
                     </li>
                     <li>
                         <details class="reading-item">
+                            <summary><span class="book-title">《了不起的盖茨比》</span><span class="book-rating">★★★★☆</span>
+                            </summary>
+                            <div class="book-note">
+                                <p>"于是我们继续奋力前行，逆水行舟，被不断地向后推，直至回到往昔岁月。"</p>
+                                <p>PS: 2013 版的 Jordan 小姐真的好看有没有懂的。</p></div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《写给上班族的世界史》</span><span class="book-rating">★★★★☆</span>
+                            </summary>
+                            <div class="book-note">气势恢弘的英雄史诗，一本精彩的非严肃历史读物。</div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
                             <summary><span class="book-title">《Legal High》</span><span class="book-rating">★★★★☆</span>
                             </summary>
                             <div class="book-note">现实主义晨间剧。</div>
@@ -828,6 +936,25 @@
                     </li>
                     <li>
                         <details class="reading-item">
+                            <summary><span class="book-title">《不能承受的生命之轻》</span><span class="book-rating">★★★★☆</span>
+                            </summary>
+                            <div class="book-note">
+                                <p>"最沉重的负担压迫着我们，让我们屈服于它，把我们压到地上。但在历代的爱情诗中，女人总渴望承受一个男人身体的重量。于是，最沉重的负担同时也成了最强盛的生命力的影像。负担越重，我们的生命越贴近大地，它就越真切实在。 相反，当负担完全缺失，人就变得比空气还轻，就会飘起来，就会远离大地和地上的生命，人也就只是一个半真的存在，其运动也会变得自由而没有意义。 那么，到底选择什么？是重还是轻？"</p>
+                                <p>"此刻，压倒她的不是重，而是不能承受的生命之轻"</p>
+                                </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《低俗小说》</span><span class="book-rating">★★★☆☆</span>
+                            </summary>
+                            <div class="book-note">
+                                恰恰舞很好看。
+                                </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
                             <summary><span class="book-title">《局外人》</span><span class="book-rating">★★☆☆☆</span>
                             </summary>
                             <div class="book-note">"我的灵魂与我之间的距离如此遥远，而我的存在却如此真实。"</div>
@@ -836,6 +963,13 @@
                     <li>
                         <details class="reading-item">
                             <summary><span class="book-title">《杀死一座城市：缙绅化、不平等和街区中的战斗》</span><span
+                                    class="book-rating">★☆☆☆☆</span></summary>
+                            <div class="book-note"> None </div>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="reading-item">
+                            <summary><span class="book-title">《全球化的裂解与再融合》</span><span
                                     class="book-rating">★☆☆☆☆</span></summary>
                             <div class="book-note"> None </div>
                         </details>
@@ -926,6 +1060,51 @@
                 <div class="placeholder">I am still immersed in cyber delusions, not yet out of it.</div>
             </section>
 
+            <section class="card" id="moments">
+                <h2 class="section-title">Thus Aha Moments</h2>
+                <p class="section-desc">
+                    Man thinks, God laughs.
+                </p>
+                <ul class="moments-list">
+                    <li>
+                        <a class="moment-link" href="moments/whitespace.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">留白</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                "花开半时偏妍。"
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="moment-link" href="moments/water.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">如水</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                "Empty your mind, be formless, shapeless, like water. Put water into a cup. Becomes the cup. Put water into a teapot. Becomes the teapot. Water can flow or creep or drip or crash. Be water my friend."
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="moment-link" href="moments/tale-of-two-cities.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">双城记</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                "此亦光明时节，此亦黯淡时节。此亦笃信之年，此亦大惑之年。此亦多丽之阳春，此亦绝念之穷冬。人或万物具备，人或一事无成。我辈其青云直上，我辈其黄泉永坠。"
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
             <section class="card section-spacer" aria-label="More sections placeholder">...and possibly more.</section>
             <div class="visitor-map">
                 <div id="clustrmaps-widget">
@@ -940,7 +1119,7 @@
 
     <footer class="footer">
         &copy; Xiongjun Guan |
-        Last updated: Apr. 3, 2026
+        Last updated: Apr. 6, 2026
     </footer>
 
     <script>

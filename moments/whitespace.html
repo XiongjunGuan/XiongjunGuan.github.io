@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留白 | Thus Aha Moments</title>
+    <meta name="description" content="Thus Aha Moments 文章占位页。">
+    <link rel="icon" type="image/png" href="../images/icon.png">
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: rgba(255, 255, 255, 0.92);
+            --text: #202124;
+            --text-soft: #5f6368;
+            --line: #e0e3e7;
+            --blue: #1a73e8;
+            --green: #188038;
+            --shadow: 0 18px 44px rgba(60, 64, 67, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --max-width: 860px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Aptos", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+            color: var(--text);
+            line-height: 1.85;
+            background:
+                radial-gradient(circle at top left, rgba(26, 115, 232, 0.08), transparent 26%),
+                radial-gradient(circle at top right, rgba(24, 128, 56, 0.08), transparent 24%),
+                linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .article {
+            padding: 34px 32px 38px;
+            border: 1px solid rgba(224, 227, 231, 0.9);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(26, 115, 232, 0.08);
+            color: var(--blue);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 18px 0 10px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+        }
+
+        .dek {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .meta strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .divider {
+            width: 72px;
+            height: 1px;
+            margin: 28px 0 24px;
+            background: linear-gradient(90deg, var(--blue), rgba(26, 115, 232, 0));
+        }
+
+        .hero-figure {
+            margin: 0 0 24px;
+            padding: 20px;
+            border: 1px dashed rgba(26, 115, 232, 0.28);
+            border-radius: var(--radius-md);
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.06), rgba(24, 128, 56, 0.04)),
+                #fff;
+        }
+
+        .hero-image-placeholder {
+            min-height: 240px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(24, 128, 56, 0.08)),
+                repeating-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.34) 0,
+                    rgba(255, 255, 255, 0.34) 12px,
+                    transparent 12px,
+                    transparent 24px);
+            color: var(--text-soft);
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-caption {
+            margin: 12px 0 0;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+            font-size: 1rem;
+        }
+
+        .content p {
+            margin: 0;
+        }
+
+        .quote-placeholder {
+            margin: 4px 0;
+            padding: 16px 18px;
+            border-left: 3px solid rgba(26, 115, 232, 0.35);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            background: rgba(26, 115, 232, 0.05);
+            color: #334155;
+        }
+
+        .footer-note {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 20px 0 40px;
+            }
+
+            .article {
+                padding: 26px 20px 28px;
+            }
+
+            .hero-image-placeholder {
+                min-height: 180px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <a class="back-link" href="../migration.html#moments">← Back to Xiongjun Guan's Migration</a>
+
+        <article class="article">
+            <div class="eyebrow">Thus Aha Moments</div>
+            <h1 class="title">留白</h1>
+            <p class="dek">关于含苞待放、欲盖弥彰的事物发展阶段的志趣，以及关于比喻、双关、歇后语的交互方式的习惯。</p>
+
+            <div class="meta">
+                <span><strong>Author:</strong> Xiongjun Guan</span>
+                <span><strong>Date:</strong> 2026-04-06</span>
+            </div>
+            <div class="divider" aria-hidden="true"></div>
+
+            <figure class="hero-figure">
+                <div class="hero-image-placeholder">Image Placeholder<br>未来可以替换为你的配图</div>
+                <figcaption class="hero-caption">图注占位：这里可以替换成真实配图说明，或者留空。</figcaption>
+            </figure>
+
+            <section class="content">
+
+                <p>[段落占位 1] 这里填写文章开头，交代这篇杂记的缘起、问题意识，或者一个触发你思考的瞬间。</p>
+
+                <p>[段落占位 2] 这里继续展开第一层想法。你可以写一个具体例子，也可以写一段比较抽象的感受。</p>
+
+                <div class="quote-placeholder">[金句占位] 这里可以放一句你想强调的话，作为正文中的视觉停顿。</div>
+
+                <p>[段落占位 3] 这里写第二层思考。适合放转折、反思，或者和过去某个阶段的自己做一个对照。</p>
+
+                <p>[段落占位 4] 这里写更个人的感受、观察或判断，也可以把话题收束到一个更小、更具体的场景里。</p>
+
+                <p>[结尾占位] 最后一段可以不总结得太满，只留下一个开放的收尾。</p>
+            </section>
+
+            <div class="footer-note">
+                Note: 这是一篇占位模板，正文与配图可随时替换。
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>
