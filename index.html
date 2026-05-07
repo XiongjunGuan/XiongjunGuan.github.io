@@ -663,6 +663,30 @@
             letter-spacing: -0.02em;
         }
 
+        .paper-group-title-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            vertical-align: middle;
+        }
+
+        .paper-group-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 24px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: #f1f3f4;
+            border: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1;
+            transform: translateY(-1px);
+        }
+
         .paper-group-subtitle {
             margin: 0 0 16px;
             color: var(--text-soft);
@@ -1337,14 +1361,13 @@
                             <p class="tag-group-title">Experience</p>
                             <div class="quick-tags">
                                 <span class="tag">MLLMs</span>
-                                <span class="tag">PEFT</span>
+                                <span class="tag">Post-Training</span>
+                                <span class="tag">Model Alignment</span>
+                                <span class="tag">Retrieval Systems</span>
+                                <span class="tag">Representation Learning</span>
                                 <span class="tag">Harness Engineering</span>
-                                <span class="tag">Image Retrieval</span>
+                                <span class="tag">Evaluation & Benchmarking</span>
                                 <span class="tag">HCI</span>
-                                <span class="tag">Location & Registration</span>
-                                <span class="tag">Efficient Representation</span>
-                                <span class="tag">Affective Computing</span>
-                                <span class="tag">Intention Recognition</span>
                             </div>
                         </div>
                     </div>
@@ -1701,584 +1724,7 @@
 
             <article class="section-card" id="publications">
                 <h2 class="section-title">Selected Publications</h2>
-
-                <div class="pub-quick-nav">
-                    <a href="#pub-mllm"><span class="pub-quick-icon mllm"
-                            aria-hidden="true"></span><span>MLLMs</span></a>
-                    <a href="#pub-hci"><span class="pub-quick-icon hci" aria-hidden="true"></span><span>HCI</span></a>
-                    <a href="#pub-bio"><span class="pub-quick-icon bio" aria-hidden="true"></span><span>Image
-                            Retrieval</span></a>
-                </div>
-
-                <div class="paper-group" id="pub-mllm">
-                    <details>
-                        <summary>
-                            <div class="paper-group-header">
-                                <div>
-                                    <h3 class="paper-group-title">MLLMs & Video Understanding</h3>
-                                    <p class="paper-group-subtitle">Works on multi-modal large models, post-training,
-                                        agentic workflow, and harness engineering.</p>
-                                </div>
-                                <span class="paper-group-toggle" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" focusable="false">
-                                        <path
-                                            d="M9.29 6.71a1 1 0 0 1 1.42 0l5 5a1 1 0 0 1 0 1.42l-5 5a1 1 0 1 1-1.42-1.42L13.59 12 9.29 7.71a1 1 0 0 1 0-1.42Z" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </summary>
-                        <div class="paper-group-body">
-                            <div class="paper-list">
-                                <div class="paper-item" id="paper-mer25">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/mm2025_mer_track1.png"
-                                        data-lightbox-alt="More is Better: A Moe-based Emotion Recognition Framework with Human Preference Alignment">
-                                        <img class="paper-cover" src="images/mm2025_mer_track1.png"
-                                            alt="More is Better: A Moe-based Emotion Recognition Framework with Human Preference Alignment">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">ACM MM 2025</span>
-                                            <span class="paper-highlight rank">2nd Place</span>
-                                        </div>
-                                        <h3 class="paper-title">More is Better: A Moe-based Emotion Recognition
-                                            Framework with Human Preference Alignment</h3>
-                                        <p class="paper-authors">Jun Xie*, Yingjian Zhu*, Feng Chen, Zhenghao Zhang,
-                                            Xiaohui Fan, Hongzhu Yi, Xinming Wang, Chen Yu, Yue Bi, Zhaoran Zhao,
-                                            <strong>Xiongjun Guan (Corresponding Author)</strong>, Zhepeng Wang
-                                        </p>
-                                        <p class="paper-venue">Multi-modal emotion recognition with leveraged signals,
-                                            samples and deliberation.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Affective Computing</span>
-                                            <span class="paper-keyword">Multi-Modal Learning</span>
-                                            <span class="paper-keyword">Semi-Supervised Learning</span>
-                                            <span class="paper-keyword">Mixture of Experts</span>
-                                            <span class="paper-keyword">Human Preference Alignment</span>
-                                            <span class="paper-keyword">Instruction Tuning</span>
-                                            <span class="paper-keyword">Model Calibration</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2508.06036">Paper</a>
-                                            <a href="https://github.com/zhuyjan/MER2025-MRAC25">Code</a>
-                                            <a href="docs/MER2025-track1.pptx">Slides</a>
-                                            <a href="https://zeroqiaoba.github.io/MER2025-website/">Challenge</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-mer25-track2">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/mm2025_mer_track2.png"
-                                        data-lightbox-alt="ZeroES: Zero-Shot Ensemble for Open-Vocabulary Video Emotion Recognition with Large Multimodal Models">
-                                        <img class="paper-cover" src="images/mm2025_mer_track2.png"
-                                            alt="ZeroES: Zero-Shot Ensemble for Open-Vocabulary Video Emotion Recognition with Large Multimodal Models">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">ACM MM 2025</span>
-                                            <span class="paper-highlight rank">2nd Place</span>
-                                        </div>
-                                        <h3 class="paper-title">ZeroES: Zero-Shot Ensemble for Open-Vocabulary Video
-                                            Emotion Recognition with Large Multimodal Models</h3>
-                                        <p class="paper-authors">Jun Xie*, Xiaohui Fan*, Zhenghao Zhang, Feng Chen,
-                                            Hongzhu Yi, Yingjian Zhu, <strong>Xiongjun Guan</strong>, Xinming Wang, Yue
-                                            Bi, Tao Zhang, Zhepeng Wang</p>
-                                        <p class="paper-venue">Fine-grained multi-modal emotion recognition via multi
-                                            MLLMs and model ensemble.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Affective Computing</span>
-                                            <span class="paper-keyword">Open-Vocabulary Recognition</span>
-                                            <span class="paper-keyword">Zero-Shot Learning</span>
-                                            <span class="paper-keyword">Context Engineering</span>
-                                            <span class="paper-keyword">Multi-Model Ensemble</span>
-                                            <span class="paper-keyword">Instruction Tuning</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://doi.org/10.1145/3746270.3760218">Paper</a>
-                                            <a href="https://github.com/zhuyjan/MER2025-MRAC25">Code</a>
-                                            <a href="docs/MER2025-track2.pptx">Slides</a>
-                                            <a href="https://zeroqiaoba.github.io/MER2025-website/">Challenge</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-egoschema">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/cvpr2025_VQA.png"
-                                        data-lightbox-alt="Four Eyes Are Better Than Two: Harnessing the Collaborative Potential of Large Models via Differentiated Thinking and Complementary Ensembles">
-                                        <img class="paper-cover" src="images/cvpr2025_VQA.png"
-                                            alt="Four Eyes Are Better Than Two: Harnessing the Collaborative Potential of Large Models via Differentiated Thinking and Complementary Ensembles">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">CVPR 2025</span>
-                                            <span class="paper-highlight rank">2nd Place</span>
-                                        </div>
-                                        <h3 class="paper-title">Four Eyes Are Better Than Two: Harnessing the
-                                            Collaborative Potential of Large Models via Differentiated Thinking and
-                                            Complementary Ensembles</h3>
-                                        <p class="paper-authors">Jun Xie*, <strong>Xiongjun Guan*</strong>, Yingjian
-                                            Zhu, Zhaoran Zhao, Xinming Wang, Hongzhu Yi, Feng Chen, Zhepeng Wang</p>
-                                        <p class="paper-venue">Long-form video understanding and
-                                            robustness evaluation via Chain of Thought and harness engineering.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Long Video Understanding</span>
-                                            <span class="paper-keyword">Video Question-Answering</span>
-                                            <span class="paper-keyword">Chain of Thought</span>
-                                            <span class="paper-keyword">Harness Engineering</span>
-                                            <span class="paper-keyword">Ensemble Learning</span>
-                                            <span class="paper-keyword">Agentic Workflow</span>
-                                            <span class="paper-keyword">Instruction Tuning</span>
-                                            <span class="paper-keyword">Model Calibration</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2505.16784">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/EgoSchema-CVPR25">Code</a>
-                                            <a href="https://egoschema.github.io">Challenge</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-cvrr">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/cvpr2025_cvrr.png"
-                                        data-lightbox-alt="Team of One: Cracking Complex Video QA with Model Synergy">
-                                        <img class="paper-cover" src="images/cvpr2025_cvrr.png"
-                                            alt="Team of One: Cracking Complex Video QA with Model Synergy">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">CVPR 2025</span>
-                                            <span class="paper-highlight rank">4th Place</span>
-                                        </div>
-                                        <h3 class="paper-title">Team of One: Cracking Complex Video QA with Model
-                                            Synergy</h3>
-                                        <p class="paper-authors">Jun Xie*, Zhaoran Zhao*, <strong>Xiongjun
-                                                Guan</strong>, Yingjian Zhu, Hongzhu Yi, Xinming Wang, Feng Chen,
-                                            Zhepeng Wang</p>
-                                        <p class="paper-venue">Open-ended video question answering with collaborative
-                                            model reasoning.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Video Question-Answering</span>
-                                            <span class="paper-keyword">Model Collaboration</span>
-                                            <span class="paper-keyword">Harness Engineering</span>
-                                            <span class="paper-keyword">Agentic Workflow</span>
-                                            <span class="paper-keyword">Instruction Tuning</span>
-                                            <span class="paper-keyword">Model Calibration</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2507.13820">Paper</a>
-                                            <a href="https://mbzuai-oryx.github.io/CVRR-Evaluation-Suite/">Challenge</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </details>
-                </div>
-
-                <div class="paper-group" id="pub-hci">
-                    <details>
-                        <summary>
-                            <div class="paper-group-header">
-                                <div>
-                                    <h3 class="paper-group-title">Finger-based HCI</h3>
-                                    <p class="paper-group-subtitle">Works on finger-based human-computer interaction,
-                                        pose estimation, and
-                                        sensing.</p>
-                                </div>
-                                <span class="paper-group-toggle" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" focusable="false">
-                                        <path
-                                            d="M9.29 6.71a1 1 0 0 1 1.42 0l5 5a1 1 0 0 1 0 1.42l-5 5a1 1 0 1 1-1.42-1.42L13.59 12 9.29 7.71a1 1 0 0 1 0-1.42Z" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </summary>
-                        <div class="paper-group-body">
-                            <div class="paper-list">
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tmc2025_BiFingerPose.png"
-                                        data-lightbox-alt="BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices">
-                                        <img class="paper-cover" src="images/tmc2025_BiFingerPose.png"
-                                            alt="BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-MC 2025</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">BiFingerPose: Bimodal Finger Pose Estimation for Touch
-                                            Devices</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Zhiyu Pan, Jianjiang
-                                            Feng, Jie Zhou</p>
-                                        <p class="paper-venue">Multi-modal 2D finger pose estimation with efficient
-                                            2D-to-3D mapping for mobile device interaction.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Mobile Interaction</span>
-                                            <span class="paper-keyword">Pose Estimation</span>
-                                            <span class="paper-keyword">Multi-Sensor Fusion</span>
-                                            <span class="paper-keyword">Representation Learning</span>
-                                            <span class="paper-keyword">Geometric Mapping</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2511.17306">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/DualFingerPose">Code</a>
-                                            <a
-                                                href="https://drive.google.com/file/d/13swViPqI8LNRa98-6YRdnxVGMY_9kakf/view?usp=drive_link">Video</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/ijcb2025_contactless.png"
-                                        data-lightbox-alt="Contactless Fingerprint Recognition Guided by 3D Finger Pose">
-                                        <img class="paper-cover" src="images/ijcb2025_contactless.png"
-                                            alt="Contactless Fingerprint Recognition Guided by 3D Finger Pose">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">IJCB 2025</span>
-                                            <span class="paper-highlight ccfa">CCF-C</span>
-                                            <span class="paper-highlight oral">Oral</span>
-                                        </div>
-                                        <h3 class="paper-title">Contactless Fingerprint Recognition Guided by 3D Finger
-                                            Pose
-                                        </h3>
-                                        <p class="paper-authors">Haoxiang Pei, Zhiyu Pan, <strong>Xiongjun
-                                                Guan</strong>, Jianjiang Feng, Jie Zhou</p>
-                                        <p class="paper-venue">Leveraging 3D finger pose to improve contactless
-                                            fingerprint recognition through acquisition guidance and pose constraints.
-                                        </p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Contactless Fingerprint</span>
-                                            <span class="paper-keyword">Pose Estimation</span>
-                                            <span class="paper-keyword">Geometry-aware Recognition</span>
-                                            <span class="paper-keyword">Acquisition Guidance</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a
-                                                href="https://iapr.org/archives/ijcb2025/index.html%3Fp%3D1732.html">Paper</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-ccbr2021">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/ccbr2021_3dfp.png"
-                                        data-lightbox-alt="Pose-Specific 3D Fingerprint Unfolding">
-                                        <img class="paper-cover" src="images/ccbr2021_3dfp.png"
-                                            alt="Pose-Specific 3D Fingerprint Unfolding">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">CCBR 2021</span>
-                                            <span class="paper-highlight oral">Oral</span>
-                                        </div>
-                                        <h3 class="paper-title">Pose-Specific 3D Fingerprint Unfolding</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie
-                                            Zhou</p>
-                                        <p class="paper-venue">Unfolding and visualization method for 3D fingerprints to
-                                            improve compatibility with 2D images.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">3D Fingerprint</span>
-                                            <span class="paper-keyword">Geometric Unfolding</span>
-                                            <span class="paper-keyword">Point Cloud Projection</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2404.17149">Paper</a>
-                                            <a href="docs/CCBR2021.pptx">Slides</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </details>
-                </div>
-
-                <div class="paper-group" id="pub-bio">
-                    <details>
-                        <summary>
-                            <div class="paper-group-header">
-                                <div>
-                                    <h3 class="paper-group-title">Image Retrieval</h3>
-                                    <p class="paper-group-subtitle">Works on large-scale image retrieval with efficient
-                                        representation and geometric normalization.</p>
-                                </div>
-                                <span class="paper-group-toggle" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" focusable="false">
-                                        <path
-                                            d="M9.29 6.71a1 1 0 0 1 1.42 0l5 5a1 1 0 0 1 0 1.42l-5 5a1 1 0 1 1-1.42-1.42L13.59 12 9.29 7.71a1 1 0 0 1 0-1.42Z" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </summary>
-                        <div class="paper-group-body">
-                            <div class="paper-list">
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tifs2025_FLARE.png"
-                                        data-lightbox-alt="Fixed-Length Dense Fingerprint Representation with Alignment and Robust Enhancement">
-                                        <img class="paper-cover" src="images/tifs2025_FLARE.png"
-                                            alt="Fixed-Length Dense Fingerprint Representation with Alignment and Robust Enhancement">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-IFS 2026</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">Fixed-Length Dense Fingerprint Representation with
-                                            Alignment and Robust Enhancement</h3>
-                                        <p class="paper-authors">Zhiyu Pan, <strong>Xiongjun Guan</strong>, Yongjie
-                                            Duan, Jianjiang Feng, Jie Zhou</p>
-                                        <p class="paper-venue">Fixed-length dense representation and matching framework
-                                            that couples local discriminability with pose-aware alignment and robustness
-                                            enhancement.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Efficient Image Embedding</span>
-                                            <span class="paper-keyword">Dense Passage Retrieval</span>
-                                            <span class="paper-keyword">Representation Learning</span>
-                                            <span class="paper-keyword">Local Discriminability</span>
-                                            <span class="paper-keyword">Recognition with Spatial Priors</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2505.03597">Paper</a>
-                                            <a href="https://github.com/Yu-Yy/FLARE">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tbiom2025_dmd.png"
-                                        data-lightbox-alt="Minutiae-Anchored Local Dense Representation for Fingerprint Matching">
-                                        <img class="paper-cover" src="images/tbiom2025_dmd.png"
-                                            alt="Minutiae-Anchored Local Dense Representation for Fingerprint Matching">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">Preprint 2025</span>
-                                        </div>
-                                        <h3 class="paper-title">Minutiae-Anchored Local Dense Representation for
-                                            Fingerprint Matching</h3>
-                                        <p class="paper-authors">Zhiyu Pan, <strong>Xiongjun Guan</strong>, Yongjie
-                                            Duan, Jianjiang Feng, Jie Zhou</p>
-                                        <p class="paper-venue">Local representation
-                                            that fuses geometric anchors and contextual textures.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Image Segment Retrieval</span>
-                                            <span class="paper-keyword">Representation Learning</span>
-                                            <span class="paper-keyword">Anchor-based Attention</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2507.15297">Paper</a>
-                                            <a href="https://github.com/Yu-Yy/DMD">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tifs2025_DRACO.png"
-                                        data-lightbox-alt="Finger Pose Estimation for Under-screen Fingerprint Sensors">
-                                        <img class="paper-cover" src="images/tifs2025_DRACO.png"
-                                            alt="Finger Pose Estimation for Under-screen Fingerprint Sensors">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-IFS 2025</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">Finger Pose Estimation for Under-screen Fingerprint
-                                            Sensors</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Zhiyu Pan, Jianjiang
-                                            Feng, Jie
-                                            Zhou</p>
-                                        <p class="paper-venue">Rigid pose estimation via multi-modal fusion strategies
-                                            and its application to retrieval.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Pose Estimation</span>
-                                            <span class="paper-keyword">Multi-Modal Fusion</span>
-                                            <span class="paper-keyword">Mixture of Experts</span>
-                                            <span class="paper-keyword">Knowledge Transfer</span>
-                                            <span class="paper-keyword">Decoupled Distribution Representation</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="http://arxiv.org/abs/2505.02481">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/DRACO">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-joint-pose-verification">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tifs2024_partial.png"
-                                        data-lightbox-alt="Joint Identity Verification and Pose Alignment for Partial Fingerprints">
-                                        <img class="paper-cover" src="images/tifs2024_partial.png"
-                                            alt="Joint Identity Verification and Pose Alignment for Partial Fingerprints">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-IFS 2024</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">Joint Identity Verification and Pose Alignment for
-                                            Partial Fingerprints</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, ZhiyuPan, Jianjiang
-                                            Feng, Jie
-                                            Zhou</p>
-                                        <p class="paper-venue">CNN-ViT hybrid network for joint pose estimation and
-                                            identity recognition in partial image scenarios.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Location & Verification</span>
-                                            <span class="paper-keyword">Multi-Task Collaboration</span>
-                                            <span class="paper-keyword">Image Segment Retrieval</span>
-                                            <span class="paper-keyword">Representation-Regularized Pre-Training</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2405.03959">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/JIPNet">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/ijcb2024_descriptor.png"
-                                        data-lightbox-alt="Latent Fingerprint Matching via Dense Minutia Descriptor">
-                                        <img class="paper-cover" src="images/ijcb2024_descriptor.png"
-                                            alt="Latent Fingerprint Matching via Dense Minutia Descriptor">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">IJCB 2024</span>
-                                            <span class="paper-highlight ccfa">CCF-C</span>
-                                        </div>
-                                        <h3 class="paper-title">Latent Fingerprint Matching via Dense Minutia Descriptor
-                                        </h3>
-                                        <p class="paper-authors">Zhiyu Pan, Yongjie
-                                            Duan, <strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou</p>
-                                        <p class="paper-venue">Dense anchor descriptors that enables stronger local
-                                            correspondence modeling and more reliable matching.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Patch Embedding</span>
-                                            <span class="paper-keyword">Representation Learning</span>
-                                            <span class="paper-keyword">Anchor-based Attention</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2405.01199">Paper</a>
-                                            <a href="https://github.com/Yu-Yy/DMD">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-phase-registration">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tifs2024_registration.png"
-                                        data-lightbox-alt="Phase-Aggregated Dual-Branch Network for Efficient Fingerprint Dense Registration">
-                                        <img class="paper-cover" src="images/tifs2024_registration.png"
-                                            alt="Phase-Aggregated Dual-Branch Network for Efficient Fingerprint Dense Registration">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-IFS 2024</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">Phase-Aggregated Dual-Branch Network for Efficient
-                                            Fingerprint Dense Registration</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie
-                                            Zhou</p>
-                                        <p class="paper-venue">Dual-branch dense registration
-                                            paradigm that integrates precise geometric priors (phase) with robust deep
-                                            representation.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Image Registration</span>
-                                            <span class="paper-keyword">Phase Unwrapping</span>
-                                            <span class="paper-keyword">Multi-Granularity Representation</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2404.17159">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/PDRNet">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item" id="paper-distortion-rectification">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/tifs2023_rectification.png"
-                                        data-lightbox-alt="Regression of Dense Distortion Field from a Single Fingerprint Image">
-                                        <img class="paper-cover" src="images/tifs2023_rectification.png"
-                                            alt="Regression of Dense Distortion Field from a Single Fingerprint Image">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">T-IFS 2023</span>
-                                            <span class="paper-highlight ccfa">CCF-A</span>
-                                        </div>
-                                        <h3 class="paper-title">Regression of Dense Distortion Field from a Single
-                                            Fingerprint Image</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Yongjie Duan, Jianjiang
-                                            Feng, Jie Zhou</p>
-                                        <p class="paper-venue">End-to-end dense distortion field regression replacing
-                                            previous low-dimensional assumptions with
-                                            grid-level geometric correction.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Distortion Rectification</span>
-                                            <span class="paper-keyword">Multi-Semantic Optimization</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                            <span class="paper-keyword">Principal Component Analysis</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2404.17610">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/DDRNet">Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="paper-item">
-                                    <button class="paper-thumb" type="button"
-                                        data-lightbox-src="images/ijcb2022_rectification.png"
-                                        data-lightbox-alt="Direct Regression of Distortion Field from a Single Fingerprint Image">
-                                        <img class="paper-cover" src="images/ijcb2022_rectification.png"
-                                            alt="Direct Regression of Distortion Field from a Single Fingerprint Image">
-                                    </button>
-                                    <div>
-                                        <div class="paper-topline">
-                                            <span class="item-meta">IJCB 2022</span>
-                                            <span class="paper-highlight ccfa">CCF-C</span>
-                                            <span class="paper-highlight oral">Oral</span>
-                                        </div>
-                                        <h3 class="paper-title">Direct Regression of Distortion Field from a Single
-                                            Fingerprint Image</h3>
-                                        <p class="paper-authors"><strong>Xiongjun Guan</strong>, Yongjie Duan, Jianjiang
-                                            Feng, Jie Zhou</p>
-                                        <p class="paper-venue">End-to-end dense distortion field regression replacing
-                                            previous low-dimensional assumptions with
-                                            grid-level geometric correction.</p>
-                                        <div class="paper-keywords">
-                                            <span class="paper-keyword">Distortion Rectification</span>
-                                            <span class="paper-keyword">Multi-Semantic Optimization</span>
-                                            <span class="paper-keyword">Geometry Constraint Matching</span>
-                                            <span class="paper-keyword">Principal Component Analysis</span>
-                                        </div>
-                                        <div class="paper-links">
-                                            <a href="https://arxiv.org/abs/2404.17148">Paper</a>
-                                            <a href="https://github.com/XiongjunGuan/DDRNet">Code</a>
-                                            <a href="docs/IJCB2022.pptx">Slides</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </details>
-                </div>
+                <div id="publications-content"></div>
             </article>
 
             <article class="section-card" id="teaching">
@@ -2353,8 +1799,12 @@
         Last updated: Apr. 3, 2026
     </footer>
 
+    <script src="publications.js"></script>
     <script>
         (function () {
+            if (window.initializePublications) {
+                window.initializePublications();
+            }
             const lightbox = document.getElementById("lightbox");
             const lightboxImage = lightbox.querySelector(".lightbox-image");
             const lightboxCaption = lightbox.querySelector(".lightbox-caption");
