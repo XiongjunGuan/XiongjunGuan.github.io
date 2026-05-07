@@ -523,6 +523,42 @@
             gap: 10px;
         }
 
+        .reading-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 10px 16px;
+            border: 1px solid rgba(176, 96, 0, 0.22);
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(249, 171, 0, 0.12), rgba(176, 96, 0, 0.08));
+            color: #8a5a00;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .reading-toggle:hover {
+            transform: translateY(-1px);
+            border-color: rgba(176, 96, 0, 0.32);
+            box-shadow: 0 8px 18px rgba(176, 96, 0, 0.1);
+        }
+
+        .reading-toggle::before {
+            content: "▾";
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .reading-toggle[aria-expanded="false"]::before {
+            transform: rotate(-90deg);
+        }
+
+        .reading-list-panel[hidden] {
+            display: none;
+        }
+
         .reading-item {
             position: relative;
             border-radius: 12px;
@@ -787,7 +823,11 @@
                     Multi-domain, high-quality data, curated for cold start and fine-tuning, enabling a complete
                     cognitive architecture.
                 </p>
-                <ul class="reading-list">
+                <button class="reading-toggle" type="button" aria-expanded="false" aria-controls="reading-list-panel">
+                    Load Training Corpus
+                </button>
+                <div class="reading-list-panel" id="reading-list-panel" hidden>
+                    <ul class="reading-list">
                     <li>
                         <details class="reading-item">
                             <summary><span class="book-title">《浪潮之巅》</span><span class="book-rating">★★★★★</span>
@@ -997,9 +1037,9 @@
                                 <P> 劳动者成为廉价消耗品、短视而焦虑、在时间与空间上不再紧密相连，情感关系也变得疏离，团队重沟通而不负责，伦理观念与个人品质被侵蚀。</P>
                                 <P>"在面对不确定性时，迷失方向以三种途径体现：ambiguously lateral moves（个体认为自己在向上流动实际上是在横向移动）；retrospective
                                     losses（冒险者不明白选择所蕴含的风险，只有在将来回溯过去才明晰）；unpredictable wage
-                                    outcomes。人的注意力集中在短期的环境而不是长期后果上，出现了cognitive
+                                    outcomes（人的注意力集中在短期的环境而不是长期后果上，出现了cognitive
                                     dissonance（认知失调），需要对自己工作的认可和工作场景中这种认可的缺乏形成了focal
-                                    attention。讽刺的性格，在现代文化中是含有自我毁灭的倾向的。认为没有什么是固定不变的发展到自我、自身的需求都显得不真实，自身的价值也无法得到承认。更深层的失败是，自己的生活缺乏连续性的内核，难以认识到自己的价值，无法生活而仅仅感受到自身的存在。"
+                                    attention）。讽刺的性格，在现代文化中是含有自我毁灭的倾向的。认为没有什么是固定不变的发展到自我、自身的需求都显得不真实，自身的价值也无法得到承认。更深层的失败是，自己的生活缺乏连续性的内核，难以认识到自己的价值，无法生活而仅仅感受到自身的存在。"
                                 </P>
                             </div>
                         </details>
@@ -1032,7 +1072,7 @@
                                     缙绅化为城市带来金钱、新的居民、整建后的房地产，但同时也摧毁了城市。它让城市变得难以负担，抹杀多样性，城市因此难以孕育独特、大胆的文化，缙绅化消毒净化了一切。众人眼睁睁地看着这个现象发生（即使是纽约、新奥尔良超富豪的迁入者，都在哀叹城市文化的失落），没有人想被看作是新迁入的掠夺者。谁会想成为谋杀一座城市的共犯呢？"
                                 </p>
                                 <p>"对纽约的穷人来说，缙绅化不是一种社区特质无形的改变，而是他们真切面对的群体驱逐、金权暴力，还有悠久在地文化的铲除。"</p>
-                                <p>以美国几个代表性城市的文化表征与发展介绍资本与政府对土地资源的分配。关于“租隙”的理念很有意思。全书主要以纪实视角展开，偏重个人视角。</p>
+                                <p>以美国几个代表性城市的文化表征与发展介绍资本与政府对土地资源的分配。关于“租隙”的概念很有意思。全书主要以纪实展开，偏重个人视角。</p>
                                 <p>一些关于本土社区的文化流失、网红城市、郊区与市中心的回迁循环，在另一片土地也有一定的借鉴和印证。（之前去海南旅游，所以海南的三亚算是缙绅化的过程吗？后海的冲浪者逐渐离开，只剩下商业化的旅馆和冲浪体验店)
                                 </p>
                             </div>
@@ -1046,7 +1086,7 @@
                                 <P>从修昔底德陷阱与金德尔伯格陷阱的视角出发。</p>
                                 <P>地缘政治回归，经济差距扩大与产业空心化、供应链与依赖网络存在系统性风险。全球化正在结构性重组，从效率、成本和需求的市场主导转向安全和政治约束的国家主导，呈现区域化、阵营化和网络化。
                                 </P>
-                                <p>本人关于人文社科的知识和实践都比较薄弱，所以在阅读此类作品时往往有些摸不清脉络。</p>
+                                <p>本人关于人文社科的知识和实践都比较薄弱，所以在阅读此类作品时往往有些走马观花，摸不清脉络。整体而言，前半部分的事实和简介较为清晰，后半部分侧重于作者个人理念和倾向，见仁见智。</p>
                             </div>
                         </details>
                     </li>
@@ -1070,7 +1110,7 @@
                                     class="book-rating">★☆☆☆☆</span></summary>
                             <div class="book-note">
                                 <p>致敬版本先行者。对未来失去信心导致欲望与激情的全面下降。全书数据很多但是分析有些流于表面 </p>
-                                <p>下流社会的 5P 关键词：个人电脑(PC)， 手机(Pager)，掌上游戏机(PSP)，瓶装饮料(PET bottle)，薯片(Potato chips)。这简直就是我。
+                                <p>"下流社会的 5P 关键词：个人电脑(PC)， 手机(Pager)，掌上游戏机(PSP)，瓶装饮料(PET bottle)，薯片(Potato chips)。" 天呐，这简直就是我。
                                 </p>
                             </div>
                         </details>
@@ -1087,7 +1127,8 @@
                         </details>
                     </li>
 
-                </ul>
+                    </ul>
+                </div>
             </section>
 
             <section class="card" id="photos">
@@ -1381,6 +1422,29 @@
 
             window.addEventListener("resize", updateActiveNavByScroll);
             updateActiveNavByScroll();
+        }());
+    </script>
+    <script>
+        (function () {
+            const toggleButton = document.querySelector(".reading-toggle");
+            const readingPanel = document.getElementById("reading-list-panel");
+
+            if (!toggleButton || !readingPanel) {
+                return;
+            }
+
+            function syncReadingToggle(isExpanded) {
+                toggleButton.setAttribute("aria-expanded", String(isExpanded));
+                toggleButton.textContent = isExpanded ? "Unload Training Corpus" : "Load Training Corpus";
+                readingPanel.hidden = !isExpanded;
+            }
+
+            toggleButton.addEventListener("click", function () {
+                const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+                syncReadingToggle(!isExpanded);
+            });
+
+            syncReadingToggle(false);
         }());
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
