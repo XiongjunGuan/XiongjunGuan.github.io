@@ -191,6 +191,27 @@
             subtitle: "Works on large-scale image retrieval with efficient representation and geometric normalization.",
             papers: [
                 {
+                    id: "paper-impose",
+                    image: "images/IMPose.png",
+                    alt: "Identity-Consistent Multi-Pose Generation of Contactless Fingerprints",
+                    meta: "Preprint 2026",
+                    highlights: [],
+                    title: "Identity-Consistent Multi-Pose Generation of Contactless Fingerprints",
+                    authorsHtml: "Zhiyu Pan, <strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou",
+                    venue: "Identity-consistent multi-pose contactless fingerprint generation for cross-modal matching, combining latent diffusion, modality translation, and physics-based pose simulation.",
+                    keywords: [
+                        "Identity-Preserving Generation",
+                        "Multi-Pose Synthesis",
+                        "Diffusion-based Generation",
+                        "Cross-Modal Data Engine",
+                        "Physics-informed Simulation"
+                    ],
+                    links: [
+                        { label: "Paper", href: "https://arxiv.org/abs/2605.03830" },
+                        { label: "Code", href: "https://github.com/Yu-Yy/IMPOSE" }
+                    ]
+                },
+                {
                     image: "images/tifs2025_FLARE.png",
                     alt: "Fixed-Length Dense Fingerprint Representation with Alignment and Robust Enhancement",
                     meta: "T-IFS 2026",
