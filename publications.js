@@ -18,7 +18,7 @@
                     id: "paper-mer25",
                     image: "images/mm2025_mer_track1.png",
                     alt: "More is Better: A Moe-based Emotion Recognition Framework with Human Preference Alignment",
-                    meta: "ACM MM 2025",
+                    meta: "ACM MM 2025 Challenge",
                     highlights: [{ className: "rank", text: "2nd Place" }],
                     title: "More is Better: A Moe-based Emotion Recognition Framework with Human Preference Alignment",
                     authorsHtml: "Jun Xie*, Yingjian Zhu*, Feng Chen, Zhenghao Zhang, Xiaohui Fan, Hongzhu Yi, Xinming Wang, Chen Yu, Yue Bi, Zhaoran Zhao, <strong>Xiongjun Guan (Corresponding Author)</strong>, Zhepeng Wang",
@@ -43,7 +43,7 @@
                     id: "paper-mer25-track2",
                     image: "images/mm2025_mer_track2.png",
                     alt: "ZeroES: Zero-Shot Ensemble for Open-Vocabulary Video Emotion Recognition with Large Multimodal Models",
-                    meta: "ACM MM 2025",
+                    meta: "ACM MM 2025 Challenge",
                     highlights: [{ className: "rank", text: "2nd Place" }],
                     title: "ZeroES: Zero-Shot Ensemble for Open-Vocabulary Video Emotion Recognition with Large Multimodal Models",
                     authorsHtml: "Jun Xie*, Xiaohui Fan*, Zhenghao Zhang, Feng Chen, Hongzhu Yi, Yingjian Zhu, <strong>Xiongjun Guan</strong>, Xinming Wang, Yue Bi, Tao Zhang, Zhepeng Wang",
@@ -67,8 +67,11 @@
                     id: "paper-egoschema",
                     image: "images/cvpr2025_VQA.png",
                     alt: "Four Eyes Are Better Than Two: Harnessing the Collaborative Potential of Large Models via Differentiated Thinking and Complementary Ensembles",
-                    meta: "CVPR 2025",
-                    highlights: [{ className: "rank", text: "2nd Place" }],
+                    meta: "CVPR 2025 Challenge",
+                    highlights: [
+                        { className: "rank", text: "2nd Place" },
+                        { className: "featured", text: "Featured" }
+                    ],
                     title: "Four Eyes Are Better Than Two: Harnessing the Collaborative Potential of Large Models via Differentiated Thinking and Complementary Ensembles",
                     authorsHtml: "Jun Xie*, <strong>Xiongjun Guan*</strong>, Yingjian Zhu, Zhaoran Zhao, Xinming Wang, Hongzhu Yi, Feng Chen, Zhepeng Wang",
                     venue: "Long-form video understanding and robustness evaluation via Chain of Thought and harness engineering.",
@@ -92,7 +95,7 @@
                     id: "paper-cvrr",
                     image: "images/cvpr2025_cvrr.png",
                     alt: "Team of One: Cracking Complex Video QA with Model Synergy",
-                    meta: "CVPR 2025",
+                    meta: "CVPR 2025 Challenge",
                     highlights: [{ className: "rank", text: "4th Place" }],
                     title: "Team of One: Cracking Complex Video QA with Model Synergy",
                     authorsHtml: "Jun Xie*, Zhaoran Zhao*, <strong>Xiongjun Guan</strong>, Yingjian Zhu, Hongzhu Yi, Xinming Wang, Feng Chen, Zhepeng Wang",
@@ -124,7 +127,10 @@
                     image: "images/tmc2025_BiFingerPose.png",
                     alt: "BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices",
                     meta: "T-MC 2025",
-                    highlights: [{ className: "ccfa", text: "CCF-A" }],
+                    highlights: [
+                        { className: "ccfa", text: "CCF-A" },
+                        { className: "featured", text: "Featured" }
+                    ],
                     title: "BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices",
                     authorsHtml: "<strong>Xiongjun Guan</strong>, Zhiyu Pan, Jianjiang Feng, Jie Zhou",
                     venue: "Multi-modal 2D finger pose estimation with efficient 2D-to-3D mapping for mobile device interaction.",
@@ -276,7 +282,10 @@
                     image: "images/tifs2024_partial.png",
                     alt: "Joint Identity Verification and Pose Alignment for Partial Fingerprints",
                     meta: "T-IFS 2024",
-                    highlights: [{ className: "ccfa", text: "CCF-A" }],
+                    highlights: [
+                        { className: "ccfa", text: "CCF-A" },
+                        { className: "featured", text: "Featured" }
+                    ],
                     title: "Joint Identity Verification and Pose Alignment for Partial Fingerprints",
                     authorsHtml: "<strong>Xiongjun Guan</strong>, Zhiyu Pan, Jianjiang Feng, Jie Zhou",
                     venue: "CNN-ViT hybrid network for joint pose estimation and identity recognition in partial image scenarios.",
@@ -315,7 +324,10 @@
                     image: "images/tifs2024_registration.png",
                     alt: "Phase-Aggregated Dual-Branch Network for Efficient Fingerprint Dense Registration",
                     meta: "T-IFS 2024",
-                    highlights: [{ className: "ccfa", text: "CCF-A" }],
+                    highlights: [
+                        { className: "ccfa", text: "CCF-A" },
+                        { className: "featured", text: "Featured" }
+                    ],
                     title: "Phase-Aggregated Dual-Branch Network for Efficient Fingerprint Dense Registration",
                     authorsHtml: "<strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou",
                     venue: "Dual-branch dense registration paradigm that integrates precise geometric priors (phase) with robust deep representation.",
@@ -406,7 +418,14 @@
         const cardClass = options.cardClass ? ` ${options.cardClass}` : "";
         const paperId = options.includeId && paper.id ? ` id="${escapeHtml(paper.id)}"` : "";
         const baseHighlights = options.prependedHighlights || [];
-        const mergedHighlights = baseHighlights.concat(paper.highlights || []);
+        const tailHighlights = options.appendedHighlights || [];
+        const sourceHighlights = (paper.highlights || []).filter(function (highlight) {
+            if (!options.excludeHighlightClasses || !options.excludeHighlightClasses.length) {
+                return true;
+            }
+            return !options.excludeHighlightClasses.includes(highlight.className);
+        });
+        const mergedHighlights = baseHighlights.concat(sourceHighlights, tailHighlights);
         const highlightsHtml = mergedHighlights.map(renderPublicationHighlight).join("");
         const keywords = typeof options.keywordLimit === "number" ? paper.keywords.slice(0, options.keywordLimit) : paper.keywords;
         const keywordsHtml = keywords.map(renderPublicationKeyword).join("");
@@ -459,7 +478,7 @@
             }
             return renderPublicationCard(paper, {
                 includeId: false,
-                prependedHighlights: [{ className: "note", text: "Featured" }]
+                excludeHighlightClasses: ["featured"]
             });
         }).join("");
 
