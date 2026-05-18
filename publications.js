@@ -123,6 +123,26 @@
             subtitle: "Works on finger-based human-computer interaction, pose estimation, and sensing.",
             papers: [
                 {
+                    id: "paper-cross-modal-registration-3d-2d",
+                    image: "images/arxiv26_2D3D.png",
+                    alt: "Cross-Modal Registration Between 3D and 2D Fingerprints via Pose-Aware Unwrapping and Point-Cloud Fusion",
+                    meta: "Preprint 2026",
+                    highlights: [],
+                    title: "Cross-Modal Registration Between 3D and 2D Fingerprints via Pose-Aware Unwrapping and Point-Cloud Fusion",
+                    authorsHtml: "<strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou",
+                    venue: "A pose-aware 3D-to-2D registration pipeline that unwraps, fuses, and normalizes 3D fingerprints to improve compatibility with both contactless and legacy contact-based 2D matching systems.",
+                    keywords: [
+                        "Cross-Modal Registration",
+                        "Geometric Compatibility",
+                        "Pose-Aware Unwrapping",
+                        "Point-Cloud Fusion",
+                        "Legacy Matcher Compatibility"
+                    ],
+                    links: [
+                        { label: "Paper", href: "https://arxiv.org/abs/2605.15796" }
+                    ]
+                },
+                {
                     id: "paper-bifingerpose",
                     image: "images/tmc2025_BiFingerPose.png",
                     alt: "BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices",
