@@ -498,16 +498,16 @@
 
         .visitor-map {
             margin: 18px auto 12px;
-            width: min(220px, 100%);
-            min-height: 220px;
+            width: fit-content;
+            max-width: 100%;
+            min-height: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--line);
-            background: #fff;
-            overflow: hidden;
-            padding: 8px;
+            border: none;
+            background: transparent;
+            overflow: visible;
+            padding: 0;
         }
 
         .reading-list {
