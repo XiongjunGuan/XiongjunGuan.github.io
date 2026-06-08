@@ -139,7 +139,8 @@
                         "Legacy Matcher Compatibility"
                     ],
                     links: [
-                        { label: "Paper", href: "https://arxiv.org/abs/2605.15796" }
+                        { label: "Paper", href: "https://arxiv.org/abs/2605.15796" },
+                        { label: "Code", href: "https://github.com/XiongjunGuan/3DFpVisual" },
                     ]
                 },
                 {
@@ -204,6 +205,7 @@
                     ],
                     links: [
                         { label: "Paper", href: "https://arxiv.org/abs/2404.17149" },
+                        { label: "Code", href: "https://github.com/XiongjunGuan/3DFpVisual" },
                         { label: "Slides", href: "docs/CCBR2021.pptx" }
                     ]
                 }
