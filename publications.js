@@ -147,7 +147,7 @@
                     id: "paper-bifingerpose",
                     image: "images/tmc2025_BiFingerPose.png",
                     alt: "BiFingerPose: Bimodal Finger Pose Estimation for Touch Devices",
-                    meta: "T-MC 2025",
+                    meta: "T-MC 2026",
                     highlights: [
                         { className: "ccfa", text: "CCF-A" },
                         { className: "featured", text: "Featured" }
