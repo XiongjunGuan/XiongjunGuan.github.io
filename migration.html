@@ -92,6 +92,10 @@
             line-height: 1.65;
         }
 
+        body.origin-open {
+            overflow: hidden;
+        }
+
         a {
             color: var(--blue);
             text-decoration: none;
@@ -189,6 +193,234 @@
             text-decoration: none;
             background: var(--surface-muted);
             color: var(--text);
+        }
+
+        .nav button {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            font: inherit;
+            color: var(--text-soft);
+            font-size: 0.93rem;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: transparent;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav button:hover {
+            background: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid rgba(224, 227, 231, 0.95);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+        }
+
+        .lang-switch-btn {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text-soft);
+            font: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .lang-switch-btn.active {
+            background: #e8f0fe;
+            color: var(--blue);
+        }
+
+        .lang-switch-btn:hover {
+            color: var(--text);
+        }
+
+        .origin-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1400;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            padding: 32px 20px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 246, 252, 0.98) 52%, rgba(232, 240, 254, 0.96) 100%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
+        }
+
+        .origin-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(26, 115, 232, 0.14), transparent 28%),
+                radial-gradient(circle at 84% 22%, rgba(249, 171, 0, 0.14), transparent 20%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+            pointer-events: none;
+        }
+
+        .origin-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        .origin-overlay.is-leaving {
+            opacity: 0;
+            visibility: visible;
+            pointer-events: none;
+            transform: translateY(-100%);
+            transition: opacity 0.7s ease, transform 1.05s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s;
+        }
+
+        .origin-overlay-panel {
+            position: relative;
+            width: min(100%, 860px);
+            margin: auto;
+            padding: 48px clamp(24px, 4vw, 56px);
+            border: 1px solid rgba(224, 227, 231, 0.9);
+            border-radius: 36px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 24px 60px rgba(60, 64, 67, 0.16);
+            backdrop-filter: blur(10px);
+        }
+
+        .origin-overlay-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .origin-overlay-head-copy {
+            min-width: 0;
+        }
+
+        .origin-overlay-lang-switch {
+            flex-shrink: 0;
+            align-self: flex-start;
+            gap: 2px;
+            padding: 3px;
+            border-color: rgba(26, 115, 232, 0.12);
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        .origin-overlay-lang-switch .lang-switch-btn {
+            min-width: 46px;
+            padding: 5px 10px;
+            color: rgba(60, 64, 67, 0.64);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .origin-overlay-lang-switch .lang-switch-btn.active {
+            background: rgba(26, 115, 232, 0.1);
+            color: rgba(26, 115, 232, 0.92);
+        }
+
+        .origin-overlay-lang-switch .lang-switch-btn:hover {
+            color: rgba(60, 64, 67, 0.9);
+        }
+
+        .origin-overlay-kicker {
+            margin: 0 0 14px;
+            color: var(--blue);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .origin-overlay-title {
+            margin: 0;
+            font-size: clamp(2.6rem, 7vw, 4.4rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+        }
+
+        .origin-overlay-copy {
+            max-width: 680px;
+            margin-top: 28px;
+            color: var(--text-soft);
+            font-size: 1.04rem;
+        }
+
+        .origin-overlay-copy p {
+            margin: 0 0 18px;
+        }
+
+        .origin-overlay-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .origin-overlay-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-top: 36px;
+        }
+
+        .origin-overlay-note {
+            color: rgba(123, 79, 44, 0.78);
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+            font-size: 1.08rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            line-height: 1.5;
+        }
+
+        .origin-overlay-enter {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            padding: 14px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #1a73e8 0%, #0f5cc0 100%);
+            color: #fff;
+            font: inherit;
+            font-weight: 700;
+            box-shadow: 0 14px 28px rgba(26, 115, 232, 0.26);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .origin-overlay-enter:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 34px rgba(26, 115, 232, 0.3);
+        }
+
+        .origin-overlay-enter:focus-visible,
+        .nav button:focus-visible,
+        .lang-switch-btn:focus-visible {
+            outline: 3px solid rgba(26, 115, 232, 0.24);
+            outline-offset: 3px;
         }
 
         .page {
@@ -743,21 +975,94 @@
                 font-size: 0.76rem;
                 padding: 4px 8px;
             }
+
+            .origin-overlay {
+                padding: 20px 14px;
+            }
+
+            .origin-overlay-panel {
+                border-radius: 28px;
+                padding: 32px 20px;
+            }
+
+            .origin-overlay-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .origin-overlay-copy {
+                font-size: 0.98rem;
+            }
+
+            .origin-overlay-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .origin-overlay,
+            .origin-overlay.is-visible,
+            .origin-overlay.is-leaving,
+            .origin-overlay-enter,
+            .nav button {
+                transition: none;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="origin-open">
+    <div class="origin-overlay is-visible" id="origin-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="origin-overlay-title">
+        <div class="origin-overlay-panel">
+            <div class="origin-overlay-head">
+                <div class="origin-overlay-head-copy">
+                    <p class="origin-overlay-kicker" id="origin-overlay-kicker">Origin</p>
+                    <h1 class="origin-overlay-title" id="origin-overlay-title">Why Migration</h1>
+                </div>
+                <div class="lang-switch origin-overlay-lang-switch" id="origin-lang-switch" aria-label="Language switch">
+                    <button class="lang-switch-btn active" id="origin-lang-en" type="button">EN</button>
+                    <button class="lang-switch-btn" id="origin-lang-zh" type="button">中文</button>
+                </div>
+            </div>
+            <div class="origin-overlay-copy" id="origin-overlay-copy">
+                <p>Migration is my metaphor for growth.</p>
+                <p>I borrow the image from salmon returning upstream. They leave their birthplace, travel through
+                    unfamiliar waters, and eventually return&mdash;many journeys begin with departure but find meaning
+                    in return.</p>
+                <p>Life often feels similar. We leave home, disciplines, beliefs, and former versions of ourselves. We
+                    explore, learn, adapt, and sometimes lose our bearings. Yet with time, we find ourselves drawn
+                    back to certain origins, not to repeat the past, but to understand it differently.</p>
+                <p>This page is a collection of such journeys: books read, conversations remembered, places visited,
+                    ideas encountered, and reflections accumulated along the way.</p>
+                <p>The places may remain the same. What changes is the one who returns.</p>
+                <p>Not migration as relocation, but migration as return.</p>
+            </div>
+            <div class="origin-overlay-actions">
+                <div class="origin-overlay-note" id="origin-overlay-note">“归去，也无风雨也无晴”</div>
+                <button class="origin-overlay-enter" id="origin-overlay-enter" type="button">Begin the Journey</button>
+            </div>
+        </div>
+    </div>
     <header class="topbar">
         <div class="topbar-inner">
-            <div class="brand"><a class="brand-switch" href="index.html">Xiongjun Guan's Weekend</a></div>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="#books">Thus They Spoke</a>
-                <a href="#photos">Thus I Saw</a>
-                <a href="#memes">Thus MeMes</a>
-                <a href="#moments">Thus Aha Moments</a>
-            </nav>
+            <div class="brand"><a class="brand-switch" id="brand-switch" href="index.html">Xiongjun Guan's Weekend</a></div>
+            <div class="topbar-actions">
+                <nav class="nav">
+                    <a href="index.html" id="nav-home">Home</a>
+                    <button type="button" id="origin-nav-trigger">Origin</button>
+                    <a href="#top" id="nav-about">About</a>
+                    <a href="#books" id="nav-books">Thus They Spoke</a>
+                    <a href="#photos" id="nav-photos">Thus I Saw</a>
+                    <a href="#memes" id="nav-memes">Thus MeMes</a>
+                    <a href="#moments" id="nav-moments">Thus Aha Moments</a>
+                </nav>
+                <div class="lang-switch" aria-label="Language switch">
+                    <button class="lang-switch-btn active" id="lang-en" type="button">EN</button>
+                    <button class="lang-switch-btn" id="lang-zh" type="button">中文</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -769,19 +1074,19 @@
                 </div>
                 <h1 class="sidebar-name">Xiongjun Guan</h1>
                 <p class="sidebar-name-cn">(&#x5173;&#x96c4;&#x5cfb;)</p>
-                <p class="sidebar-motto">
+                <p class="sidebar-motto" id="sidebar-motto">
                     Even bounded in a nutshell, I still count myself a king of infinite universe.
                 </p>
 
                 <div class="icon-links">
-                    <a class="icon-link" href="mailto:gxj21@mails.tsinghua.edu.cn" aria-label="Email" title="Email">
+                    <a class="icon-link" id="icon-email" href="mailto:gxj21@mails.tsinghua.edu.cn" aria-label="Email" title="Email">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-8 5.34-8-5.34V6l8 5.33L20 6Z" />
                         </svg>
                         <span>Email</span>
                     </a>
-                    <a class="icon-link" href="https://scholar.google.com/citations?user=O0E8IwYAAAAJ&hl=en"
+                    <a class="icon-link" id="icon-scholar" href="https://scholar.google.com/citations?user=O0E8IwYAAAAJ&hl=en"
                         aria-label="Google Scholar" title="Google Scholar">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
@@ -789,7 +1094,7 @@
                         </svg>
                         <span>Google Scholar</span>
                     </a>
-                    <a class="icon-link" href="https://github.com/XiongjunGuan" aria-label="GitHub" title="GitHub">
+                    <a class="icon-link" id="icon-github" href="https://github.com/XiongjunGuan" aria-label="GitHub" title="GitHub">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.34-1.75-1.34-1.75-1.1-.74.09-.72.09-.72 1.21.09 1.85 1.24 1.85 1.24 1.08 1.85 2.82 1.32 3.5 1 .11-.78.42-1.32.76-1.62-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.46-2.36 1.23-3.2-.13-.3-.53-1.55.11-3.22 0 0 1-.32 3.3 1.22A11.36 11.36 0 0 1 12 6.32c1.02 0 2.05.14 3.01.41 2.3-1.54 3.29-1.22 3.29-1.22.65 1.67.25 2.92.12 3.22.77.84 1.22 1.9 1.22 3.2 0 4.58-2.8 5.58-5.48 5.88.43.37.82 1.11.82 2.25v3.25c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z" />
@@ -802,24 +1107,24 @@
 
         <section class="main-column">
             <section class="card" id="top">
-                <h1 class="title">Anadromous Migration</h1>
-                <p class="lead">
+                <h1 class="title" id="top-title">Anadromous Migration</h1>
+                <p class="lead" id="top-lead-1">
                     On this page, we present a native multimodal, large-scale embodied AI (currently carbon-based),
                     which supports continually learning through integrated world and intent models, approaching
                     general-purpose superintelligence.
                 </p>
-                <p class="lead">
+                <p class="lead" id="top-lead-2">
                     Representative details of the existing dataset are as follows.
                 </p>
             </section>
 
             <section class="card" id="books">
-                <h2 class="section-title">Thus They Spoke</h2>
-                <p class="section-desc">
+                <h2 class="section-title" id="books-title">Thus They Spoke</h2>
+                <p class="section-desc" id="books-desc">
                     Multi-domain, high-quality data, curated for cold start and fine-tuning, enabling a complete
                     cognitive architecture.
                 </p>
-                <button class="reading-toggle" type="button" aria-expanded="false" aria-controls="reading-list-panel">
+                <button class="reading-toggle" id="reading-toggle" type="button" aria-expanded="false" aria-controls="reading-list-panel">
                     Load Training Corpus
                 </button>
                 <div class="reading-list-panel" id="reading-list-panel" hidden>
@@ -1333,22 +1638,22 @@
             </section>
 
             <section class="card" id="photos">
-                <h2 class="section-title">Thus I Saw</h2>
-                <p class="section-desc">
+                <h2 class="section-title" id="photos-title">Thus I Saw</h2>
+                <p class="section-desc" id="photos-desc">
                     High-value moments, drawn from an embodied agent's interactions within a dynamic sandbox of physical
                     and social worlds.
                 </p>
-                <div class="placeholder">I have discovered many beautiful images of the world, but the storage is too
+                <div class="placeholder" id="photos-placeholder">I have discovered many beautiful images of the world, but the storage is too
                     limited to contain them.</div>
                 <div class="photo-map-card">
                     <div class="photo-map-head">
-                        <p class="photo-map-title">Travel Footprints</p>
+                        <p class="photo-map-title" id="photo-map-title">Travel Footprints</p>
                     </div>
-                    <div class="travel-map" aria-label="Travel map of visited cities in China">
+                    <div class="travel-map" id="travel-map" aria-label="Travel map of visited cities in China">
                         <div id="travel-map-canvas" role="img" aria-label="Interactive map of visited cities in China">
                         </div>
                     </div>
-                    <div class="city-chip-list" aria-label="Visited city shortcuts">
+                    <div class="city-chip-list" id="city-chip-list" aria-label="Visited city shortcuts">
                         <button class="city-chip" type="button" data-city-focus="beijing">北京</button>
                         <button class="city-chip" type="button" data-city-focus="tianjin">天津</button>
                         <button class="city-chip" type="button" data-city-focus="langfang">廊坊</button>
@@ -1388,16 +1693,16 @@
             </section>
 
             <section class="card" id="memes">
-                <h2 class="section-title">Thus MeMes</h2>
-                <p class="section-desc">
+                <h2 class="section-title" id="memes-title">Thus MeMes</h2>
+                <p class="section-desc" id="memes-desc">
                     An image is worth 16 × 16 words, or perhaps more philosophical reflections ?
                 </p>
-                <div class="placeholder">I am still immersed in cyber delusions, not yet out of it.</div>
+                <div class="placeholder" id="memes-placeholder">I am still immersed in cyber delusions, not yet out of it.</div>
             </section>
 
             <section class="card" id="moments">
-                <h2 class="section-title">Thus Aha Moments</h2>
-                <p class="section-desc">
+                <h2 class="section-title" id="moments-title">Thus Aha Moments</h2>
+                <p class="section-desc" id="moments-desc">
                     Man thinks, God laughs.
                 </p>
                 <ul class="moments-list">
@@ -1523,20 +1828,361 @@
                 </ul>
             </section>
 
-            <section class="card section-spacer" aria-label="More sections placeholder">...and possibly more.</section>
+            <section class="card section-spacer" id="section-spacer" aria-label="More sections placeholder">...and possibly more.</section>
             <div class="visitor-map">
                 <script type="text/javascript" id="mapmyvisitors"
                     src="//mapmyvisitors.com/map.js?d=GLzUC7c1Hye0u_YD4yGdyG-TmhWRvp_i6EfU42oH0vY&cl=ffffff&w=a"></script>
-                <noscript>Visitor map is unavailable when JavaScript is disabled.</noscript>
+                <noscript id="visitor-map-noscript">Visitor map is unavailable when JavaScript is disabled.</noscript>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" id="footer-text">
         &copy; Xiongjun Guan |
         Last updated: Jun. 8, 2026
     </footer>
 
+    <script>
+        (function () {
+            const brandSwitch = document.getElementById("brand-switch");
+            const navHome = document.getElementById("nav-home");
+            const navOriginTrigger = document.getElementById("origin-nav-trigger");
+            const navAbout = document.getElementById("nav-about");
+            const navBooks = document.getElementById("nav-books");
+            const navPhotos = document.getElementById("nav-photos");
+            const navMemes = document.getElementById("nav-memes");
+            const navMoments = document.getElementById("nav-moments");
+            const langEnButton = document.getElementById("lang-en");
+            const langZhButton = document.getElementById("lang-zh");
+            const originLangSwitch = document.getElementById("origin-lang-switch");
+            const originLangEnButton = document.getElementById("origin-lang-en");
+            const originLangZhButton = document.getElementById("origin-lang-zh");
+            const sidebarMotto = document.getElementById("sidebar-motto");
+            const iconEmail = document.getElementById("icon-email");
+            const iconScholar = document.getElementById("icon-scholar");
+            const iconGithub = document.getElementById("icon-github");
+            const originOverlayKicker = document.getElementById("origin-overlay-kicker");
+            const originOverlayTitle = document.getElementById("origin-overlay-title");
+            const originOverlayCopy = document.getElementById("origin-overlay-copy");
+            const originOverlayNote = document.getElementById("origin-overlay-note");
+            const originOverlayEnter = document.getElementById("origin-overlay-enter");
+            const topTitle = document.getElementById("top-title");
+            const topLead1 = document.getElementById("top-lead-1");
+            const topLead2 = document.getElementById("top-lead-2");
+            const booksTitle = document.getElementById("books-title");
+            const booksDesc = document.getElementById("books-desc");
+            const photosTitle = document.getElementById("photos-title");
+            const photosDesc = document.getElementById("photos-desc");
+            const photosPlaceholder = document.getElementById("photos-placeholder");
+            const photoMapTitle = document.getElementById("photo-map-title");
+            const travelMap = document.getElementById("travel-map");
+            const travelMapCanvas = document.getElementById("travel-map-canvas");
+            const cityChipList = document.getElementById("city-chip-list");
+            const memesTitle = document.getElementById("memes-title");
+            const memesDesc = document.getElementById("memes-desc");
+            const memesPlaceholder = document.getElementById("memes-placeholder");
+            const momentsTitle = document.getElementById("moments-title");
+            const momentsDesc = document.getElementById("moments-desc");
+            const sectionSpacer = document.getElementById("section-spacer");
+            const visitorMapNoscript = document.getElementById("visitor-map-noscript");
+            const footerText = document.getElementById("footer-text");
+
+            const translations = {
+                en: {
+                    title: "Xiongjun Guan's Migration",
+                    brand: "Xiongjun Guan's Weekend",
+                    nav: {
+                        home: "Home",
+                        origin: "Origin",
+                        about: "About",
+                        books: "Thus They Spoke",
+                        photos: "Thus I Saw",
+                        memes: "Thus MeMes",
+                        moments: "Thus Aha Moments"
+                    },
+                    sidebarMotto: "Even bounded in a nutshell, I still count myself a king of infinite universe.",
+                    iconEmail: "Email",
+                    iconScholar: "Google Scholar",
+                    iconGithub: "GitHub",
+                    languageSwitchLabel: "Language switch",
+                    originKicker: "Origin",
+                    originTitle: "Why Migration",
+                    originCopy: `
+                        <p>Migration is my metaphor for growth.</p>
+                        <p>I borrow the image from salmon returning upstream. They leave their birthplace, travel through unfamiliar waters, and eventually return&mdash;many journeys start with departure, yet find their meaning in return.</p>
+                        <p>Life often feels similar. We leave home, disciplines, beliefs, and former versions of ourselves. We explore, learn, adapt, and sometimes lose our bearings. Yet as time passes, we are sometimes drawn by an unseen force to briefly revisit the places where our journeys began.</p>
+                        <p>This page is a collection of such journeys: books read, conversations remembered, places visited, ideas encountered, and reflections accumulated along the way.</p>
+                        <p>Perhaps every act of remembering carries a trace of chasing what can never truly be recovered. We may easily return to places from the past, yet the people who once inhabited them are no longer there. Even so, I still hope to gather those fragments scattered across time and carry them into the future.</p>
+                        <p>Anadromous migration is not about relocation, but return.</p>
+                    `,
+                    originNote: "“归去，也无风雨也无晴”",
+                    originEnter: "Begin the Journey",
+                    topTitle: "Anadromous Migration",
+                    topLead1: "On this page, we present a native multimodal, large-scale embodied AI (currently carbon-based), which supports continually learning through integrated world and intent models, approaching general-purpose superintelligence.",
+                    topLead2: "Representative details of the existing dataset are as follows.",
+                    booksTitle: "Thus They Spoke",
+                    booksDesc: "Multi-domain, high-quality data, curated for cold start and fine-tuning, enabling a complete cognitive architecture.",
+                    readingToggleOpen: "Load Training Corpus",
+                    readingToggleClose: "Unload Training Corpus",
+                    photosTitle: "Thus I Saw",
+                    photosDesc: "High-value moments, drawn from an embodied agent's interactions within a dynamic sandbox of physical and social worlds.",
+                    photosPlaceholder: "I have discovered many beautiful images of the world, but the storage is too limited to contain them.",
+                    photoMapTitle: "Travel Footprints",
+                    travelMapLabel: "Travel map of visited cities in China",
+                    travelMapCanvasLabel: "Interactive map of visited cities in China",
+                    cityChipListLabel: "Visited city shortcuts",
+                    mapPopupNote: "Visited footprint",
+                    memesTitle: "Thus MeMes",
+                    memesDesc: "An image is worth 16 × 16 words, or perhaps more philosophical reflections ?",
+                    memesPlaceholder: "I am still immersed in cyber delusions, not yet out of it.",
+                    momentsTitle: "Thus Aha Moments",
+                    momentsDesc: "Man thinks, God laughs.",
+                    momentMeta: "Aha Note",
+                    sectionSpacer: "...and possibly more.",
+                    visitorMapNoscript: "Visitor map is unavailable when JavaScript is disabled.",
+                    footer: "&copy; Xiongjun Guan | Last updated: Jun. 18, 2026"
+                },
+                zh: {
+                    title: "关雄峻的洄游之旅",
+                    brand: "关雄峻的休息日",
+                    nav: {
+                        home: "主页",
+                        origin: "起源",
+                        about: "关于",
+                        books: "所闻",
+                        photos: "所见",
+                        memes: "所感",
+                        moments: "所思"
+                    },
+                    sidebarMotto: "即使身处果壳之中，仍自以为无限宇宙之王。",
+                    iconEmail: "邮箱",
+                    iconScholar: "学术主页",
+                    iconGithub: "GitHub",
+                    languageSwitchLabel: "语言切换",
+                    originKicker: "起源",
+                    originTitle: "什么是洄游",
+                    originCopy: `
+                        <p>洄游是我成长的隐喻。</p>
+                        <p>我借用鲑鱼逆流而上的意象。它们离开出生地，游过陌生的江河湖海，最终返回出生的水域&mdash;许多旅程始于仓促的离别，却在归途中找到意义。</p>
+                        <p>人生往往亦是如此。我们离开故乡、舍弃习以为常的生活方式、改变信念，甚至遗忘过去的自己。我们探索、学习、适应，有时也会迷失方向。然而，随着时间的推移，我们有时会被某种力量牵引，短暂地经过原点。</p>
+                        <p>本页记录着这样的旅程：阅读的书籍、铭记的对话、到访的地方、邂逅的思想，以及一路积累的感悟。</p>
+                        <p>也许每一次回忆都有几分刻舟求剑的意味。我们可以轻易回到过去的地点，但是那里已经没有人了。尽管如此，我仍希望将那些散落在时光里的片段一一拾起，带向更远的未来。</p>
+                        <p>溯河洄游，不是迁徙，而是回归。</p>
+                    `,
+                    originNote: "“归去，也无风雨也无晴”",
+                    originEnter: "开始这段旅程",
+                    topTitle: "溯河洄游",
+                    topLead1: "在这个页面上，我们展示一个原生的多模态、大规模具身智能体（目前仍是碳基），它通过世界模型与意图模型的协同持续学习，逐步逼近通用超级智能。",
+                    topLead2: "以下是这份“数据集”的一些代表性样本。",
+                    booksTitle: "闻我所闻",
+                    booksDesc: "跨领域、高质量的数据样本，为冷启动与持续微调提供知识注入，逐步构成一套更完整的认知结构。",
+                    readingToggleOpen: "展开训练语料",
+                    readingToggleClose: "收起训练语料",
+                    photosTitle: "见我所见",
+                    photosDesc: "具身智能体在物理与社会世界的动态沙盒中交互后，留下的一些高价值瞬间。",
+                    photosPlaceholder: "我有很多美丽的照片，但存储空间太小无法展示。",
+                    photoMapTitle: "行旅足迹",
+                    travelMapLabel: "旅行足迹地图",
+                    travelMapCanvasLabel: "旅行足迹交互地图",
+                    cityChipListLabel: "已到访城市快捷入口",
+                    mapPopupNote: "到访足迹",
+                    memesTitle: "感我所感",
+                    memesDesc: "一张图片胜过 16 × 16 个字，甚至更多哲思？",
+                    memesPlaceholder: "我仍沉浸在某种赛博迷思里，暂时还没出来。",
+                    momentsTitle: "思我所思",
+                    momentsDesc: "人类一思考，上帝就发笑。",
+                    momentMeta: "灵光一闪",
+                    sectionSpacer: "……以及更多可能。",
+                    visitorMapNoscript: "禁用 JavaScript 时无法显示访客地图。",
+                    footer: "&copy; Xiongjun Guan | 最后更新：2026 年 6 月 18 日"
+                }
+            };
+
+            function getCurrentLanguage() {
+                return document.documentElement.getAttribute("data-current-lang") || "en";
+            }
+
+            function getInitialLanguage() {
+                const stored = window.localStorage.getItem("migration-lang");
+                if (stored === "en" || stored === "zh") {
+                    return stored;
+                }
+                return (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+            }
+
+            function applyMigrationLanguage(lang) {
+                const copy = translations[lang];
+                document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+                document.documentElement.setAttribute("data-current-lang", lang);
+                document.title = copy.title;
+                brandSwitch.textContent = copy.brand;
+                navHome.textContent = copy.nav.home;
+                navOriginTrigger.textContent = copy.nav.origin;
+                navAbout.textContent = copy.nav.about;
+                navBooks.textContent = copy.nav.books;
+                navPhotos.textContent = copy.nav.photos;
+                navMemes.textContent = copy.nav.memes;
+                navMoments.textContent = copy.nav.moments;
+                sidebarMotto.textContent = copy.sidebarMotto;
+                iconEmail.querySelector("span").textContent = copy.iconEmail;
+                iconScholar.querySelector("span").textContent = copy.iconScholar;
+                iconGithub.querySelector("span").textContent = copy.iconGithub;
+                iconEmail.setAttribute("aria-label", copy.iconEmail);
+                iconEmail.setAttribute("title", copy.iconEmail);
+                iconScholar.setAttribute("aria-label", copy.iconScholar);
+                iconScholar.setAttribute("title", copy.iconScholar);
+                iconGithub.setAttribute("aria-label", copy.iconGithub);
+                iconGithub.setAttribute("title", copy.iconGithub);
+                document.querySelectorAll(".lang-switch").forEach(function (node) {
+                    node.setAttribute("aria-label", copy.languageSwitchLabel);
+                });
+                originLangSwitch.setAttribute("aria-label", copy.languageSwitchLabel);
+                originOverlayKicker.textContent = copy.originKicker;
+                originOverlayTitle.textContent = copy.originTitle;
+                originOverlayCopy.innerHTML = copy.originCopy;
+                originOverlayNote.textContent = copy.originNote;
+                originOverlayEnter.textContent = copy.originEnter;
+                topTitle.textContent = copy.topTitle;
+                topLead1.textContent = copy.topLead1;
+                topLead2.textContent = copy.topLead2;
+                booksTitle.textContent = copy.booksTitle;
+                booksDesc.textContent = copy.booksDesc;
+                photosTitle.textContent = copy.photosTitle;
+                photosDesc.textContent = copy.photosDesc;
+                photosPlaceholder.textContent = copy.photosPlaceholder;
+                photoMapTitle.textContent = copy.photoMapTitle;
+                travelMap.setAttribute("aria-label", copy.travelMapLabel);
+                travelMapCanvas.setAttribute("aria-label", copy.travelMapCanvasLabel);
+                cityChipList.setAttribute("aria-label", copy.cityChipListLabel);
+                memesTitle.textContent = copy.memesTitle;
+                memesDesc.textContent = copy.memesDesc;
+                memesPlaceholder.textContent = copy.memesPlaceholder;
+                momentsTitle.textContent = copy.momentsTitle;
+                momentsDesc.textContent = copy.momentsDesc;
+                document.querySelectorAll(".moment-meta").forEach(function (node) {
+                    node.textContent = copy.momentMeta;
+                });
+                sectionSpacer.textContent = copy.sectionSpacer;
+                visitorMapNoscript.textContent = copy.visitorMapNoscript;
+                footerText.innerHTML = copy.footer;
+                langEnButton.classList.toggle("active", lang === "en");
+                langZhButton.classList.toggle("active", lang === "zh");
+                originLangEnButton.classList.toggle("active", lang === "en");
+                originLangZhButton.classList.toggle("active", lang === "zh");
+                window.localStorage.setItem("migration-lang", lang);
+                document.dispatchEvent(new CustomEvent("migration-language:change", { detail: { lang: lang } }));
+            }
+
+            window.getMigrationLanguage = getCurrentLanguage;
+            window.applyMigrationLanguage = applyMigrationLanguage;
+
+            langEnButton.addEventListener("click", function () {
+                if (getCurrentLanguage() !== "en") {
+                    applyMigrationLanguage("en");
+                }
+            });
+
+            langZhButton.addEventListener("click", function () {
+                if (getCurrentLanguage() !== "zh") {
+                    applyMigrationLanguage("zh");
+                }
+            });
+
+            originLangEnButton.addEventListener("click", function () {
+                if (getCurrentLanguage() !== "en") {
+                    applyMigrationLanguage("en");
+                }
+            });
+
+            originLangZhButton.addEventListener("click", function () {
+                if (getCurrentLanguage() !== "zh") {
+                    applyMigrationLanguage("zh");
+                }
+            });
+
+            applyMigrationLanguage(getInitialLanguage());
+        }());
+    </script>
+
+    <script>
+        (function () {
+            const overlay = document.getElementById("origin-overlay");
+            const enterButton = document.getElementById("origin-overlay-enter");
+            const navTrigger = document.getElementById("origin-nav-trigger");
+
+            if (!overlay || !enterButton || !navTrigger) {
+                return;
+            }
+
+            const visibleClass = "is-visible";
+            const leavingClass = "is-leaving";
+            let closeFallbackTimer = null;
+
+            function lockPageScroll() {
+                document.body.classList.add("origin-open");
+            }
+
+            function unlockPageScroll() {
+                document.body.classList.remove("origin-open");
+            }
+
+            function finalizeOverlayHide() {
+                overlay.classList.remove(leavingClass);
+                overlay.hidden = true;
+                closeFallbackTimer = null;
+                document.dispatchEvent(new CustomEvent("origin-overlay:closed"));
+            }
+
+            function openOriginOverlay() {
+                if (closeFallbackTimer) {
+                    window.clearTimeout(closeFallbackTimer);
+                    closeFallbackTimer = null;
+                }
+                overlay.hidden = false;
+                overlay.classList.remove(leavingClass);
+                overlay.classList.add(visibleClass);
+                lockPageScroll();
+            }
+
+            function closeOriginOverlay() {
+                overlay.classList.remove(visibleClass);
+                overlay.classList.add(leavingClass);
+                unlockPageScroll();
+                if (closeFallbackTimer) {
+                    window.clearTimeout(closeFallbackTimer);
+                }
+                closeFallbackTimer = window.setTimeout(finalizeOverlayHide, 1250);
+            }
+
+            overlay.addEventListener("transitionend", function (event) {
+                if (event.target !== overlay || event.propertyName !== "transform") {
+                    return;
+                }
+                if (overlay.classList.contains(leavingClass)) {
+                    if (closeFallbackTimer) {
+                        window.clearTimeout(closeFallbackTimer);
+                    }
+                    finalizeOverlayHide();
+                }
+            });
+
+            navTrigger.addEventListener("click", function () {
+                openOriginOverlay();
+            });
+
+            enterButton.addEventListener("click", function () {
+                closeOriginOverlay();
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && overlay.classList.contains(visibleClass)) {
+                    closeOriginOverlay();
+                }
+            });
+
+            lockPageScroll();
+        }());
+    </script>
     <script>
         (function () {
             const navLinks = Array.from(document.querySelectorAll(".nav a"));
@@ -1624,16 +2270,31 @@
     </script>
     <script>
         (function () {
-            const toggleButton = document.querySelector(".reading-toggle");
+            const toggleButton = document.getElementById("reading-toggle");
             const readingPanel = document.getElementById("reading-list-panel");
 
             if (!toggleButton || !readingPanel) {
                 return;
             }
 
+            function getToggleLabels() {
+                const lang = window.getMigrationLanguage ? window.getMigrationLanguage() : "en";
+                if (lang === "zh") {
+                    return {
+                        open: "展开训练语料",
+                        close: "收起训练语料"
+                    };
+                }
+                return {
+                    open: "Load Training Corpus",
+                    close: "Unload Training Corpus"
+                };
+            }
+
             function syncReadingToggle(isExpanded) {
+                const labels = getToggleLabels();
                 toggleButton.setAttribute("aria-expanded", String(isExpanded));
-                toggleButton.textContent = isExpanded ? "Unload Training Corpus" : "Load Training Corpus";
+                toggleButton.textContent = isExpanded ? labels.close : labels.open;
                 readingPanel.hidden = !isExpanded;
             }
 
@@ -1643,16 +2304,17 @@
             });
 
             syncReadingToggle(false);
+
+            document.addEventListener("migration-language:change", function () {
+                const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+                syncReadingToggle(isExpanded);
+            });
         }());
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         (function () {
-            if (!window.L) {
-                return;
-            }
-
             const cityData = [
                 { id: "beijing", name: "北京", lat: 39.9042, lng: 116.4074 },
                 { id: "tianjin", name: "天津", lat: 39.0842, lng: 117.2000 },
@@ -1690,69 +2352,114 @@
                 { id: "luoyang", name: "洛阳", lat: 34.6197, lng: 112.4540 }
             ];
 
-            const map = L.map("travel-map-canvas", {
-                zoomControl: true,
-                scrollWheelZoom: false
-            });
+            let hasInitializedMap = false;
+            let markers = [];
 
-            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
+            function getMapPopupNote() {
+                const lang = window.getMigrationLanguage ? window.getMigrationLanguage() : "en";
+                return lang === "zh" ? "到访足迹" : "Visited footprint";
+            }
 
-            const markerIcon = L.divIcon({
-                className: "",
-                html: '<div class="city-marker" aria-hidden="true"></div>',
-                iconSize: [16, 16],
-                iconAnchor: [8, 8],
-                popupAnchor: [0, -10]
-            });
+            function bindMarkerPopup(marker, cityName) {
+                marker.bindPopup(
+                    '<p class="map-popup-title">' + cityName + '</p>' +
+                    '<p class="map-popup-note">' + getMapPopupNote() + '</p>'
+                );
+            }
 
-            const markersById = {};
-            const bounds = [];
+            function refreshMapLanguage() {
+                if (!markers.length) {
+                    return;
+                }
+                markers.forEach(function (item) {
+                    bindMarkerPopup(item.marker, item.city.name);
+                });
+            }
 
-            cityData.forEach(function (city) {
-                const marker = L.marker([city.lat, city.lng], {
-                    icon: markerIcon,
-                    title: city.name,
-                    alt: city.name
+            function initTravelMap() {
+                if (hasInitializedMap || !window.L) {
+                    return;
+                }
+
+                const mapCanvas = document.getElementById("travel-map-canvas");
+                if (!mapCanvas) {
+                    return;
+                }
+
+                hasInitializedMap = true;
+
+                const map = L.map("travel-map-canvas", {
+                    zoomControl: true,
+                    scrollWheelZoom: false
+                });
+
+                L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
-                marker.bindPopup(
-                    '<p class="map-popup-title">' + city.name + '</p>' +
-                    '<p class="map-popup-note">Visited footprint</p>'
-                );
-
-                markersById[city.id] = marker;
-                bounds.push([city.lat, city.lng]);
-            });
-
-            map.fitBounds(bounds, {
-                padding: [36, 36]
-            });
-
-            map.setMaxBounds([
-                [17.0, 73.0],
-                [54.5, 135.5]
-            ]);
-
-            document.querySelectorAll("[data-city-focus]").forEach(function (button) {
-                button.addEventListener("click", function () {
-                    const targetId = button.getAttribute("data-city-focus");
-                    const marker = markersById[targetId];
-                    if (!marker) {
-                        return;
-                    }
-                    map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 6), {
-                        duration: 0.8
-                    });
-                    marker.openPopup();
+                const markerIcon = L.divIcon({
+                    className: "",
+                    html: '<div class="city-marker" aria-hidden="true"></div>',
+                    iconSize: [16, 16],
+                    iconAnchor: [8, 8],
+                    popupAnchor: [0, -10]
                 });
-            });
 
-            window.addEventListener("resize", function () {
-                map.invalidateSize();
-            });
+                const markersById = {};
+                const bounds = [];
+                markers = [];
+
+                cityData.forEach(function (city) {
+                    const marker = L.marker([city.lat, city.lng], {
+                        icon: markerIcon,
+                        title: city.name,
+                        alt: city.name
+                    }).addTo(map);
+
+                    bindMarkerPopup(marker, city.name);
+                    markersById[city.id] = marker;
+                    markers.push({ marker: marker, city: city });
+                    bounds.push([city.lat, city.lng]);
+                });
+
+                map.fitBounds(bounds, {
+                    padding: [36, 36]
+                });
+
+                map.setMaxBounds([
+                    [17.0, 73.0],
+                    [54.5, 135.5]
+                ]);
+
+                document.querySelectorAll("[data-city-focus]").forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        const targetId = button.getAttribute("data-city-focus");
+                        const marker = markersById[targetId];
+                        if (!marker) {
+                            return;
+                        }
+                        map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 6), {
+                            duration: 0.8
+                        });
+                        marker.openPopup();
+                    });
+                });
+
+                window.addEventListener("resize", function () {
+                    map.invalidateSize();
+                });
+            }
+
+            document.addEventListener("migration-language:change", refreshMapLanguage);
+
+            const overlay = document.getElementById("origin-overlay");
+            if (overlay && !overlay.hidden) {
+                document.addEventListener("origin-overlay:closed", initTravelMap, { once: true });
+                return;
+            }
+
+            initTravelMap();
         }());
     </script>
 </body>

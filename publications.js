@@ -10,9 +10,12 @@
         {
             id: "pub-mllm",
             quickLabel: "MLLMs",
+            quickLabelZh: "多模态大模型",
             quickIconClass: "mllm",
             title: "MLLMs & Video Understanding",
+            titleZh: "多模态大模型与视频理解",
             subtitle: "Works on multi-modal large models, post-training, agentic workflow, and harness engineering.",
+            subtitleZh: "围绕多模态大模型、后训练、Agent 工作流与 Harness Engineering 的相关工作。",
             papers: [
                 {
                     id: "paper-mer25",
@@ -118,9 +121,12 @@
         {
             id: "pub-hci",
             quickLabel: "HCI",
+            quickLabelZh: "人机交互",
             quickIconClass: "hci",
             title: "Finger-based HCI",
+            titleZh: "基于手指的人机交互",
             subtitle: "Works on finger-based human-computer interaction, pose estimation, and sensing.",
+            subtitleZh: "围绕基于手指的人机交互、姿态估计与感知的相关工作。",
             papers: [
                 {
                     id: "paper-cross-modal-registration-3d-2d",
@@ -214,9 +220,12 @@
         {
             id: "pub-bio",
             quickLabel: "Image Retrieval",
+            quickLabelZh: "图像检索",
             quickIconClass: "bio",
             title: "Image Retrieval",
+            titleZh: "图像检索",
             subtitle: "Works on large-scale image retrieval with efficient representation and geometric normalization.",
+            subtitleZh: "围绕大规模图像检索、高效表征与几何归一化的相关工作。",
             papers: [
                 {
                     id: "paper-impose",
@@ -420,23 +429,50 @@
             .replace(/'/g, "&#39;");
     }
 
-    function renderPublicationLink(link) {
-        return `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`;
+    function localizeLinkLabel(label, lang) {
+        if (lang !== "zh") {
+            return label;
+        }
+        const map = {
+            "Paper": "论文",
+            "Code": "代码",
+            "Slides": "幻灯片",
+            "Challenge": "比赛",
+            "Video": "视频"
+        };
+        return map[label] || label;
     }
 
-    function renderPublicationHighlight(highlight) {
-        return `<span class="paper-highlight ${escapeHtml(highlight.className)}">${escapeHtml(highlight.text)}</span>`;
+    function renderPublicationLink(link, lang) {
+        return `<a href="${escapeHtml(link.href)}">${escapeHtml(localizeLinkLabel(link.label, lang))}</a>`;
+    }
+
+    function localizeHighlightText(text, lang) {
+        if (lang !== "zh") {
+            return text;
+        }
+        const map = {
+            "Featured": "精选",
+            "Oral": "口头报告",
+            "2nd Place": "第 2 名",
+            "4th Place": "第 4 名"
+        };
+        return map[text] || text;
+    }
+
+    function renderPublicationHighlight(highlight, lang) {
+        return `<span class="paper-highlight ${escapeHtml(highlight.className)}">${escapeHtml(localizeHighlightText(highlight.text, lang))}</span>`;
     }
 
     function renderPublicationKeyword(keyword) {
         return `<span class="paper-keyword">${escapeHtml(keyword)}</span>`;
     }
 
-    function renderPublicationPaper(paper) {
-        return renderPublicationCard(paper, {});
+    function renderPublicationPaper(paper, lang) {
+        return renderPublicationCard(paper, {}, lang);
     }
 
-    function renderPublicationCard(paper, options) {
+    function renderPublicationCard(paper, options, lang) {
         const cardClass = options.cardClass ? ` ${options.cardClass}` : "";
         const paperId = options.includeId && paper.id ? ` id="${escapeHtml(paper.id)}"` : "";
         const baseHighlights = options.prependedHighlights || [];
@@ -448,11 +484,16 @@
             return !options.excludeHighlightClasses.includes(highlight.className);
         });
         const mergedHighlights = baseHighlights.concat(sourceHighlights, tailHighlights);
-        const highlightsHtml = mergedHighlights.map(renderPublicationHighlight).join("");
+        const highlightsHtml = mergedHighlights.map(function (highlight) {
+            return renderPublicationHighlight(highlight, lang);
+        }).join("");
         const keywords = typeof options.keywordLimit === "number" ? paper.keywords.slice(0, options.keywordLimit) : paper.keywords;
         const keywordsHtml = keywords.map(renderPublicationKeyword).join("");
-        const linksHtml = paper.links.map(renderPublicationLink).join("");
-        const venueText = options.venueText || paper.venue;
+        const linksHtml = paper.links.map(function (link) {
+            return renderPublicationLink(link, lang);
+        }).join("");
+        const venueText = lang === "zh" && paper.venueZh ? paper.venueZh : (options.venueText || paper.venue);
+        const metaText = lang === "zh" && paper.metaZh ? paper.metaZh : paper.meta;
 
         return `
             <div class="paper-item${cardClass}"${paperId}>
@@ -463,7 +504,7 @@
                 </button>
                 <div>
                     <div class="paper-topline">
-                        <span class="item-meta">${escapeHtml(paper.meta)}</span>
+                        <span class="item-meta">${escapeHtml(metaText)}</span>
                         ${highlightsHtml}
                     </div>
                     <h3 class="paper-title">${escapeHtml(paper.title)}</h3>
@@ -492,7 +533,7 @@
         return null;
     }
 
-    function renderFeaturedPublications() {
+    function renderFeaturedPublications(lang) {
         const featuredPapersHtml = featuredPaperIds.map(function (paperId) {
             const paper = getPaperById(paperId);
             if (!paper) {
@@ -501,7 +542,7 @@
             return renderPublicationCard(paper, {
                 includeId: false,
                 excludeHighlightClasses: ["featured"]
-            });
+            }, lang);
         }).join("");
 
         return `
@@ -510,8 +551,8 @@
                     <summary>
                         <div class="paper-group-header">
                             <div>
-                                <h3 class="paper-group-title">Featured Papers</h3>
-                                <p class="paper-group-subtitle">A few selected works.</p>
+                                <h3 class="paper-group-title">${lang === "zh" ? "精选论文" : "Featured Papers"}</h3>
+                                <p class="paper-group-subtitle">${lang === "zh" ? "部分代表性工作。" : "A few selected works."}</p>
                             </div>
                             <span class="paper-group-toggle" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" focusable="false">
@@ -530,9 +571,13 @@
         `;
     }
 
-    function renderPublicationGroup(group) {
-        const papersHtml = group.papers.map(renderPublicationPaper).join("");
+    function renderPublicationGroup(group, lang) {
+        const papersHtml = group.papers.map(function (paper) {
+            return renderPublicationPaper(paper, lang);
+        }).join("");
         const paperCount = group.papers.length;
+        const groupTitle = lang === "zh" && group.titleZh ? group.titleZh : group.title;
+        const groupSubtitle = lang === "zh" && group.subtitleZh ? group.subtitleZh : group.subtitle;
 
         return `
             <div class="paper-group" id="${escapeHtml(group.id)}">
@@ -541,10 +586,10 @@
                         <div class="paper-group-header">
                             <div>
                                 <div class="paper-group-title-row">
-                                    <h3 class="paper-group-title">${escapeHtml(group.title)}</h3>
+                                    <h3 class="paper-group-title">${escapeHtml(groupTitle)}</h3>
                                     <span class="paper-group-count">${paperCount}</span>
                                 </div>
-                                <p class="paper-group-subtitle">${escapeHtml(group.subtitle)}</p>
+                                <p class="paper-group-subtitle">${escapeHtml(groupSubtitle)}</p>
                             </div>
                             <span class="paper-group-toggle" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" focusable="false">
@@ -563,18 +608,21 @@
         `;
     }
 
-    function renderPublications(groups, container) {
+    function renderPublications(groups, container, lang) {
         const quickNavHtml = groups.map(function (group) {
+            const quickLabel = lang === "zh" && group.quickLabelZh ? group.quickLabelZh : group.quickLabel;
             return `
                 <a href="#${escapeHtml(group.id)}">
                     <span class="pub-quick-icon ${escapeHtml(group.quickIconClass)}" aria-hidden="true"></span>
-                    <span>${escapeHtml(group.quickLabel)}</span>
+                    <span>${escapeHtml(quickLabel)}</span>
                 </a>
             `;
         }).join("");
 
-        const groupsHtml = groups.map(renderPublicationGroup).join("");
-        const featuredHtml = renderFeaturedPublications();
+        const groupsHtml = groups.map(function (group) {
+            return renderPublicationGroup(group, lang);
+        }).join("");
+        const featuredHtml = renderFeaturedPublications(lang);
 
         container.innerHTML = `
             <div class="pub-quick-nav">
@@ -585,11 +633,11 @@
         `;
     }
 
-    window.initializePublications = function () {
+    window.initializePublications = function (lang) {
         const publicationsContent = document.getElementById("publications-content");
         if (!publicationsContent) {
             return;
         }
-        renderPublications(publicationGroups, publicationsContent);
+        renderPublications(publicationGroups, publicationsContent, lang || "en");
     };
 }());

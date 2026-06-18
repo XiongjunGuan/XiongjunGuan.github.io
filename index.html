@@ -176,24 +176,141 @@
             gap: 7px;
         }
 
-        .nav a {
+        .nav a,
+        .nav button {
             color: var(--text-soft);
             font-size: 0.93rem;
             padding: 7px 12px;
             border-radius: 999px;
+            border: 0;
             background: transparent;
+            font: inherit;
+            cursor: pointer;
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .nav a.active {
+        .nav a.active,
+        .nav button.active {
             background: #e8f0fe;
             color: var(--blue);
             font-weight: 700;
         }
 
-        .nav a:hover {
+        .nav a:hover,
+        .nav button:hover {
             text-decoration: none;
             background: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .nav-item {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-item::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            height: 14px;
+        }
+
+        .nav-item-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .nav-item-caret {
+            font-size: 0.72rem;
+            color: currentColor;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item:hover .nav-item-caret,
+        .nav-item:focus-within .nav-item-caret,
+        .nav-item.open .nav-item-caret {
+            transform: rotate(180deg);
+        }
+
+        .nav-submenu {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            min-width: 172px;
+            padding: 8px;
+            border: 1px solid rgba(224, 227, 231, 0.95);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 14px 34px rgba(60, 64, 67, 0.16);
+            display: grid;
+            gap: 4px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+            z-index: 20;
+        }
+
+        .nav-item:hover .nav-submenu,
+        .nav-item:focus-within .nav-submenu,
+        .nav-item.open .nav-submenu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        .nav-submenu a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 12px;
+            text-decoration: none;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid rgba(224, 227, 231, 0.95);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+        }
+
+        .lang-switch-btn {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text-soft);
+            font: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .lang-switch-btn.active {
+            background: #e8f0fe;
+            color: var(--blue);
+        }
+
+        .lang-switch-btn:hover {
             color: var(--text);
         }
 
@@ -1265,18 +1382,31 @@
 <body>
     <header class="topbar">
         <div class="topbar-inner">
-            <div class="brand"><a class="brand-switch" href="migration.html">Xiongjun Guan's Weekday</a></div>
-            <nav class="nav">
-                <a href="#about">About</a>
-                <a href="#news">News</a>
-                <a href="#education">Education</a>
-                <a href="#work">Work</a>
-                <a href="#honors">Honors</a>
-                <a href="#competitions">Competitions</a>
-                <a href="#publications">Publications</a>
-                <a href="#teaching">Teaching</a>
-                <a href="#migration-entry">Migration</a>
-            </nav>
+            <div class="brand"><a class="brand-switch" id="brand-switch" href="migration.html">Xiongjun Guan's Weekday</a></div>
+            <div class="topbar-actions">
+                <nav class="nav">
+                    <a href="#about" id="nav-about">About</a>
+                    <div class="nav-item" id="nav-experience-group">
+                        <a class="nav-item-trigger" href="#education" id="nav-experience">
+                            <span id="nav-experience-label">Experience</span>
+                            <span class="nav-item-caret" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="nav-submenu" aria-label="Experience sections">
+                            <a href="#education" id="nav-education">Education</a>
+                            <a href="#work" id="nav-work">Work</a>
+                            <a href="#honors" id="nav-honors">Honors</a>
+                            <a href="#competitions" id="nav-competitions">Competitions</a>
+                            <a href="#teaching" id="nav-teaching">Teaching</a>
+                        </div>
+                    </div>
+                    <a href="#publications" id="nav-publications">Publications</a>
+                    <a href="#migration-entry" id="nav-migration">Migration</a>
+                </nav>
+                <div class="lang-switch" aria-label="Language switch">
+                    <button class="lang-switch-btn active" id="lang-en" type="button">EN</button>
+                    <button class="lang-switch-btn" id="lang-zh" type="button">中文</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1288,19 +1418,19 @@
                 </div>
                 <h1 class="sidebar-name">Xiongjun Guan</h1>
                 <p class="sidebar-name-cn">(&#x5173;&#x96c4;&#x5cfb;)</p>
-                <p class="sidebar-motto">
+                <p class="sidebar-motto" id="sidebar-motto">
                     Even bounded in a nutshell, I still count myself a king of infinite universe.
                 </p>
 
                 <div class="icon-links">
-                    <a class="icon-link" href="mailto:gxj21@mails.tsinghua.edu.cn" aria-label="Email" title="Email">
+                    <a class="icon-link" id="icon-email" href="mailto:gxj21@mails.tsinghua.edu.cn" aria-label="Email" title="Email">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-8 5.34-8-5.34V6l8 5.33L20 6Z" />
                         </svg>
                         <span>Email</span>
                     </a>
-                    <a class="icon-link" href="https://scholar.google.com/citations?user=O0E8IwYAAAAJ&hl=en"
+                    <a class="icon-link" id="icon-scholar" href="https://scholar.google.com/citations?user=O0E8IwYAAAAJ&hl=en"
                         aria-label="Google Scholar" title="Google Scholar">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
@@ -1308,7 +1438,7 @@
                         </svg>
                         <span>Google Scholar</span>
                     </a>
-                    <a class="icon-link" href="https://github.com/XiongjunGuan" aria-label="GitHub" title="GitHub">
+                    <a class="icon-link" id="icon-github" href="https://github.com/XiongjunGuan" aria-label="GitHub" title="GitHub">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.34-1.75-1.34-1.75-1.1-.74.09-.72.09-.72 1.21.09 1.85 1.24 1.85 1.24 1.08 1.85 2.82 1.32 3.5 1 .11-.78.42-1.32.76-1.62-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.46-2.36 1.23-3.2-.13-.3-.53-1.55.11-3.22 0 0 1-.32 3.3 1.22A11.36 11.36 0 0 1 12 6.32c1.02 0 2.05.14 3.01.41 2.3-1.54 3.29-1.22 3.29-1.22.65 1.67.25 2.92.12 3.22.77.84 1.22 1.9 1.22 3.2 0 4.58-2.8 5.58-5.48 5.88.43.37.82 1.11.82 2.25v3.25c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z" />
@@ -1321,9 +1451,9 @@
 
         <section class="main-column">
             <article class="section-card" id="about">
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title" id="section-title-about">About Me</h2>
 
-                <div class="about-summary">
+                <div class="about-summary" id="about-content">
 
                     <p>
                         I build multimodal AI systems that perceive, interact, and evolve in real-world environments under practical constraints.
@@ -1385,8 +1515,8 @@
             </article>
 
             <article class="section-card" id="news">
-                <h2 class="section-title">Recent News</h2>
-                <div class="news-list">
+                <h2 class="section-title" id="section-title-news">Recent News</h2>
+                <div class="news-list" id="news-content">
                     <div class="news-item">
                         <span class="news-date">May 2026</span>
                         <p>Received the Outstanding Reviewer (Top 10) recognition from IEEE T-BIOM.</p>
@@ -1412,8 +1542,8 @@
             </article>
 
             <article class="section-card" id="education">
-                <h2 class="section-title">Education</h2>
-                <div class="timeline">
+                <h2 class="section-title" id="section-title-education">Education</h2>
+                <div class="timeline" id="education-content">
                     <div class="timeline-item">
                         <a class="timeline-logo-link" href="https://www.au.tsinghua.edu.cn/" target="_blank"
                             rel="noopener noreferrer" aria-label="Visit Department of Automation, Tsinghua University"
@@ -1516,8 +1646,8 @@
             </article>
 
             <article class="section-card" id="work">
-                <h2 class="section-title">Work Experience</h2>
-                <div class="timeline">
+                <h2 class="section-title" id="section-title-work">Work Experience</h2>
+                <div class="timeline" id="work-content">
                     <div class="timeline-item">
                         <a class="timeline-logo-link" href="https://research.lenovo.com/webapp/view_English/home.html"
                             target="_blank" rel="noopener noreferrer" aria-label="Visit Lenovo Research website"
@@ -1637,8 +1767,8 @@
             </article>
 
             <article class="section-card" id="honors">
-                <h2 class="section-title">Honors</h2>
-                <div class="simple-list">
+                <h2 class="section-title" id="section-title-honors">Honors</h2>
+                <div class="simple-list" id="honors-content">
                     <div class="award-item featured">
                         <strong>Outstanding Reviewer (T-BIOM)</strong>
                         IEEE Transactions on Biometrics, Behavior, and Identity Science (Top 10), 2026
@@ -1667,8 +1797,8 @@
             </article>
 
             <article class="section-card" id="competitions">
-                <h2 class="section-title">Competitions</h2>
-                <div class="competition-list">
+                <h2 class="section-title" id="section-title-competitions">Competitions</h2>
+                <div class="competition-list" id="competitions-content">
                     <div class="competition-item featured">
                         <div class="competition-top">
                             <span class="item-meta">ACM MM 2025 Challenge</span>
@@ -1736,13 +1866,13 @@
             </article>
 
             <article class="section-card" id="publications">
-                <h2 class="section-title">Selected Publications</h2>
+                <h2 class="section-title" id="section-title-publications">Selected Publications</h2>
                 <div id="publications-content"></div>
             </article>
 
             <article class="section-card" id="teaching">
-                <h2 class="section-title">Teaching</h2>
-                <div class="simple-list">
+                <h2 class="section-title" id="section-title-teaching">Teaching</h2>
+                <div class="simple-list" id="teaching-content">
                     <div class="teaching-item">
                         <strong>Programming Fundamentals</strong>
                         <div class="teaching-meta">
@@ -1780,16 +1910,16 @@
 
             <article class="section-card migration-entry" id="migration-entry">
                 <a class="migration-entry-link" href="migration.html" aria-label="Visit Anadromous Migration page">
-                    <h2 class="section-title">Anadromous Migration</h2>
-                    <p class="migration-entry-meta">Click to Enter <span class="arrow" aria-hidden="true">→</span></p>
+                    <h2 class="section-title" id="section-title-migration">Anadromous Migration</h2>
+                    <p class="migration-entry-meta" id="migration-entry-meta">Click to Enter <span class="arrow" aria-hidden="true">→</span></p>
                 </a>
             </article>
-            <article class="section-card section-spacer" aria-label="More sections placeholder">...and possibly more.
+            <article class="section-card section-spacer" id="section-spacer" aria-label="More sections placeholder">...and possibly more.
             </article>
             <div class="visitor-map">
                 <script type="text/javascript" id="mapmyvisitors"
                     src="//mapmyvisitors.com/map.js?d=GLzUC7c1Hye0u_YD4yGdyG-TmhWRvp_i6EfU42oH0vY&cl=ffffff&w=a"></script>
-                <noscript>Visitor map is unavailable when JavaScript is disabled.</noscript>
+                <noscript id="visitor-map-noscript">Visitor map is unavailable when JavaScript is disabled.</noscript>
             </div>
         </section>
 
@@ -1804,7 +1934,7 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" id="footer-text">
         &copy; Xiongjun Guan |
         Last updated: Jun. 8, 2026
     </footer>
@@ -1812,14 +1942,527 @@
     <script src="publications.js"></script>
     <script>
         (function () {
-            if (window.initializePublications) {
-                window.initializePublications();
-            }
+            const brandSwitch = document.getElementById("brand-switch");
+            const langEnButton = document.getElementById("lang-en");
+            const langZhButton = document.getElementById("lang-zh");
+            const navLabels = {
+                about: document.getElementById("nav-about"),
+                experience: document.getElementById("nav-experience-label"),
+                education: document.getElementById("nav-education"),
+                work: document.getElementById("nav-work"),
+                honors: document.getElementById("nav-honors"),
+                competitions: document.getElementById("nav-competitions"),
+                teaching: document.getElementById("nav-teaching"),
+                publications: document.getElementById("nav-publications"),
+                migration: document.getElementById("nav-migration")
+            };
+            const navExperienceTrigger = document.getElementById("nav-experience");
+            const navExperienceGroup = document.getElementById("nav-experience-group");
+            const titleNodes = {
+                about: document.getElementById("section-title-about"),
+                news: document.getElementById("section-title-news"),
+                education: document.getElementById("section-title-education"),
+                work: document.getElementById("section-title-work"),
+                honors: document.getElementById("section-title-honors"),
+                competitions: document.getElementById("section-title-competitions"),
+                publications: document.getElementById("section-title-publications"),
+                teaching: document.getElementById("section-title-teaching"),
+                migration: document.getElementById("section-title-migration")
+            };
+            const contentNodes = {
+                about: document.getElementById("about-content"),
+                news: document.getElementById("news-content"),
+                education: document.getElementById("education-content"),
+                work: document.getElementById("work-content"),
+                honors: document.getElementById("honors-content"),
+                competitions: document.getElementById("competitions-content"),
+                teaching: document.getElementById("teaching-content")
+            };
+            const sidebarMotto = document.getElementById("sidebar-motto");
+            const iconEmail = document.getElementById("icon-email");
+            const iconScholar = document.getElementById("icon-scholar");
+            const iconGithub = document.getElementById("icon-github");
+            const migrationEntryMeta = document.getElementById("migration-entry-meta");
+            const sectionSpacer = document.getElementById("section-spacer");
+            const visitorMapNoscript = document.getElementById("visitor-map-noscript");
+            const footerText = document.getElementById("footer-text");
+
+            const contentTemplates = {
+                en: {
+                    about: contentNodes.about.innerHTML,
+                    news: contentNodes.news.innerHTML,
+                    education: contentNodes.education.innerHTML,
+                    work: contentNodes.work.innerHTML,
+                    honors: contentNodes.honors.innerHTML,
+                    competitions: contentNodes.competitions.innerHTML,
+                    teaching: contentNodes.teaching.innerHTML
+                },
+                zh: {
+                    about: `
+                    <p>
+                        我致力于构建能够在现实环境约束下进行感知、交互并持续演化的多模态智能系统。
+                    </p>
+                    <p>
+                        我目前在清华大学
+                        <a href="https://www.au.tsinghua.edu.cn/">自动化系</a> 
+                        的
+                        <a href="http://ivg.au.tsinghua.edu.cn/">i-VisionGroup</a>
+                        攻读博士学位，导师为
+                        <a href="https://www.au.tsinghua.edu.cn/info/1078/3262.htm">冯建江</a>教授
+                        和
+                        <a href="https://www.au.tsinghua.edu.cn/info/1152/3127.htm">周杰</a>教授。
+                    </p>
+                    <p>
+                        我于 2021 年获清华大学
+                        <a href="https://www.au.tsinghua.edu.cn/">自动化系</a>
+                        工学学士学位，并辅修
+                        <a href="https://www.ad.tsinghua.edu.cn/">美术学院</a>
+                        的数字媒体艺术第二学位。
+                    </p>
+                    <p>
+                        我当前的研究重点、兴趣方向和经历主要集中在以下领域：
+                    </p>
+                    <div class="tag-groups">
+                        <div class="tag-group focus">
+                            <p class="tag-group-title">研究重点</p>
+                            <div class="quick-tags">
+                                <span class="tag">交互式 AI 系统</span>
+                                <span class="tag">智能体与工作流</span>
+                                <span class="tag">AI 基础设施</span>
+                            </div>
+                        </div>
+                        <div class="tag-group interesting">
+                            <p class="tag-group-title">兴趣方向</p>
+                            <div class="quick-tags">
+                                <span class="tag">智能眼镜</span>
+                                <span class="tag">意图识别</span>
+                                <span class="tag">人机交互</span>
+                            </div>
+                        </div>
+                        <div class="tag-group experience">
+                            <p class="tag-group-title">经历</p>
+                            <div class="quick-tags">
+                                <span class="tag">多模态学习</span>
+                                <span class="tag">表征学习</span>
+                                <span class="tag">检索系统</span>
+                                <span class="tag">评测与基准构建</span>
+                                <span class="tag">Harness Engineering</span>
+                                <span class="tag">后训练</span>
+                                <span class="tag">模型对齐</span>
+                                <span class="tag">人机交互</span>
+                            </div>
+                        </div>
+                    </div>`,
+                    news: `
+                    <div class="news-item">
+                        <span class="news-date">2026 年 5 月</span>
+                        <p>获 IEEE T-BIOM 杰出审稿人（前 10）荣誉。</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2026 年 5 月</span>
+                        <p>一篇关于指纹条件生成的论文投稿至 T-IFS。</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2026 年 5 月</span>
+                        <p>在 FIFA Skeletal Tracking Challenge 中获得第 1 名。</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2026 年 1 月</span>
+                        <p>一篇关于定长稠密指纹表征的论文被 T-IFS 接收。</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2025 年 11 月</span>
+                        <p>一篇关于屏下指纹姿态估计的论文被 T-IFS 接收，一篇关于手指姿态人机交互的论文被 T-MC 接收。</p>
+                    </div>`,
+                    education: `
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="https://www.au.tsinghua.edu.cn/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Visit Department of Automation, Tsinghua University"
+                            data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/thu.png?v=20260331" alt="Tsinghua University logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2021 - 2026</span>
+                            <h3 class="item-title"><strong>清华大学自动化系</strong></h3>
+                            <p class="item-org">博士（Ph.D.）</p>
+                            <p class="item-desc">
+                                聚焦于通过数据与表征归一化、领域知识建模以及工作流层面的优化，提升特定任务中的性能与效率；导师为冯建江教授和周杰教授。
+                            </p>
+                            <p class="item-desc">
+                                GPA 排名：前 15% 左右。
+                            </p>
+                            <p class="item-desc">
+                                期间在国际期刊和会议发表 16 篇论文（其中 9 篇为一作/通讯）。
+                            </p>
+                            <div class="item-tags">
+                                <span class="item-tag">图像检索</span>
+                                <span class="item-tag">高效表征</span>
+                                <span class="item-tag">图匹配</span>
+                                <span class="item-tag">图像配准</span>
+                                <span class="item-tag">姿态估计</span>
+                                <span class="item-tag">人机交互</span>
+                                <span class="item-tag">多模态融合</span>
+                                <span class="item-tag">多任务协同</span>
+                                <span class="item-tag">多语义优化</span>
+                                <span class="item-tag">多粒度表征</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="https://www.ad.tsinghua.edu.cn/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Visit Academy of Arts and Design, Tsinghua University"
+                            data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/thu.png?v=20260331" alt="Tsinghua University logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2018 - 2021</span>
+                            <h3 class="item-title"><strong>清华大学美术学院</strong></h3>
+                            <p class="item-org">数字媒体艺术辅修</p>
+                            <p class="item-desc">
+                                课程聚焦数字娱乐内容与互动媒体，强调创意设计与跨学科数字技术的结合。
+                            </p>
+                            <div class="item-tags">
+                                <span class="item-tag">创意设计</span>
+                                <span class="item-tag">审美感知</span>
+                                <span class="item-tag">产品思维</span>
+                                <span class="item-tag">用户体验</span>
+                                <span class="item-tag">互动媒体</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="https://www.au.tsinghua.edu.cn/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Visit Department of Automation, Tsinghua University"
+                            data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/thu.png?v=20260331" alt="Tsinghua University logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2017 - 2021</span>
+                            <h3 class="item-title"><strong>清华大学自动化系</strong></h3>
+                            <p class="item-org">工学学士（B.Eng.）</p>
+                            <p class="item-desc">
+                                本科阶段接受自动化大类的专业训练，核心是控制论、信息论和系统论，由此形成对自适应与交互式智能系统的长期兴趣。
+                            </p>
+                            <p class="item-desc">
+                                GPA 排名：前 5% 左右。
+                            </p>
+                            <p class="item-desc">
+                                期间在国际会议发表 1 篇论文（一作）。
+                            </p>
+                            <div class="item-tags">
+                                <span class="item-tag">系统建模</span>
+                                <span class="item-tag">计算思维</span>
+                                <span class="item-tag">控制理论</span>
+                                <span class="item-tag">机器学习</span>
+                                <span class="item-tag">信号与图像处理</span>
+                                <span class="item-tag">模式识别</span>
+                            </div>
+                        </div>
+                    </div>`,
+                    work: `
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="https://research.lenovo.com/webapp/view_English/home.html"
+                            target="_blank" rel="noopener noreferrer" aria-label="Visit Lenovo Research website"
+                            data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/lenovo_research.png?v=20260331" alt="Lenovo Research logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2024.12 - 2026.04</span>
+                            <h3 class="item-title"><strong>联想研究院 PC Intelligence & Ecosystems Lab</strong></h3>
+                            <p class="item-org">研究实习生</p>
+                            <p class="item-desc">
+                                主要关注多模态感知与表征、意图理解和情感计算，并通过提示词工程、后训练、智能体协作与工作流优化，提升多模态大模型的部署效率与任务表现。
+                            </p>
+                            <p class="item-desc">
+                                产出 4 篇技术报告（其中 2 篇为一作/通讯），并在 ACM MM、CVPR 国际竞赛中获得 4 项相关奖项。
+                            </p>
+                            <div class="item-links">
+                                <a href="#paper-mer25">论文 1</a>
+                                <a href="#paper-mer25-track2">论文 2</a>
+                                <a href="#paper-egoschema">论文 3</a>
+                                <a href="#paper-cvrr">论文 4</a>
+                            </div>
+                            <div class="item-tags">
+                                <span class="item-tag">视频理解与问答</span>
+                                <span class="item-tag">情感计算</span>
+                                <span class="item-tag">多模态大模型</span>
+                                <span class="item-tag">参数高效微调</span>
+                                <span class="item-tag">指令微调</span>
+                                <span class="item-tag">模型校准</span>
+                                <span class="item-tag">思维链</span>
+                                <span class="item-tag">智能体工作流</span>
+                                <span class="item-tag">多技能调用</span>
+                                <span class="item-tag">Harness Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="https://www.grgintek.cn/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Visit GRG Intek website" data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/CRG.png?v=20260401" alt="CRG Banking logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2023.06 - 2023.08</span>
+                            <h3 class="item-title"><strong>广电运通研究院 算法研究部</strong></h3>
+                            <p class="item-org">算法实习生（产学合作）</p>
+                            <p class="item-desc">
+                                主要研究大规模人群场景下的非接触式掌纹识别，负责框架设计、技术调研和早期工程原型搭建。对应项目已在北京大兴机场线进行掌纹支付试点。
+                            </p>
+                            <p class="item-desc">
+                                获清华大学博士生社会实践银奖。
+                            </p>
+                            <div class="item-links">
+                                <a href="https://www.grgbanking.com/cn/news/detail.html?id=2029" target="_blank"
+                                    rel="noopener noreferrer">新闻 1</a>
+                                <a href="https://www.grgbanking.com/cn/news/detail.html?id=2212" target="_blank"
+                                    rel="noopener noreferrer">新闻 2</a>
+                            </div>
+                            <div class="item-tags">
+                                <span class="item-tag">非接触掌纹识别系统</span>
+                                <span class="item-tag">关键点检测</span>
+                                <span class="item-tag">姿态估计</span>
+                                <span class="item-tag">ROI 分割</span>
+                                <span class="item-tag">图像增强</span>
+                                <span class="item-tag">高效表征</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <a class="timeline-logo-link" href="http://www.hisign.com.cn/" target="_blank"
+                            rel="noopener noreferrer" aria-label="Visit Hisign Technology website"
+                            data-tooltip="Visit website">
+                            <div class="timeline-logo school-logo">
+                                <img src="images/hisign.png?v=20260401" alt="Hisign Technology logo">
+                            </div>
+                        </a>
+                        <div>
+                            <span class="item-meta">2022.01 - 2023.06</span>
+                            <h3 class="item-title"><strong>海鑫科金</strong></h3>
+                            <p class="item-org">算法实习生（实验室合作）</p>
+                            <p class="item-desc">
+                                聚焦边缘计算场景下的图像检索问题（局部图像 / 低质量图像），通过图像配准与拼接技术提升存储与计算效率。
+                            </p>
+                            <p class="item-desc">
+                                产出 2 篇国际期刊论文（一作）。
+                            </p>
+                            <div class="item-links">
+                                <a href="#paper-distortion-rectification">论文 1</a>
+                                <a href="#paper-phase-registration">论文 2</a>
+                            </div>
+                            <div class="item-tags">
+                                <span class="item-tag">图像检索</span>
+                                <span class="item-tag">细粒度视觉对齐</span>
+                                <span class="item-tag">图像增强</span>
+                                <span class="item-tag">图像配准</span>
+                                <span class="item-tag">图像拼接</span>
+                            </div>
+                        </div>
+                    </div>`,
+                    honors: `
+                    <div class="award-item featured">
+                        <strong>杰出审稿人（T-BIOM）</strong>
+                        IEEE Transactions on Biometrics, Behavior, and Identity Science（Top 10），2026
+                    </div>
+                    <div class="award-item featured">
+                        <strong>综合优秀奖</strong>
+                        清华大学，2022、2023、2024、2025
+                    </div>
+                    <div class="award-item">
+                        <strong>博士生社会实践银奖</strong>
+                        清华大学，2023
+                    </div>
+                    <div class="award-item featured">
+                        <strong>优秀毕业生</strong>
+                        清华大学（前 10% 左右），2021
+                    </div>
+                    <div class="award-item">
+                        <strong>优良毕业生</strong>
+                        清华大学自动化系（前 5% 左右），2021
+                    </div>
+                    <div class="award-item">
+                        <strong>学业优秀奖</strong>
+                        清华大学，2019、2020
+                    </div>`,
+                    competitions: `
+                    <div class="competition-item featured">
+                        <div class="competition-top">
+                            <span class="item-meta">ACM MM 2025 Challenge</span>
+                            <span class="competition-rank">第 2 名</span>
+                        </div>
+                        <strong>MER25 Track 1: Multimodal Emotion Recognition through Semi-Supervised Learning</strong>
+                        <div class="competition-links">
+                            <a href="#paper-mer25">论文</a>
+                            <a href="https://zeroqiaoba.github.io/MER2025-website/">比赛</a>
+                        </div>
+                    </div>
+                    <div class="competition-item">
+                        <div class="competition-top">
+                            <span class="item-meta">ACM MM 2025 Challenge</span>
+                            <span class="competition-rank">第 2 名</span>
+                        </div>
+                        <strong>MER25 Track 2: Multimodal Emotion Recognition with Fine-Grained Categories</strong>
+                        <div class="competition-links">
+                            <a href="#paper-mer25-track2">论文</a>
+                            <a href="https://zeroqiaoba.github.io/MER2025-website/">比赛</a>
+                        </div>
+                    </div>
+                    <div class="competition-item">
+                        <div class="competition-top">
+                            <span class="item-meta">CVPR 2025 Challenge</span>
+                            <span class="competition-rank">第 4 名</span>
+                        </div>
+                        <strong>CVRR: Complex Video Reasoning and Robustness Evaluation</strong>
+                        <div class="competition-links">
+                            <a href="#paper-cvrr">论文</a>
+                            <a href="https://mbzuai-oryx.github.io/CVRR-Evaluation-Suite/">比赛</a>
+                        </div>
+                    </div>
+                    <div class="competition-item featured">
+                        <div class="competition-top">
+                            <span class="item-meta">CVPR 2025 Challenge</span>
+                            <span class="competition-rank">第 2 名</span>
+                        </div>
+                        <strong>Ego4D EgoSchema: Very Long-Form Egocentric Video Question-Answering</strong>
+                        <div class="competition-links">
+                            <a href="#paper-egoschema">论文</a>
+                            <a href="https://egoschema.github.io">比赛</a>
+                        </div>
+                    </div>
+                    <div class="competition-item">
+                        <div class="competition-top">
+                            <span class="item-meta">CRCSPC 2018</span>
+                            <span class="competition-rank">一等奖</span>
+                        </div>
+                        <strong>第 35 届全国部分地区大学生物理竞赛</strong>
+                    </div>
+                    <div class="competition-item featured">
+                        <div class="competition-top">
+                            <span class="item-meta">CPHO 2016</span>
+                            <span class="competition-rank">金牌</span>
+                        </div>
+                        <strong>第 33 届全国中学生物理竞赛</strong>
+                    </div>`,
+                    teaching: `
+                    <div class="teaching-item">
+                        <strong>程序设计基础</strong>
+                        <div class="teaching-meta">
+                            <span>助教</span>
+                            <span>2024 春</span>
+                            <span>清华大学自动化系</span>
+                        </div>
+                    </div>
+                    <div class="teaching-item">
+                        <strong>跨学科研究与实践：图像处理</strong>
+                        <div class="teaching-meta">
+                            <span>助教</span>
+                            <span>2023 秋</span>
+                            <span>清华大学自动化系</span>
+                        </div>
+                    </div>
+                    <div class="teaching-item">
+                        <strong>信息论基础</strong>
+                        <div class="teaching-meta">
+                            <span>助教</span>
+                            <span>2023 春</span>
+                            <span>清华大学自动化系</span>
+                        </div>
+                    </div>
+                    <div class="teaching-item">
+                        <strong>数字图像处理</strong>
+                        <div class="teaching-meta">
+                            <span>助教</span>
+                            <span>2022 秋</span>
+                            <span>清华大学自动化系</span>
+                        </div>
+                    </div>`
+                }
+            };
+
+            const staticTranslations = {
+                en: {
+                    title: "Xiongjun Guan's Homepage",
+                    brand: "Xiongjun Guan's Weekday",
+                    nav: {
+                        about: "About",
+                        experience: "Experience",
+                        education: "Education",
+                        work: "Work",
+                        honors: "Honors",
+                        competitions: "Competitions",
+                        teaching: "Teaching",
+                        publications: "Publications",
+                        migration: "Migration"
+                    },
+                    sidebarMotto: "Even bounded in a nutshell, I still count myself a king of infinite universe.",
+                    iconEmail: "Email",
+                    iconScholar: "Google Scholar",
+                    iconGithub: "GitHub",
+                    sectionTitles: {
+                        about: "About Me",
+                        news: "Recent News",
+                        education: "Education",
+                        work: "Work Experience",
+                        honors: "Honors",
+                        competitions: "Competitions",
+                        publications: "Selected Publications",
+                        teaching: "Teaching",
+                        migration: "Anadromous Migration"
+                    },
+                    migrationMeta: 'Click to Enter <span class="arrow" aria-hidden="true">→</span>',
+                    spacer: "...and possibly more.",
+                    visitorMapNoscript: "Visitor map is unavailable when JavaScript is disabled.",
+                    footer: "&copy; Xiongjun Guan | Last updated: Jun. 18, 2026"
+                },
+                zh: {
+                    title: "关雄峻的个人主页",
+                    brand: "关雄峻的工作日",
+                    nav: {
+                        about: "关于",
+                        experience: "经历",
+                        education: "教育",
+                        work: "工作",
+                        honors: "荣誉",
+                        competitions: "竞赛",
+                        teaching: "教学",
+                        publications: "论文",
+                        migration: "洄游"
+                    },
+                    sidebarMotto: "即使身处果壳之中，仍自以为无限宇宙之王。",
+                    iconEmail: "邮箱",
+                    iconScholar: "学术主页",
+                    iconGithub: "GitHub",
+                    sectionTitles: {
+                        about: "关于我",
+                        news: "近期动态",
+                        education: "教育经历",
+                        work: "工作经历",
+                        honors: "获得荣誉",
+                        competitions: "竞赛经历",
+                        publications: "学术论文",
+                        teaching: "教学",
+                        migration: "溯河洄游"
+                    },
+                    migrationMeta: '点击进入 <span class="arrow" aria-hidden="true">→</span>',
+                    spacer: "……以及更多可能。",
+                    visitorMapNoscript: "禁用 JavaScript 时无法显示访客地图。",
+                    footer: "&copy; Xiongjun Guan | 最后更新：2026 年 6 月 18 日"
+                }
+            };
+
             const lightbox = document.getElementById("lightbox");
             const lightboxImage = lightbox.querySelector(".lightbox-image");
             const lightboxCaption = lightbox.querySelector(".lightbox-caption");
             const closeButtons = lightbox.querySelectorAll(".lightbox-backdrop, .lightbox-close");
-            const thumbs = document.querySelectorAll(".paper-thumb");
             const navLinks = Array.from(document.querySelectorAll(".nav a"));
             const sectionNavLinks = navLinks.filter((link) => {
                 const href = link.getAttribute("href") || "";
@@ -1829,6 +2472,67 @@
                 .map((link) => document.querySelector(link.getAttribute("href")))
                 .filter(Boolean);
             const activationSlack = 8;
+            let currentLang = "en";
+
+            function bindPublicationThumbs() {
+                document.querySelectorAll(".paper-thumb").forEach((thumb) => {
+                    thumb.addEventListener("click", function () {
+                        const src = thumb.getAttribute("data-lightbox-src");
+                        const alt = thumb.getAttribute("data-lightbox-alt") || "";
+                        lightboxImage.src = src;
+                        lightboxImage.alt = alt;
+                        lightboxCaption.textContent = alt;
+                        lightbox.classList.add("open");
+                        lightbox.setAttribute("aria-hidden", "false");
+                    });
+                });
+            }
+
+            function renderPageLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+                document.title = staticTranslations[lang].title;
+                brandSwitch.textContent = staticTranslations[lang].brand;
+
+                Object.keys(navLabels).forEach(function (key) {
+                    navLabels[key].textContent = staticTranslations[lang].nav[key];
+                });
+
+                sidebarMotto.textContent = staticTranslations[lang].sidebarMotto;
+                iconEmail.querySelector("span").textContent = staticTranslations[lang].iconEmail;
+                iconScholar.querySelector("span").textContent = staticTranslations[lang].iconScholar;
+                iconGithub.querySelector("span").textContent = staticTranslations[lang].iconGithub;
+
+                Object.keys(titleNodes).forEach(function (key) {
+                    titleNodes[key].textContent = staticTranslations[lang].sectionTitles[key];
+                });
+
+                Object.keys(contentNodes).forEach(function (key) {
+                    contentNodes[key].innerHTML = contentTemplates[lang][key];
+                });
+
+                migrationEntryMeta.innerHTML = staticTranslations[lang].migrationMeta;
+                sectionSpacer.textContent = staticTranslations[lang].spacer;
+                visitorMapNoscript.textContent = staticTranslations[lang].visitorMapNoscript;
+                footerText.innerHTML = staticTranslations[lang].footer;
+
+                langEnButton.classList.toggle("active", lang === "en");
+                langZhButton.classList.toggle("active", lang === "zh");
+                window.localStorage.setItem("homepage-lang", lang);
+
+                if (window.initializePublications) {
+                    window.initializePublications(lang);
+                    bindPublicationThumbs();
+                }
+            }
+
+            function getInitialLanguage() {
+                const stored = window.localStorage.getItem("homepage-lang");
+                if (stored === "en" || stored === "zh") {
+                    return stored;
+                }
+                return (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+            }
 
             function getActiveAnchorLine() {
                 const scrollPaddingTop = window.getComputedStyle(document.documentElement).scrollPaddingTop;
@@ -1867,6 +2571,8 @@
                 sectionNavLinks.forEach(function (link) {
                     link.classList.toggle("active", link.getAttribute("href") === currentId);
                 });
+                const experienceIds = new Set(["#education", "#work", "#honors", "#competitions", "#teaching"]);
+                navExperienceTrigger.classList.toggle("active", experienceIds.has(currentId));
             }
 
             function updateActiveNavByScroll() {
@@ -1895,16 +2601,40 @@
                 lightboxCaption.textContent = "";
             }
 
-            thumbs.forEach((thumb) => {
-                thumb.addEventListener("click", function () {
-                    const src = thumb.getAttribute("data-lightbox-src");
-                    const alt = thumb.getAttribute("data-lightbox-alt") || "";
-                    lightboxImage.src = src;
-                    lightboxImage.alt = alt;
-                    lightboxCaption.textContent = alt;
-                    lightbox.classList.add("open");
-                    lightbox.setAttribute("aria-hidden", "false");
-                });
+            langEnButton.addEventListener("click", function () {
+                if (currentLang !== "en") {
+                    renderPageLanguage("en");
+                    window.setTimeout(updateActiveNavByScroll, 0);
+                }
+            });
+
+            langZhButton.addEventListener("click", function () {
+                if (currentLang !== "zh") {
+                    renderPageLanguage("zh");
+                    window.setTimeout(updateActiveNavByScroll, 0);
+                }
+            });
+
+            navExperienceTrigger.addEventListener("click", function () {
+                navExperienceGroup.classList.remove("open");
+            });
+
+            navExperienceGroup.addEventListener("mouseenter", function () {
+                navExperienceGroup.classList.add("open");
+            });
+
+            navExperienceGroup.addEventListener("mouseleave", function () {
+                navExperienceGroup.classList.remove("open");
+            });
+
+            navExperienceGroup.addEventListener("focusin", function () {
+                navExperienceGroup.classList.add("open");
+            });
+
+            navExperienceGroup.addEventListener("focusout", function (event) {
+                if (!navExperienceGroup.contains(event.relatedTarget)) {
+                    navExperienceGroup.classList.remove("open");
+                }
             });
 
             closeButtons.forEach((button) => {
@@ -1928,6 +2658,7 @@
                     isTicking = false;
                 });
             }, { passive: true });
+            renderPageLanguage(getInitialLanguage());
             window.addEventListener("resize", updateActiveNavByScroll);
             updateActiveNavByScroll();
         }());
