@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坐标轴原点 | Thus Aha Moments</title>
+    <meta name="description" content="关于保留选项、深度与原点的一则杂记。">
+    <link rel="icon" type="image/png" href="../images/icon.png">
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: rgba(255, 255, 255, 0.92);
+            --text: #202124;
+            --text-soft: #5f6368;
+            --line: #e0e3e7;
+            --blue: #1a73e8;
+            --green: #188038;
+            --shadow: 0 18px 44px rgba(60, 64, 67, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --max-width: 860px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Aptos", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+            color: var(--text);
+            line-height: 1.85;
+            background:
+                radial-gradient(circle at top left, rgba(26, 115, 232, 0.08), transparent 26%),
+                radial-gradient(circle at top right, rgba(24, 128, 56, 0.08), transparent 24%),
+                linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .article {
+            padding: 34px 32px 38px;
+            border: 1px solid rgba(224, 227, 231, 0.9);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(26, 115, 232, 0.08);
+            color: var(--blue);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 18px 0 10px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+        }
+
+        .dek {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .meta strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .divider {
+            width: 72px;
+            height: 1px;
+            margin: 28px 0 24px;
+            background: linear-gradient(90deg, var(--blue), rgba(26, 115, 232, 0));
+        }
+
+        .hero-figure {
+            margin: 0 0 24px;
+            padding: 20px;
+            border: 1px dashed rgba(26, 115, 232, 0.28);
+            border-radius: var(--radius-md);
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.06), rgba(24, 128, 56, 0.04)),
+                #fff;
+        }
+
+        .hero-image-placeholder {
+            min-height: 240px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(24, 128, 56, 0.08)),
+                repeating-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.34) 0,
+                    rgba(255, 255, 255, 0.34) 12px,
+                    transparent 12px,
+                    transparent 24px);
+            color: var(--text-soft);
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-caption {
+            margin: 12px 0 0;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+            font-size: 1rem;
+        }
+
+        .content p {
+            margin: 0;
+        }
+
+        .quote-placeholder {
+            margin: 4px 0;
+            padding: 16px 18px;
+            border-left: 3px solid rgba(26, 115, 232, 0.35);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            background: rgba(26, 115, 232, 0.05);
+            color: #334155;
+        }
+
+        .footer-note {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 20px 0 40px;
+            }
+
+            .article {
+                padding: 26px 20px 28px;
+            }
+
+            .hero-image-placeholder {
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <a class="back-link" href="../migration.html#moments">← Back to Xiongjun Guan's Migration</a>
+
+        <article class="article">
+            <div class="eyebrow">Thus Aha Moments</div>
+            <h1 class="title">坐标轴原点</h1>
+            <p class="dek">当所有方向都想兼顾的时候，人往往并没有前进，只是在原点附近打转。</p>
+
+            <div class="meta">
+                <span><strong>Author:</strong> Xiongjun Guan</span>
+                <span><strong>Date:</strong> 2026-06-19</span>
+            </div>
+            <div class="divider" aria-hidden="true"></div>
+
+            <figure class="hero-figure">
+                <div class="hero-image-placeholder">Origin of Axes<br>选项、方向与深度</div>
+                <figcaption class="hero-caption">原点不是错误的位置，但如果停留太久，它就会变成一种看似稳妥的停滞。</figcaption>
+            </figure>
+
+            <section class="content">
+                <p>年轻的时候，我们总觉得“保留选项”是一种能力。好像不把自己过早地押注在某个方向上，就等于拥有更多自由。今天学一点这个，明天试一点那个；既不愿意彻底放弃 A，也不舍得离开 B；每条路都留一只脚，每个身份都想保留一个入口。表面上看，这是开放，是灵活，是没有把自己困死在某种单一路径里。</p>
+                <p>但时间久了就会发现，坐标轴原点虽然连接着所有方向，却并不真正属于任何方向。它离每一条轴都很近，近到你仿佛随时可以出发；但它也离每一种深度都很远，远到你始终没有真正进入。你不是在前进，只是在维持一种“我还可以”的幻觉。</p>
+                <div class="quote-placeholder">什么都想保留，往往不是真的拥有更多，而是不敢承担失去之后才会出现的形状。</div>
+                <p>精通从来不是在完整保留全部可能性的前提下发生的。任何真正深入的东西，都要求一种不对称投入。你得放弃别的阅读顺序，别的时间分配，别的社交节奏，甚至放弃某些“我本来也可以”的想象。一个人在某个方向上走得足够远，不是因为他看见了所有路，而是因为他接受了自己无法同时走完所有路。</p>
+                <p>这也是为什么“什么都会一点”常常不是通达，而是悬浮。你可以在很多对话里接得上话，在很多领域里认得几个关键词，在很多体系边缘都留下一些浅浅的足迹。但一旦问题真正深入下去，就会发现自己没有哪一套坐标系是完整的。你知道入口，却没有穿过走廊；你认识地图，却没有在其中生活过。</p>
+                <p>当然，原点也并非毫无价值。它有一种观察的优势：站在这里，你能看到不同轴线的关系，能理解它们如何相交、如何拉扯、如何彼此定义。广度本身不是问题，问题在于如果永远只肯停在广度上，它就会变成一种被美化的逃避。真正好的广度，应该是若干次深入之后再返回来的广度，而不是永远停留在入口处的轻盈。</p>
+                <p>所以也许更重要的问题不是“我要不要保留选项”，而是“我愿不愿意为某个方向支付代价”。因为坐标一旦离开原点，就会带来偏移，偏移就意味着你失去某些对称性。你会错过另一些风景，失去另一些身份，放弃另一些可能版本的自己。可也正是这种不再对称，才使得轮廓开始出现。</p>
+                <p>原点适合出发，不适合久居。人若总想成为一切，最后常常什么都没有成为。</p>
+            </section>
+
+            <div class="footer-note">
+                Note: 有时成长不是添加更多坐标，而是终于允许自己沿着其中一条轴走远。
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

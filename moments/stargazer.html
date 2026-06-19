@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观星者 | Thus Aha Moments</title>
+    <meta name="description" content="关于命运、观测与选择的一则杂记。">
+    <link rel="icon" type="image/png" href="../images/icon.png">
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: rgba(255, 255, 255, 0.92);
+            --text: #202124;
+            --text-soft: #5f6368;
+            --line: #e0e3e7;
+            --blue: #1a73e8;
+            --green: #188038;
+            --shadow: 0 18px 44px rgba(60, 64, 67, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --max-width: 860px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Aptos", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+            color: var(--text);
+            line-height: 1.85;
+            background:
+                radial-gradient(circle at top left, rgba(26, 115, 232, 0.08), transparent 26%),
+                radial-gradient(circle at top right, rgba(24, 128, 56, 0.08), transparent 24%),
+                linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .article {
+            padding: 34px 32px 38px;
+            border: 1px solid rgba(224, 227, 231, 0.9);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(26, 115, 232, 0.08);
+            color: var(--blue);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 18px 0 10px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+        }
+
+        .dek {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .meta strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .divider {
+            width: 72px;
+            height: 1px;
+            margin: 28px 0 24px;
+            background: linear-gradient(90deg, var(--blue), rgba(26, 115, 232, 0));
+        }
+
+        .hero-figure {
+            margin: 0 0 24px;
+            padding: 20px;
+            border: 1px dashed rgba(26, 115, 232, 0.28);
+            border-radius: var(--radius-md);
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.06), rgba(24, 128, 56, 0.04)),
+                #fff;
+        }
+
+        .hero-image-placeholder {
+            min-height: 240px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(24, 128, 56, 0.08)),
+                repeating-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.34) 0,
+                    rgba(255, 255, 255, 0.34) 12px,
+                    transparent 12px,
+                    transparent 24px);
+            color: var(--text-soft);
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-caption {
+            margin: 12px 0 0;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+            font-size: 1rem;
+        }
+
+        .content p {
+            margin: 0;
+        }
+
+        .quote-placeholder {
+            margin: 4px 0;
+            padding: 16px 18px;
+            border-left: 3px solid rgba(26, 115, 232, 0.35);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            background: rgba(26, 115, 232, 0.05);
+            color: #334155;
+        }
+
+        .footer-note {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 20px 0 40px;
+            }
+
+            .article {
+                padding: 26px 20px 28px;
+            }
+
+            .hero-image-placeholder {
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <a class="back-link" href="../migration.html#moments">← Back to Xiongjun Guan's Migration</a>
+
+        <article class="article">
+            <div class="eyebrow">Thus Aha Moments</div>
+            <h1 class="title">观星者</h1>
+            <p class="dek">命运未必写在天上，它更像在你手中慢慢坍缩的波函数。</p>
+
+            <div class="meta">
+                <span><strong>Author:</strong> Xiongjun Guan</span>
+                <span><strong>Date:</strong> 2026-06-19</span>
+            </div>
+            <div class="divider" aria-hidden="true"></div>
+
+            <figure class="hero-figure">
+                <div class="hero-image-placeholder">Stargazer<br>概率、观测与选择</div>
+                <figcaption class="hero-caption">有些人仰望星空是为了寻找答案，而有些答案只有在行动之后才会出现。</figcaption>
+            </figure>
+
+            <section class="content">
+                <p>人总喜欢把命运想成一张写好的剧本。仿佛在我们出生之前，某种更高处的笔已经替我们写完了结局，我们能做的只是按部就班地把它演出来。于是“命中注定”成了一种很省力的解释：成功归因于天赋，失败归因于时运，迟疑归因于时机未到。</p>
+                <p>但如果借一点物理学的比喻，也许命运并不是一条早就画好的单线，而更像一团尚未坍缩的概率波。未来不是一个点，而是一簇彼此叠加的可能性。那些可能性同时存在，彼此干涉，既没有完全确定，也没有彻底消失。所谓人生，也许正是在这团模糊的波前中缓慢前行。</p>
+                <div class="quote-placeholder">命运不是一颗等着被发现的星，而是一片要靠观测与行动逐渐收束的天空。</div>
+                <p>量子世界里，观测会改变系统本身。你不是站在世界外面、冷静旁观一个已经完成的结果；你一旦参与进去，结果就开始变化。人生也是如此。很多人以为自己只是在“看看”“想想”“等等”，仿佛还没有真正做出决定。但事实上，拖延也是一种观测，犹豫也是一种施加，沉默本身就在改变轨迹。你以为自己没有选择，其实你已经在让某些可能性变亮，让另一些可能性暗下去。</p>
+                <p>测不准原理也给了我一种安慰。它并不是说世界毫无规律，而是说有些量无法被同时、彻底、精确地握在手里。你不可能在出发前就知道一切代价、风险、回报和结局。你无法一边确保绝对安全，一边掌握绝对自由；无法既不失去任何退路，又抵达真正深入的地方。人生中的很多焦虑，恰恰来自我们想在行动前把所有变量都算清楚。但有些事情，只有在进入系统之后，答案才会显现。</p>
+                <p>这并不意味着宿命不存在，而是说宿命未必是一个已经封口的盒子。也许它更像边界条件，像你的出身、时代、身体、性格、运气，决定了你不可能成为任何东西；但在这些边界之内，仍然有大量可被塑形的轨迹。你不是无所不能，但你也绝不是无能为力。你无法选择初始坐标，却仍然可以决定如何施力、如何修正、如何承担每一次坍缩之后的新现实。</p>
+                <p>所以我越来越觉得，“命运在自己手里”不是一句热血口号，而是一种更冷静的描述。它不是说你想要什么就会得到什么，而是说在不确定性真正存在的地方，你的每一次选择都会参与生成结果。你读什么，爱谁，与谁同行，在哪一步停下，在哪一步冒险，这些都不是旁枝末节，而是在不断替未来选定一种解释。</p>
+                <p>观星者未必能改写星空，但他可以决定朝哪片天走去。真正重要的，或许不是预言，而是参与。</p>
+            </section>
+
+            <div class="footer-note">
+                Note: 命运若真有其形状，它大概也要等到我们走完之后，才会被回头看成一条线。
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

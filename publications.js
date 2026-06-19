@@ -228,6 +228,50 @@
             subtitleZh: "围绕大规模图像检索、高效表征与几何归一化的相关工作。",
             papers: [
                 {
+                    id: "paper-uou",
+                    image: "images/arxiv26_UoU.png",
+                    alt: "UoU: A Universal Fingerprint Foundation Model Based on Large-Scale Unsupervised Learning",
+                    meta: "Preprint 2026",
+                    highlights: [],
+                    title: "UoU: A Universal Fingerprint Foundation Model Based on Large-Scale Unsupervised Learning",
+                    authorsHtml: "<strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou",
+                    venue: "We propose UoU, a universal fingerprint foundation model that leverages large-scale unsupervised learning to build unified multi-level fingerprint representations, offering a general-purpose backbone that can be adapted to a wide range of biometric sensing and recognition applications.",
+                    keywords: [
+                        "Foundation Model",
+                        "Large-Scale Self-/Unsupervised Learning",
+                        "Unified Representation",
+                        "Multi-Task Generalization",
+                        "Semantic Token Learning",
+                        "Symmetry-Aware Supervision"
+                    ],
+                    links: [
+                        { label: "Paper", href: "https://arxiv.org/abs/2606.17436" },
+                        { label: "Code", href: "https://github.com/XiongjunGuan/UoU" }
+                    ]
+                },
+                {
+                    id: "paper-fingerprint-reconstruction",
+                    image: "images/arxiv26_Reconstruction.png",
+                    alt: "Toward the Whole Picture: Accumulative Fingerprint Mapping and Reconstruction for Small-Area Mobile Sensors",
+                    meta: "Preprint 2026",
+                    highlights: [],
+                    title: "Toward the Whole Picture: Accumulative Fingerprint Mapping and Reconstruction for Small-Area Mobile Sensors",
+                    authorsHtml: "<strong>Xiongjun Guan</strong>, Jianjiang Feng, Jie Zhou",
+                    venue: "This work introduces an accumulative fingerprint mapping and reconstruction paradigm that fuses sequential partial fingerprint observations into a continuously refined global fingerprint state, enabling reliable one-shot matching and practical deployment for small-area mobile biometric systems.",
+                    keywords: [
+                        "Generative Reconstruction",
+                        "Accumulative Mapping",
+                        "Memory-Augmented Recognition",
+                        "Structured Token Accumulation",
+                        "One-Shot Matching"
+                        
+                    ],
+                    links: [
+                        { label: "Paper", href: "https://arxiv.org/abs/2606.15574" },
+                        { label: "Code", href: "https://github.com/XiongjunGuan/FpReconstruction" }
+                    ]
+                },
+                {
                     id: "paper-impose",
                     image: "images/IMPose.png",
                     alt: "Identity-Consistent Multi-Pose Generation of Contactless Fingerprints",
