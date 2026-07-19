@@ -1673,6 +1673,11 @@
                         <button class="city-chip" type="button" data-city-focus="datong">大同</button>
                         <button class="city-chip" type="button" data-city-focus="shuozhou">朔州</button>
                         <button class="city-chip" type="button" data-city-focus="xinzhou">忻州</button>
+                        <button class="city-chip" type="button" data-city-focus="taiyuan">太原</button>
+                        <button class="city-chip" type="button" data-city-focus="pingyao">平遥</button>
+                        <button class="city-chip" type="button" data-city-focus="hukou">壶口</button>
+                        <button class="city-chip" type="button" data-city-focus="linfen">临汾</button>
+                        <button class="city-chip" type="button" data-city-focus="yuncheng">运城</button>
                         <button class="city-chip" type="button" data-city-focus="harbin">哈尔滨</button>
                         <button class="city-chip" type="button" data-city-focus="shenyang">沈阳</button>
                         <button class="city-chip" type="button" data-city-focus="dalian">大连</button>
@@ -1716,6 +1721,54 @@
                     Man thinks, God laughs.
                 </p>
                 <ul class="moments-list">
+                    <li>
+                        <a class="moment-link" href="moments/age-of-deconstruction.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">解构的时代</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                “一切等级的和固定的东西都烟消云散了，一切神圣的东西都被亵渎了。人们终于不得不冷静地直面他们生活的真实状况和他们之间的相互关系。”
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="moment-link" href="moments/naivete.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">稚拙</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                “学我者生，似我者死。”
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="moment-link" href="moments/projection.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">投射</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                “不识庐山真面目，只缘身在此山中”。
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="moment-link" href="moments/anchor.html">
+                            <div class="moment-meta">Aha Note</div>
+                            <div class="moment-title-row">
+                                <h3 class="moment-title">锚点</h3>
+                                <span class="moment-arrow" aria-hidden="true">→</span>
+                            </div>
+                            <p class="moment-desc">
+                                没有参照物的时候，我们只是在虚空中漂浮。
+                            </p>
+                        </a>
+                    </li>
                     <li>
                         <a class="moment-link" href="moments/whitespace.html">
                             <div class="moment-meta">Aha Note</div>
@@ -1872,10 +1925,10 @@
     </main>
 
     <footer class="footer" id="footer-text">
-        &copy; Xiongjun Guan |
-        Last updated: Jun. 8, 2026
+        &copy; Xiongjun Guan
     </footer>
 
+    <script src="site-date.js"></script>
     <script>
         (function () {
             const brandSwitch = document.getElementById("brand-switch");
@@ -1974,7 +2027,7 @@
                     momentMeta: "Aha Note",
                     sectionSpacer: "...and possibly more.",
                     visitorMapNoscript: "Visitor map is unavailable when JavaScript is disabled.",
-                    footer: "&copy; Xiongjun Guan | Last updated: Jun. 28, 2026"
+                    footerLabel: "&copy; Xiongjun Guan | Last updated: "
                 },
                 zh: {
                     title: "关雄峻的洄游之旅",
@@ -2028,7 +2081,7 @@
                     momentMeta: "灵光一闪",
                     sectionSpacer: "……以及更多可能。",
                     visitorMapNoscript: "禁用 JavaScript 时无法显示访客地图。",
-                    footer: "&copy; Xiongjun Guan | 最后更新：2026 年 6 月 28 日"
+                    footerLabel: "&copy; Xiongjun Guan | 最后更新："
                 }
             };
 
@@ -2098,7 +2151,7 @@
                 });
                 sectionSpacer.textContent = copy.sectionSpacer;
                 visitorMapNoscript.textContent = copy.visitorMapNoscript;
-                footerText.innerHTML = copy.footer;
+                footerText.innerHTML = copy.footerLabel + window.siteDate.formatLastUpdated(lang);
                 langEnButton.classList.toggle("active", lang === "en");
                 langZhButton.classList.toggle("active", lang === "zh");
                 originLangEnButton.classList.toggle("active", lang === "en");
@@ -2363,6 +2416,11 @@
                 { id: "datong", name: "大同", lat: 40.0768, lng: 113.3001 },
                 { id: "xinzhou", name: "忻州", lat: 38.4167, lng: 112.7333 },
                 { id: "shuozhou", name: "朔州", lat: 39.3316, lng: 112.4334 },
+                { id: "taiyuan", name: "太原", lat: 37.8706, lng: 112.5489 },
+                { id: "pingyao", name: "平遥", lat: 37.1890, lng: 112.1750 },
+                { id: "hukou", name: "壶口", lat: 36.1506, lng: 110.4660 },
+                { id: "linfen", name: "临汾", lat: 36.0880, lng: 111.5189 },
+                { id: "yuncheng", name: "运城", lat: 35.0264, lng: 111.0075 },
                 { id: "hengshui", name: "衡水", lat: 37.7389, lng: 115.6702 },
                 { id: "chengdu", name: "成都", lat: 30.5728, lng: 104.0668 },
                 { id: "leshan", name: "乐山", lat: 29.5521, lng: 103.7654 },

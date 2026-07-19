@@ -1949,10 +1949,10 @@
     </div>
 
     <footer class="footer" id="footer-text">
-        &copy; Xiongjun Guan |
-        Last updated: Jun. 28, 2026
+        &copy; Xiongjun Guan
     </footer>
 
+    <script src="site-date.js"></script>
     <script src="publications.js"></script>
     <script>
         (function () {
@@ -2443,7 +2443,7 @@
                     migrationMeta: 'Click to Enter <span class="arrow" aria-hidden="true">→</span>',
                     spacer: "...and possibly more.",
                     visitorMapNoscript: "Visitor map is unavailable when JavaScript is disabled.",
-                    footer: "&copy; Xiongjun Guan | Last updated: Jul. 28, 2026"
+                    footerLabel: "&copy; Xiongjun Guan | Last updated: "
                 },
                 zh: {
                     title: "关雄峻的个人主页",
@@ -2477,7 +2477,7 @@
                     migrationMeta: '点击进入 <span class="arrow" aria-hidden="true">→</span>',
                     spacer: "……以及更多可能。",
                     visitorMapNoscript: "禁用 JavaScript 时无法显示访客地图。",
-                    footer: "&copy; Xiongjun Guan | 最后更新：2026 年 7 月 19 日"
+                    footerLabel: "&copy; Xiongjun Guan | 最后更新："
                 }
             };
 
@@ -2536,7 +2536,8 @@
                 migrationEntryMeta.innerHTML = staticTranslations[lang].migrationMeta;
                 sectionSpacer.textContent = staticTranslations[lang].spacer;
                 visitorMapNoscript.textContent = staticTranslations[lang].visitorMapNoscript;
-                footerText.innerHTML = staticTranslations[lang].footer;
+                footerText.innerHTML = staticTranslations[lang].footerLabel
+                    + window.siteDate.formatLastUpdated(lang);
 
                 langEnButton.classList.toggle("active", lang === "en");
                 langZhButton.classList.toggle("active", lang === "zh");
