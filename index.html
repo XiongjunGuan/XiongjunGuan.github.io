@@ -854,6 +854,198 @@
             background: linear-gradient(135deg, #d93025, #ea4335);
         }
 
+        .pub-filter-panel {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 18px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.92), rgba(255, 255, 255, 0.96));
+        }
+
+        .pub-filter-group {
+            display: grid;
+            grid-template-columns: 148px minmax(0, 1fr);
+            align-items: start;
+            gap: 12px;
+        }
+
+        .pub-filter-label {
+            margin: 7px 0 0;
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        .pub-filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pub-filter-chip,
+        .pub-filter-clear {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--text-soft);
+            font: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            line-height: 1.2;
+            cursor: pointer;
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        .pub-filter-chip {
+            padding: 7px 12px;
+        }
+
+        .pub-filter-chip span {
+            opacity: 0.72;
+        }
+
+        .pub-filter-chip:hover,
+        .pub-filter-clear:hover {
+            color: var(--blue);
+            border-color: rgba(26, 115, 232, 0.32);
+            transform: translateY(-1px);
+        }
+
+        .pub-filter-chip.active {
+            color: #fff;
+            border-color: #6f42c1;
+            background: linear-gradient(135deg, #8f63d9, #b877dc);
+            box-shadow: 0 6px 14px rgba(143, 99, 217, 0.23);
+        }
+
+        .pub-filter-clear {
+            justify-self: start;
+            padding: 7px 12px;
+        }
+
+        .pub-filter-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pub-filter-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pub-filter-featured {
+            display: flex;
+            align-items: center;
+        }
+
+        .pub-filter-result {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 10px;
+            margin: 0 0 14px;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pub-filter-result-count {
+            color: var(--text);
+        }
+
+        .pub-filter-summary-label {
+            color: var(--text-soft);
+            font-size: 0.84rem;
+        }
+
+        .pub-active-filters {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pub-active-filter-group {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pub-active-filter-group-label,
+        .pub-filter-operator {
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .pub-filter-operator-and {
+            color: #6f42c1;
+        }
+
+        .pub-active-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 9px;
+            border: 1px solid rgba(143, 99, 217, 0.24);
+            border-radius: 999px;
+            background: rgba(143, 99, 217, 0.08);
+            color: #6f42c1;
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pub-active-filter:hover {
+            background: rgba(143, 99, 217, 0.16);
+        }
+
+        .pub-active-filter span {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 0.8;
+        }
+
+        .pub-filtered-list {
+            gap: 22px;
+        }
+
+        .pub-filtered-list .paper-item + .paper-item {
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+        }
+
+        .pub-filter-empty {
+            margin: 0;
+            padding: 28px 20px;
+            border: 1px dashed var(--line);
+            border-radius: 14px;
+            color: var(--text-soft);
+            text-align: center;
+        }
+
+        .paper-filter-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            border: 1px solid rgba(26, 115, 232, 0.16);
+            border-radius: 999px;
+            background: #f5f8fe;
+            color: #365f9e;
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
         .paper-group details {
             display: block;
         }
@@ -1361,6 +1553,24 @@
         }
 
         @media (max-width: 640px) {
+            .pub-filter-panel {
+                padding: 16px;
+            }
+
+            .pub-filter-group {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .pub-filter-label {
+                margin-top: 0;
+            }
+
+            .pub-filter-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
             .paper-item {
                 grid-template-columns: 1fr;
             }
@@ -1458,8 +1668,8 @@
                 <div class="about-summary" id="about-content">
 
                     <p>
-                        I build multimodal AI systems that perceive, interact, and evolve in real-world environments
-                        under practical constraints.
+                        I build AI infrastructure and agentic reinforcement learning systems for scalable, reliable
+                        intelligence.
                     </p>
 
                     <p>
@@ -1488,9 +1698,8 @@
                         <div class="tag-group focus">
                             <p class="tag-group-title">Focus</p>
                             <div class="quick-tags">
-                                <span class="tag">AI Infra</span>
-                                <span class="tag">MLLM</span>
-                                <span class="tag">Agentic RL</span>
+                                <span class="tag">AI Infrastructure</span>
+                                <span class="tag">Agentic RL Runtime</span>
                             </div>
                         </div>
                         <div class="tag-group interesting">
@@ -1520,6 +1729,10 @@
                 <h2 class="section-title" id="section-title-news">Recent News</h2>
                 <div class="news-list" id="news-content">
                     <div class="news-item">
+                        <span class="news-date">Jul 2026</span>
+                        <p>Received my Ph.D. degree from the Department of Automation, Tsinghua University, and joined Huawei 2012 Laboratories.</p>
+                    </div>
+                    <div class="news-item">
                         <span class="news-date">May 2026</span>
                         <p>Received the Outstanding Reviewer (one of 10 recipients) recognition from IEEE T-BIOM.</p>
                     </div>
@@ -1534,11 +1747,6 @@
                     <div class="news-item">
                         <span class="news-date">Jan 2026</span>
                         <p>One paper on fixed-length dense fingerprint representation was accepted by T-IFS.</p>
-                    </div>
-                    <div class="news-item">
-                        <span class="news-date">Nov 2025</span>
-                        <p>One paper on under-screen fingerprint pose estimation was accepted by T-IFS, and one paper on
-                            finger pose HCI was accepted by T-MC.</p>
                     </div>
                 </div>
             </article>
@@ -1877,7 +2085,7 @@
             </article>
 
             <article class="section-card" id="publications">
-                <h2 class="section-title" id="section-title-publications">Selected Publications</h2>
+                <h2 class="section-title" id="section-title-publications">Publications</h2>
                 <div id="publications-content"></div>
             </article>
 
@@ -2013,7 +2221,7 @@
                 zh: {
                     about: `
                     <p>
-                        我致力于构建能够在现实环境约束下进行感知、交互并持续演化的多模态智能系统。
+                        我致力于构建面向可扩展、可靠智能的 AI 基础设施与智能体强化学习系统。
                     </p>
                     <p>
                         我于 2026 年加入华为技术有限公司。<br>
@@ -2039,33 +2247,35 @@
                         <div class="tag-group focus">
                             <p class="tag-group-title">研究重点</p>
                             <div class="quick-tags">
-                                
-                                <span class="tag">AI Infra</span>
-                                <span class="tag">MLLM</span>
-                                <span class="tag">Agentic RL</span>
+                                <span class="tag">AI Infrastructure</span>
+                                <span class="tag">Agentic RL Runtime</span>
                             </div>
                         </div>
                         <div class="tag-group interesting">
                             <p class="tag-group-title">兴趣方向</p>
                             <div class="quick-tags">
-                                <span class="tag">智能眼镜</span>
-                                <span class="tag">意图识别</span>
-                                <span class="tag">人机交互</span>
+                                <span class="tag">Smart Glasses</span>
+                                <span class="tag">Intention Recognition</span>
+                                <span class="tag">Human-AI Interaction</span>
                             </div>
                         </div>
                         <div class="tag-group experience">
                             <p class="tag-group-title">经历</p>
                             <div class="quick-tags">
-                                <span class="tag">多模态</span>
-                                <span class="tag">表征学习</span>
-                                <span class="tag">检索系统</span>
+                                <span class="tag">Multimodal Learning</span>
+                                <span class="tag">Representation Learning</span>
+                                <span class="tag">Retrieval Systems</span>
                                 <span class="tag">Harness Engineering</span>
-                                <span class="tag">后训练</span>
-                                <span class="tag">人机交互</span>
+                                <span class="tag">Post-Training</span>
+                                <span class="tag">Human-Computer Interaction</span>
                             </div>
                         </div>
                     </div>`,
                     news: `
+                    <div class="news-item">
+                        <span class="news-date">2026 年 7 月</span>
+                        <p>获得清华大学自动化系博士学位，并加入华为 2012 实验室。</p>
+                    </div>
                     <div class="news-item">
                         <span class="news-date">2026 年 5 月</span>
                         <p>获 IEEE T-BIOM 杰出审稿人（年度评选 10 人）荣誉。</p>
@@ -2082,10 +2292,7 @@
                         <span class="news-date">2026 年 1 月</span>
                         <p>一篇关于定长稠密指纹表征的论文被 T-IFS 接收。</p>
                     </div>
-                    <div class="news-item">
-                        <span class="news-date">2025 年 11 月</span>
-                        <p>一篇关于屏下指纹姿态估计的论文被 T-IFS 接收，一篇关于手指姿态人机交互的论文被 T-MC 接收。</p>
-                    </div>`,
+                    `,
                     education: `
                     <div class="timeline-item">
                         <a class="timeline-logo-link" href="https://www.au.tsinghua.edu.cn/" target="_blank"
@@ -2434,7 +2641,7 @@
                         work: "Work Experience",
                         honors: "Honors",
                         competitions: "Competitions",
-                        publications: "Selected Publications",
+                        publications: "Publications",
                         teaching: "Teaching",
                         migration: "Anadromous Migration"
                     },
@@ -2507,6 +2714,8 @@
                     });
                 });
             }
+
+            document.addEventListener("publications:rendered", bindPublicationThumbs);
 
             function renderPageLanguage(lang) {
                 currentLang = lang;
