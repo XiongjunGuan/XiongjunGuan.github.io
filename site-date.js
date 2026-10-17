@@ -4,8 +4,8 @@
     // Update this one date to refresh the footer on both bilingual pages.
     const lastUpdated = Object.freeze({
         year: 2026,
-        month: 8,
-        day: 30
+        month: 10,
+        day: 17
     });
 
     const englishMonths = Object.freeze([
