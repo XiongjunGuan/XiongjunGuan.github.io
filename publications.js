@@ -573,7 +573,7 @@
         }
         const map = {
             "Featured": "精选",
-            "Oral": "口头报告",
+            "Oral": "Oral",
             "2nd Place": "第 2 名",
             "4th Place": "第 4 名"
         };
@@ -614,6 +614,7 @@
         }).join("");
         const venueText = lang === "zh" && paper.venueZh ? paper.venueZh : (options.venueText || paper.venue);
         const metaText = lang === "zh" && paper.metaZh ? paper.metaZh : paper.meta;
+        const venueBadge = paper.meta.replace(/\s*\b(?:19|20)\d{2}\b/g, "").trim();
         const toplineHtml = options.toplineHtml || `<span class="item-meta">${escapeHtml(metaText)}</span>`;
 
         return `
@@ -622,6 +623,7 @@
                     data-lightbox-src="${escapeHtml(paper.image)}"
                     data-lightbox-alt="${escapeHtml(paper.alt)}">
                     <img class="paper-cover" src="${escapeHtml(paper.image)}" alt="${escapeHtml(paper.alt)}">
+                    <span class="paper-venue-badge">${escapeHtml(venueBadge)}</span>
                 </button>
                 <div>
                     <div class="paper-topline">

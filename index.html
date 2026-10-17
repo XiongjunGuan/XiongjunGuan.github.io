@@ -1127,6 +1127,24 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
         }
 
+        .paper-venue-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            z-index: 1;
+            max-width: calc(100% - 12px);
+            box-sizing: border-box;
+            padding: 4px 7px;
+            border-radius: 7px;
+            background: rgba(24, 40, 61, 0.85);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            line-height: 1.35;
+            text-align: center;
+            pointer-events: none;
+        }
+
         .paper-thumb:hover .paper-cover {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 12px 24px rgba(60, 64, 67, 0.18);
